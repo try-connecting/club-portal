@@ -6908,30 +6908,6 @@
       document.getElementById('portalContent').style.display = 'block';
     }
   </script>
-<script>
-// Fix quiz tab display - override CSS conflicts  
-(function() {
-  var origSwitchTab = window.switchTab;
-  var observer = new MutationObserver(function() {
-    var q = document.getElementById('quizzes');
-    if (q && q.classList.contains('active')) {
-      q.style.setProperty('display', 'block', 'important');
-    }
-  });
-  var q = document.getElementById('quizzes');
-  if (q) observer.observe(q, {attributes: true, attributeFilter: ['class']});
-  
-  // Also hook tab button clicks directly
-  document.addEventListener('click', function(e) {
-    var btn = e.target.closest('.tab-button');
-    if (btn && btn.dataset.tab === 'quizzes') {
-      setTimeout(function() {
-        var q = document.getElementById('quizzes');
-        if (q) q.style.setProperty('display', 'block', 'important');
-      }, 50);
-    }
-  });
-})();
-</script>
+
 </body>
 </html>

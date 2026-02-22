@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
     tabButtons.forEach(function(btn) { btn.classList.remove('active'); });
     tabContents.forEach(function(content) {
       content.classList.remove('active');
+      content.style.cssText = '';
       content.querySelectorAll('.dc-vid-card, .premium-card, .dc-pdf-card, .movie-card').forEach(function(card) {
         card.style.opacity = '1';
         card.style.transform = 'translateY(0)';
@@ -103,6 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (activeButton && activeContent) {
       activeButton.classList.add('active');
       activeContent.classList.add('active');
+      activeContent.style.cssText = 'display: block !important';
       var nav = document.querySelector('.tab-navigation');
       if (nav) nav.scrollIntoView({ behavior: 'smooth', block: 'start' });
       activeContent.querySelectorAll('.dc-filter-btn').forEach(function(b){ b.classList.remove('active'); });
