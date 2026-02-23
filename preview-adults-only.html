@@ -308,7 +308,18 @@
       );
       margin: 0 auto;
       position: relative;
-      transition: transform 3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      border: 4px solid rgba(231, 76, 111, 0.8);
+    }
+    
+    .spinner-wheel.spinning {
+      animation: spin-glow 0.5s ease-in-out infinite alternate;
+    }
+    
+    @keyframes spin-glow {
+      0% { box-shadow: 0 10px 30px rgba(0,0,0,0.3), 0 0 0 rgba(231, 76, 111, 0.4); }
+      100% { box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 20px rgba(231, 76, 111, 0.6); }
     }
 
     .spinner-center {
@@ -841,6 +852,49 @@
 
     .hidden {
       display: none !important;
+    }
+    
+    /* Adults Only Result Cards */
+    .result-card {
+      background: rgba(231, 76, 111, 0.1);
+      border: 2px solid rgba(231, 76, 111, 0.3);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      margin: 2rem auto;
+      max-width: 600px;
+    }
+    
+    .result-card h3 {
+      color: #e74c6f;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    
+    .difficulty-rating {
+      background: rgba(255, 255, 255, 0.1);
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      color: #ff9aa2;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    .position-tips {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      border-radius: 15px;
+      margin-top: 1.5rem;
+      text-align: left;
+    }
+    
+    .answer-btn:hover {
+      background: rgba(231, 76, 111, 0.2) !important;
+      border-color: rgba(231, 76, 111, 0.5) !important;
+      color: white !important;
+      transform: translateY(-2px);
+      transition: all 0.3s ease;
     }
   </style>
 </head>
@@ -5849,10 +5903,9 @@
       return true;
     }
 
-    // Adults Only Section Content
+    // Adults Only Section Content  
     function openSection(sectionType) {
-      if (!checkAgeVerification()) return;
-      
+      // Age verification already handled at tab level - no need to check again
       const sectionContent = document.getElementById('section-content');
       sectionContent.style.display = 'block';
       sectionContent.innerHTML = getSectionContent(sectionType);
@@ -6083,43 +6136,79 @@
       originalShowTab(tabName);
     };
 
-    // Position Spinner Functionality
+    // Sex Position Spinner - Explicit Positions
     const positions = [
       {
-        name: "The Intimate Connection",
+        name: "Passionate Missionary",
+        difficulty: "Beginner", 
+        description: "Classic face-to-face position with her legs wrapped around his waist. Deep penetration with intense eye contact and kissing.",
+        tips: "Try different angles by placing a pillow under her hips. Let her control the depth by wrapping her legs tighter or looser."
+      },
+      {
+        name: "Cowgirl Control",
         difficulty: "Beginner",
-        description: "A tender, face-to-face position perfect for deep eye contact and emotional intimacy.",
-        tips: "Take your time, focus on breathing together, and maintain gentle communication."
+        description: "She rides on top, controlling speed and depth. Perfect for clitoral stimulation and her pleasure.",
+        tips: "Lean forward or backward to change the angle. He can thrust upward or let her do all the work."
       },
       {
-        name: "The Passionate Embrace",
-        difficulty: "Intermediate", 
-        description: "An elevated position that allows for deeper connection and varied sensations.",
-        tips: "Use pillows for comfort and support. Communication is key for finding the perfect rhythm."
-      },
-      {
-        name: "The Adventure Seekers",
-        difficulty: "Advanced",
-        description: "A playful position for couples ready to explore new heights of intimacy.",
-        tips: "Take breaks as needed, stay hydrated, and remember that laughter is part of the fun."
-      },
-      {
-        name: "The Romantic Gateway",
-        difficulty: "Beginner",
-        description: "A gentle, comfortable position ideal for slow, romantic encounters.",
-        tips: "Perfect for Sunday mornings. Focus on caressing and tender touches."
-      },
-      {
-        name: "The Connection Explorer",
+        name: "Doggy Style Delight", 
         difficulty: "Intermediate",
-        description: "An adventurous yet comfortable position for deeper exploration.",
-        tips: "Start slowly and build intensity. Use this as an opportunity to discover new sensations."
+        description: "Deep penetration from behind with access to stimulate her clitoris simultaneously.",
+        tips: "Vary the angle by having her arch her back more or less. Perfect position for spanking and hair pulling."
       },
       {
-        name: "The Intimacy Masters",
+        name: "Standing Passion",
+        difficulty: "Intermediate",
+        description: "Standing sex against a wall or surface for an adventurous quickie with deep thrusts.",
+        tips: "Make sure heights are compatible or use a step stool. Great for kitchen counters or shower walls."
+      },
+      {
+        name: "Spooning Intimacy",
+        difficulty: "Beginner",
+        description: "Gentle side-by-side position perfect for lazy morning sex and intimate connection.",
+        tips: "He can reach around to stimulate her clitoris while thrusting slowly from behind."
+      },
+      {
+        name: "Reverse Cowgirl",
+        difficulty: "Intermediate", 
+        description: "She faces away while on top, giving him a great view and different sensations for both.",
+        tips: "She can lean forward on his legs for support. Great angle for hitting her G-spot."
+      },
+      {
+        name: "The Butterfly",
         difficulty: "Advanced",
-        description: "For experienced couples seeking an intense, connected experience.",
-        tips: "Requires flexibility and stamina. Perfect for special occasions and celebrations."
+        description: "She lies on edge of bed with legs up, he stands for deep penetration and clitoral access.",
+        tips: "Use pillows under her lower back. Perfect for extended sessions without him getting tired."
+      },
+      {
+        name: "The Pretzel",
+        difficulty: "Advanced",
+        description: "Twisted side position allowing for deep penetration and unique angles of pleasure.",
+        tips: "Requires flexibility. Start slowly and communicate about comfort. Amazing for G-spot stimulation."
+      },
+      {
+        name: "69 Position",
+        difficulty: "Intermediate",
+        description: "Mutual oral pleasure with both partners stimulating each other simultaneously.",
+        tips: "Take turns focusing on each other rather than trying to climax together. Communication is key."
+      },
+      {
+        name: "The Lotus",
+        difficulty: "Advanced",
+        description: "Sitting position with her legs wrapped around him for intense emotional and physical connection.",
+        tips: "More about intimate connection than vigorous thrusting. Perfect for eye contact and kissing."
+      },
+      {
+        name: "Legs Up Missionary",
+        difficulty: "Intermediate",
+        description: "Traditional missionary with her legs up on his shoulders for incredibly deep penetration.",
+        tips: "Great for hitting the G-spot. She can control depth by pushing against his chest."
+      },
+      {
+        name: "The Bridge",
+        difficulty: "Advanced",
+        description: "She creates a bridge position while he enters from above for unique angles and views.",
+        tips: "Requires upper body strength from her. Take breaks and support her back as needed."
       }
     ];
 
@@ -6130,15 +6219,33 @@
       
       isSpinning = true;
       const wheel = document.getElementById('spinnerWheel');
-      const randomDegree = Math.random() * 3600 + 1800; // 5-15 full rotations
+      const spinButton = document.querySelector('.spinner-center');
       
-      wheel.style.transform = `rotate(${randomDegree}deg)`;
+      // Add spinning visual effect
+      wheel.classList.add('spinning');
+      spinButton.innerHTML = '<div class="spinner-arrow">▲</div><div class="spin-text">SPINNING...</div>';
+      
+      // Clear previous result
+      document.getElementById('spinResult').style.display = 'none';
+      
+      // Random rotation: 8-15 full rotations plus random position  
+      const baseRotation = (Math.random() * 7 + 8) * 360; // 8-15 full spins
+      const finalPosition = Math.random() * 360; // Final landing position
+      const totalRotation = baseRotation + finalPosition;
+      
+      wheel.style.transform = `rotate(${totalRotation}deg)`;
       
       setTimeout(() => {
-        const selectedPosition = positions[Math.floor(Math.random() * positions.length)];
+        wheel.classList.remove('spinning');
+        spinButton.innerHTML = '<div class="spinner-arrow">▲</div><div class="spin-text">SPIN</div>';
+        
+        // Select position based on final rotation
+        const positionIndex = Math.floor((finalPosition / 360) * positions.length);
+        const selectedPosition = positions[positionIndex];
+        
         showSpinResult(selectedPosition);
         isSpinning = false;
-      }, 3000);
+      }, 4000);
     }
 
     function showSpinResult(position) {
@@ -6152,63 +6259,63 @@
       resultDiv.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Bucket List Functionality
+    // Bedroom Bucket List - 50 Explicit Challenges
     const bucketListChallenges = {
       mild: [
-        "Give each other a 10-minute back massage",
-        "Share three intimate compliments", 
-        "Take a bubble bath together",
-        "Write love notes to each other",
-        "Have breakfast in bed together",
-        "Share a favorite fantasy (PG-13)",
-        "Dance together in your underwear",
-        "Give each other a sensual hand massage",
-        "Share what turns you on most about your partner",
-        "Spend 20 minutes just kissing",
-        "Take turns describing your ideal romantic evening",
-        "Share your most romantic memory together",
-        "Blindfold your partner and feed them treats",
-        "Write down 5 things you love about your partner's body",
-        "Share your favorite romantic movie and watch it together",
-        "Take a shower together",
-        "Give each other foot massages"
+        "Give your partner a sensual full-body massage with warm oil",
+        "Take turns whispering dirty compliments in each other's ears",
+        "Make out passionately for 20 minutes without touching below the waist", 
+        "Take a steamy shower together and wash each other slowly",
+        "Blindfold your partner and tease them with different textures and temperatures",
+        "Share three explicit fantasies you've never told anyone",
+        "Give each other oral pleasure while focusing only on your partner's enjoyment",
+        "Try edible body paints or flavored oils during foreplay",
+        "Have passionate sex with all the lights on, looking into each other's eyes",
+        "Create a sexy playlist and have a slow, sensual dance session naked",
+        "Write erotic love letters describing exactly what you want to do to each other",
+        "Try mutual masturbation while maintaining eye contact",
+        "Have sex in a different room than your bedroom",
+        "Use ice cubes to trace your partner's body during foreplay",
+        "Practice extended kissing and touching without rushing to intercourse",
+        "Take turns being completely in control for an entire intimate session"
       ],
       moderate: [
-        "Try a new position from a book or guide",
-        "Explore with ice cubes or warm oil",
-        "Share a deeper fantasy",
-        "Try sensory play with different textures",
-        "Have an intimate conversation about desires",
-        "Plan a surprise romantic evening",
-        "Try massage oils with different scents",
-        "Share what makes you feel most desired",
-        "Explore new ways to pleasure each other",
-        "Try a couples' breathing exercise during intimacy",
-        "Share turn-ons you've never mentioned",
-        "Try gentle bondage with silk ties or scarves",
-        "Explore different rooms in your home",
-        "Try extended foreplay for 30+ minutes",
-        "Share your wildest (but achievable) fantasy",
-        "Try temperature play with warm and cool sensations"
+        "Try the spooning position and focus on slow, deep penetration",
+        "Explore anal play with proper preparation and communication",
+        "Use adult toys together during sex for enhanced pleasure",
+        "Try light bondage using silk ties, blindfolds, or restraints",
+        "Have sex standing up against a wall or in the shower",
+        "Experiment with temperature play using hot wax or ice",
+        "Try the woman-on-top position and let her control the rhythm completely",
+        "Have a quickie in a semi-public place (car, closet, etc.)",
+        "Try delayed gratification - bring each other to the edge multiple times",
+        "Explore role-playing scenarios (teacher/student, boss/employee, strangers)",
+        "Try the 69 position for mutual oral pleasure",
+        "Have marathon sex sessions lasting over an hour with multiple positions",
+        "Use flavored condoms and explore different oral techniques",
+        "Try doggy style with variations in angle and depth",
+        "Have sex while one of you is wearing sexy lingerie or costumes",
+        "Experiment with different lubes and sensations during penetration",
+        "Try phone or video sex when you're apart"
       ],
       spicy: [
-        "Plan a weekend getaway focused on intimacy",
-        "Try role-playing as different characters",
-        "Explore tantric techniques together",
-        "Share and act on a mutual fantasy",
-        "Try a new adventurous position",
-        "Plan an elaborate seduction scenario",
-        "Explore outdoor intimacy (safely and legally)",
-        "Try extended sessions with multiple peaks",
-        "Create your own intimate photo session",
-        "Try advanced massage techniques",
-        "Plan a surprise intimate adventure",
-        "Explore with adult toys together",
-        "Try different music and lighting scenarios",
-        "Challenge yourselves with stamina goals",
-        "Create a fantasy fulfillment weekend",
-        "Try advanced breathing and connection techniques",
-        "Plan an intimate treasure hunt for each other"
+        "Have a threesome fantasy role-play (without actually involving another person)",
+        "Try advanced positions like the butter churner or the pretzel",
+        "Explore BDSM with safe words, impact play, and power exchange",
+        "Have rough, passionate sex with hair pulling and spanking",
+        "Try double penetration using toys during intercourse",
+        "Have sex in multiple positions during one session (at least 5)",
+        "Explore public or outdoor sex in a private but thrilling location",
+        "Try tantric sex techniques with extended periods without climax",
+        "Have an all-day sex marathon with breaks for food and hydration",
+        "Create and act out detailed fantasy scenarios with costumes and props",
+        "Try advanced oral techniques including deep throating and rimming",
+        "Have sex while using multiple toys simultaneously on both partners",
+        "Explore sensation play with nipple clamps, feathers, and impact toys",
+        "Try the lotus position for intense emotional and physical connection",
+        "Have competitive sex where you try to make your partner climax first",
+        "Create a sex tape or take erotic photos together (keep them private!)",
+        "Try advanced anal positions and techniques with proper preparation"
       ]
     };
 
@@ -6272,38 +6379,150 @@
 
     // Additional interactive functions for other sections
     function startSpiceQuiz() {
-      // Placeholder for spice quiz functionality
+      const spiceQuestions = [
+        "Which level of adventure appeals to you most in the bedroom?",
+        "How do you feel about trying new positions?",  
+        "What's your comfort level with introducing toys?",
+        "How adventurous are you with different locations?",
+        "What's your interest level in role-playing scenarios?",
+        "How do you feel about light BDSM elements?",
+        "What's your comfort with public or semi-public intimacy?",
+        "How interested are you in extended foreplay sessions?",
+        "What's your comfort level with different types of oral play?",
+        "How do you feel about incorporating fantasy elements?"
+      ];
+      
+      const currentQuestion = Math.floor(Math.random() * spiceQuestions.length);
+      
       document.getElementById('spiceQuizContent').innerHTML = `
-        <div style="text-align: center; padding: 2rem;">
-          <h3>Coming Soon!</h3>
-          <p>This personalized assessment is being fine-tuned to provide the most accurate and helpful recommendations for couples.</p>
-          <button class="intimate-btn" onclick="closeSectionContent()">Back to Menu</button>
+        <div style="padding: 2rem;">
+          <h3 style="color: #e74c6f; margin-bottom: 2rem;">Spice Assessment</h3>
+          <div style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+            <p style="color: #b0b8d4; font-size: 1.2rem; margin-bottom: 2rem;">${spiceQuestions[currentQuestion]}</p>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <button class="answer-btn" onclick="showSpiceResult('conservative')" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); color: #b0b8d4; padding: 1rem; border-radius: 10px; cursor: pointer;">I prefer to keep things gentle and romantic</button>
+              <button class="answer-btn" onclick="showSpiceResult('adventurous')" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); color: #b0b8d4; padding: 1rem; border-radius: 10px; cursor: pointer;">I'm open to trying new things with my partner</button>
+              <button class="answer-btn" onclick="showSpiceResult('wild')" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); color: #b0b8d4; padding: 1rem; border-radius: 10px; cursor: pointer;">I'm excited to explore more adventurous experiences</button>
+            </div>
+          </div>
+          <button class="intimate-btn" onclick="closeSectionContent()" style="background: rgba(255, 255, 255, 0.1);">Back to Menu</button>
         </div>
       `;
       document.getElementById('spiceQuizContent').style.display = 'block';
     }
+    
+    function showSpiceResult(level) {
+      const results = {
+        conservative: {
+          title: "Romantic Explorer",
+          description: "You prefer intimate, emotional connections with gentle exploration. Focus on building trust, extended foreplay, and romantic settings.",
+          recommendations: "• Try candlelit massage sessions<br>• Experiment with different positions slowly<br>• Focus on extended kissing and touching<br>• Create romantic atmospheres with music and ambiance<br>• Communicate desires through gentle whispers"
+        },
+        adventurous: {
+          title: "Passionate Adventurer", 
+          description: "You're ready to explore new territories while maintaining comfort and connection. Perfect balance of safety and excitement.",
+          recommendations: "• Try new positions from our spinner<br>• Experiment with light bondage (silk ties)<br>• Explore different rooms and locations<br>• Introduce toys gradually<br>• Try temperature play with ice or warm oil<br>• Explore mild role-playing scenarios"
+        },
+        wild: {
+          title: "Passionate Pioneer",
+          description: "You're excited to push boundaries and explore intense experiences. You thrive on variety, intensity, and new challenges.",
+          recommendations: "• Complete challenges from our wild tier bucket list<br>• Explore BDSM elements safely<br>• Try advanced positions and techniques<br>• Experiment with public/semi-public scenarios<br>• Engage in detailed fantasy role-playing<br>• Push stamina and endurance limits together"
+        }
+      };
+      
+      const result = results[level];
+      document.getElementById('spiceQuizContent').innerHTML = `
+        <div style="padding: 2rem;">
+          <h3 style="color: #e74c6f; margin-bottom: 2rem;">Your Spice Profile</h3>
+          <div style="background: rgba(231, 76, 111, 0.1); border: 2px solid rgba(231, 76, 111, 0.3); border-radius: 15px; padding: 2rem; margin-bottom: 2rem; text-align: center;">
+            <h4 style="color: #e74c6f; font-size: 1.5rem; margin-bottom: 1rem;">${result.title}</h4>
+            <p style="color: #b0b8d4; margin-bottom: 2rem;">${result.description}</p>
+            <div style="background: rgba(255, 255, 255, 0.1); padding: 1.5rem; border-radius: 10px; text-align: left;">
+              <h5 style="color: #e74c6f; margin-bottom: 1rem;">🔥 Personalized Recommendations:</h5>
+              <p style="color: #b0b8d4;">${result.recommendations}</p>
+            </div>
+          </div>
+          <div style="display: flex; gap: 1rem; justify-content: center;">
+            <button class="intimate-btn" onclick="startSpiceQuiz()">Retake Quiz</button>
+            <button class="intimate-btn" onclick="closeSectionContent()" style="background: rgba(255, 255, 255, 0.1);">Back to Menu</button>
+          </div>
+        </div>
+      `;
+    }
 
     function showTimingDetail(type) {
       const details = {
-        timing: "Perfect timing is about reading subtle cues: relaxed body language, lingering touches, and undivided attention. The best moments often arise naturally when you're both present and connected.",
-        mood: "Set the scene with soft lighting, remove distractions, play gentle music, and create physical comfort. Small gestures like lighting candles or preparing the space show thoughtfulness.",
-        communication: "Try gentle approaches like 'I've been thinking about you all day' or 'I love how close I feel to you right now.' Focus on expressing your feelings rather than making demands."
+        timing: "Perfect timing is when she's relaxed and receptive. Look for signs: she's in a good mood, touching you more than usual, making sexy comments, or giving you longer looks. Friday nights after a glass of wine, lazy Sunday mornings, or after she's had a good day at work are golden opportunities. Avoid when she's stressed, tired, or distracted by work/kids. The best sex happens when timing meets opportunity.",
+        mood: "Create an atmosphere of pure seduction. Dim the lights or use candles. Put phones away completely. Play sensual music - think slow R&B or ambient electronic. Clean the space and have everything ready: massage oil, towels, perhaps some wine. Take a shower and put on something that makes you feel sexy. The goal is to make her feel like a goddess who deserves to be worshiped.",
+        communication: "Be direct but seductive. Try: 'I've been fantasizing about you all day' or 'I want to make you feel incredible tonight' or 'Come here, I need to kiss you.' Touch her while you talk - run your fingers through her hair, caress her face, pull her closer. Tell her exactly what you want to do to her. Ask what she's been thinking about. Be confident and passionate in your approach."
       };
       
       document.getElementById('timingDetail').innerHTML = `
         <div style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 15px;">
-          <p style="color: #b0b8d4; line-height: 1.6; font-size: 1.1rem;">${details[type]}</p>
+          <h3 style="color: #e74c6f; margin-bottom: 1rem;">${type.charAt(0).toUpperCase() + type.slice(1)} Mastery</h3>
+          <p style="color: #b0b8d4; line-height: 1.6; font-size: 1.1rem; margin-bottom: 2rem;">${details[type]}</p>
+          ${type === 'communication' ? `
+            <div style="background: rgba(231, 76, 111, 0.1); padding: 1.5rem; border-radius: 10px;">
+              <h4 style="color: #e74c6f; margin-bottom: 1rem;">🗣️ Sexy Conversation Starters</h4>
+              <p style="color: #b0b8d4;">• "I can't stop thinking about what I want to do to you..."<br>• "You looked so sexy today that I..."<br>• "I have a fantasy I want to try with you..."<br>• "Do you want to know what's been turning me on lately?"<br>• "I love the way you [specific compliment about her body/actions]"</p>
+            </div>
+          ` : ''}
         </div>
       `;
       document.getElementById('timingDetail').style.display = 'block';
     }
 
     function startFantasyGame(tier) {
+      const fantasies = {
+        mild: [
+          "Making love in a hot tub or jacuzzi under the stars",
+          "Having passionate sex on a beach during sunset",
+          "A romantic massage that leads to slow, sensual lovemaking", 
+          "Making out in a car like teenagers, then having sex in the backseat",
+          "Having sex in the kitchen while dinner is cooking",
+          "A weekend in a luxury hotel room with room service and endless sex",
+          "Making love by fireplace light on a soft rug",
+          "Having sex in the shower with hot water streaming over your bodies"
+        ],
+        moderate: [
+          "Roleplaying as strangers meeting at a bar and having a one-night stand",
+          "You being dominated by your partner with light bondage and commands",
+          "Having sex in a semi-public place where you might get caught",
+          "Your partner surprising you with sexy lingerie and seducing you",
+          "Both of you being pleasured by the same person (fantasy only)",
+          "Having rough, passionate sex with hair pulling and spanking",
+          "Waking up your partner by performing oral sex on them",
+          "Having an entire day dedicated to sex with multiple sessions"
+        ],
+        wild: [
+          "Being watched by another couple while having sex (exhibitionism)",
+          "Having a threesome with another woman who focuses on pleasuring you both",
+          "Your partner being taken by someone else while you watch (cuckold fantasy)",
+          "Being used sexually by multiple people in a controlled scenario",
+          "Having sex in a completely public place without caring who sees",
+          "Being tied up and pleasured for hours without being allowed to climax",
+          "Swapping partners with another couple for the night",
+          "Having anonymous sex with strangers in a sexual fantasy scenario"
+        ]
+      };
+      
+      const selectedFantasies = fantasies[tier];
+      const randomFantasy = selectedFantasies[Math.floor(Math.random() * selectedFantasies.length)];
+      
       document.getElementById('fantasyGameContent').innerHTML = `
-        <div style="text-align: center; padding: 2rem;">
-          <h3>Fantasy Cards - ${tier.charAt(0).toUpperCase() + tier.slice(1)} Tier</h3>
-          <p>This interactive card game is being developed to provide a safe, comfortable way for couples to explore fantasies together.</p>
-          <button class="intimate-btn" onclick="closeSectionContent()">Back to Menu</button>
+        <div style="padding: 2rem;">
+          <h3 style="color: #e74c6f; margin-bottom: 2rem;">Fantasy Card - ${tier.charAt(0).toUpperCase() + tier.slice(1)} Tier</h3>
+          <div style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+            <p style="color: #b0b8d4; font-size: 1.2rem; line-height: 1.6; text-align: center; font-style: italic;">"${randomFantasy}"</p>
+          </div>
+          <div style="text-align: center; margin-bottom: 2rem;">
+            <p style="color: #b0b8d4; margin-bottom: 1.5rem;">How does this fantasy make you feel? Discuss with your partner:</p>
+            <p style="color: #ff9aa2;">• Would you want to try this in real life?<br>• What aspects excite you most?<br>• How could you adapt it to your comfort level?<br>• What would make this even hotter for you?</p>
+          </div>
+          <div style="display: flex; gap: 1rem; justify-content: center;">
+            <button class="intimate-btn" onclick="startFantasyGame('${tier}')">Draw Another Card</button>
+            <button class="intimate-btn" onclick="closeSectionContent()" style="background: rgba(255, 255, 255, 0.1);">Back to Menu</button>
+          </div>
         </div>
       `;
       document.getElementById('fantasyGameContent').style.display = 'block';
@@ -6311,18 +6530,28 @@
 
     function showMassageGuide(type) {
       const guides = {
-        relaxation: "Focus on long, flowing strokes. Start with the shoulders and work your way down. Use gentle pressure and warm oil for the most relaxing experience.",
-        sensual: "Combine different pressures and touches. Include caressing, light fingertip touches, and more intimate contact. Communication and consent are essential.",
-        couples: "Take turns being the giver and receiver. Create a ritual around it - prepare the space together, choose music together, and focus on the experience of giving pleasure."
+        relaxation: "Start with warm coconut or massage oil. Begin with her shoulders, using firm pressure to work out tension. Slowly massage down her back, spending extra time on the lower back. Move to her legs, massaging calves and thighs with long, sensual strokes. Finish with gentle touches along her spine and neck. The goal is to make her completely relaxed and aroused.",
+        sensual: "This is about building sexual tension through touch. Use a variety of techniques: firm pressure, light fingertips, warm breath, and gentle kisses. Start with non-erogenous zones and slowly work toward more intimate areas. Tease by getting close to breasts and genitals without directly touching. Build anticipation. Include neck kisses, inner thigh caresses, and gradually more intimate touching. End with her begging for more.",
+        couples: "Take turns giving 20-minute sessions. The receiver lies naked while the giver uses oil to massage every inch of their body. Include buttocks, inner thighs, and gradually work toward genitals. The giver can use hands, lips, tongue, and even their own body to massage their partner. No rushing - this is about worship and pleasure. Switch roles and repeat. Often leads to passionate lovemaking."
+      };
+      
+      const playlists = {
+        relaxation: "Search for 'Spa Massage Music' or create a playlist with artists like Ludovico Einaudi, Max Richter, or Brian Eno.",
+        sensual: "Try 'Erotic Lounge' playlists or artists like Massive Attack, Portishead, or Sade for the perfect seductive mood.",
+        couples: "Mix of slow, sensual songs and ambient music. Include artists like The Weeknd, FKA Twigs, or James Blake for intimate vibes."
       };
       
       document.getElementById('massageGuideContent').innerHTML = `
         <div style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 15px;">
-          <h3 style="color: #e74c6f; margin-bottom: 1rem;">Guide: ${type.charAt(0).toUpperCase() + type.slice(1)} Massage</h3>
+          <h3 style="color: #e74c6f; margin-bottom: 1rem;">${type.charAt(0).toUpperCase() + type.slice(1)} Massage Guide</h3>
           <p style="color: #b0b8d4; line-height: 1.6; margin-bottom: 2rem;">${guides[type]}</p>
+          <div style="background: rgba(231, 76, 111, 0.1); padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+            <h4 style="color: #e74c6f; margin-bottom: 1rem;">🎵 Music Recommendations</h4>
+            <p style="color: #b0b8d4;">${playlists[type]}</p>
+          </div>
           <div style="background: rgba(231, 76, 111, 0.1); padding: 1.5rem; border-radius: 10px;">
-            <h4 style="color: #e74c6f; margin-bottom: 1rem;">🎵 Recommended Playlist</h4>
-            <p style="color: #b0b8d4;">Search for "Sensual Massage Music" or "Romantic Ambient" on your preferred music streaming service for the perfect ambiance.</p>
+            <h4 style="color: #e74c6f; margin-bottom: 1rem;">💡 Pro Tips</h4>
+            <p style="color: #b0b8d4;">• Use high-quality massage oil or coconut oil<br>• Warm the oil in your hands first<br>• Maintain skin contact throughout<br>• Pay attention to your partner's reactions<br>• Don't rush - build anticipation slowly<br>• Communicate what feels good</p>
           </div>
         </div>
       `;
