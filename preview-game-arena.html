@@ -980,14 +980,18 @@
       gap: 1rem;
       margin: 2rem 0;
       justify-content: center;
+      min-height: 40vh;
+      align-items: stretch;
     }
     
     .wyr-option {
       flex: 1;
-      max-width: 300px;
       padding: 1.5rem;
       text-align: center;
       font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     
     .story-timer, .battle-timer {
@@ -1145,14 +1149,15 @@
       }
       
       .wyr-options {
-        flex-direction: column;
-        gap: 0.75rem;
+        flex-direction: row;
+        gap: 0.5rem;
+        min-height: 50vh;
       }
       
       .wyr-option {
-        width: 100%;
-        padding: 16px;
-        font-size: 1rem;
+        flex: 1;
+        padding: 1rem;
+        font-size: 0.95rem;
       }
       
       .trivia-option {
