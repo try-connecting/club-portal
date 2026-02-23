@@ -1100,6 +1100,11 @@
       margin-bottom: 2rem;
     }
     
+    .roulette-selector h3,
+    .custom-options h3 {
+      color: #b0b8d4;
+    }
+
     .roulette-display {
       text-align: center;
       max-width: 600px;
@@ -5418,7 +5423,7 @@
           <p id="roulette-result-text">Spin the wheel!</p>
         </div>
         <div class="roulette-controls">
-          <button onclick="spinRoulette()" id="spin-btn" class="spin-btn">🎡 Spin!</button>
+          <button onclick="doSpin()" id="spin-btn" class="spin-btn">🎡 Spin!</button>
           <button onclick="newRoulette()" class="new-btn">New Category</button>
         </div>
       </div>
@@ -7821,7 +7826,7 @@
       ).join('');
     }
     
-    function spinRoulette() {
+    function doSpin() {
       if (gameState.roulette.spinning) return;
       
       gameState.roulette.spinning = true;
