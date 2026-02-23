@@ -7200,7 +7200,9 @@
       currentGame = gameType;
       var grid = document.querySelector('.intimate-grid');
       if (grid) grid.style.display = 'none';
-      document.getElementById(gameType + '-interface').style.display = 'block';
+      var iface = document.getElementById(gameType + '-interface');
+      document.body.appendChild(iface);
+      iface.style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
       initializeGame(gameType);
     }
