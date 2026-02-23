@@ -1103,25 +1103,90 @@
     /* Mobile responsive */
     @media (max-width: 768px) {
       .game-interface {
-        padding: 1rem;
+        padding: 1rem 0.75rem;
+      }
+      
+      .game-header {
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+      }
+      
+      .game-header h2 {
+        font-size: 1.3rem;
+      }
+      
+      .game-instructions {
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
+        margin-bottom: 1.25rem;
+      }
+      
+      .game-content {
+        padding: 0 0.25rem;
+      }
+      
+      .category-selector h3, .scenario-display h3, .story-prompt h3, .trivia-question h3 {
+        font-size: 1.1rem;
+        margin-bottom: 1.25rem;
       }
       
       .category-buttons, .game-actions, .story-controls, .trivia-controls, .battle-controls {
         flex-direction: column;
+        gap: 0.75rem;
+      }
+      
+      .category-btn, .game-btn {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 1rem;
       }
       
       .wyr-options {
         flex-direction: column;
+        gap: 0.75rem;
+      }
+      
+      .wyr-option {
+        width: 100%;
+        padding: 16px;
+        font-size: 1rem;
+      }
+      
+      .trivia-option {
+        width: 100%;
+        padding: 14px;
+        font-size: 1rem;
       }
       
       .timer-display {
-        font-size: 2rem;
+        font-size: 2.5rem;
+      }
+      
+      .battle-score {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+      }
+      
+      .roulette-setup {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
       }
       
       .roulette-setup input {
         width: 100%;
         margin-right: 0;
-        margin-bottom: 1rem;
+      }
+      
+      .roulette-setup .game-btn {
+        width: 100%;
+      }
+      
+      .close-game {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
       }
     }
     
@@ -7237,7 +7302,7 @@
       var iface = document.getElementById(gameType + '-interface');
       document.body.appendChild(iface);
       iface.style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      iface.scrollTop = 0;
       initializeGame(gameType);
     }
     
