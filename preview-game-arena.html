@@ -854,6 +854,260 @@
       display: none !important;
     }
     
+    /* Game Arena Styles */
+    .game-interface {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(26, 26, 46, 0.95);
+      z-index: 1000;
+      padding: 2rem;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+    
+    .game-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      border-bottom: 2px solid rgba(231, 76, 111, 0.3);
+      padding-bottom: 1rem;
+    }
+    
+    .game-header h2 {
+      color: #e74c6f;
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    
+    .close-game {
+      background: rgba(231, 76, 111, 0.2);
+      border: 2px solid #e74c6f;
+      border-radius: 50%;
+      color: #e74c6f;
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .close-game:hover {
+      background: #e74c6f;
+      color: white;
+    }
+    
+    .game-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .category-selector h3, .scenario-display h3, .story-prompt h3, .trivia-question h3 {
+      color: #b0b8d4;
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.4rem;
+      line-height: 1.5;
+    }
+    
+    .category-buttons, .game-actions, .story-controls, .trivia-controls, .battle-controls {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    
+    .category-btn, .game-btn, .wyr-option, .trivia-option {
+      background: rgba(231, 76, 111, 0.1);
+      border: 2px solid rgba(231, 76, 111, 0.3);
+      border-radius: 12px;
+      color: #b0b8d4;
+      padding: 12px 24px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .category-btn:hover, .game-btn:hover, .wyr-option:hover, .trivia-option:hover {
+      background: rgba(231, 76, 111, 0.3);
+      border-color: #e74c6f;
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .current-prompt {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    .current-prompt h3 {
+      color: #b0b8d4;
+      font-size: 1.3rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+    
+    .wyr-options {
+      display: flex;
+      gap: 1rem;
+      margin: 2rem 0;
+      justify-content: center;
+    }
+    
+    .wyr-option {
+      flex: 1;
+      max-width: 300px;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+    
+    .story-timer, .battle-timer {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    
+    .timer-display {
+      font-size: 3rem;
+      color: #e74c6f;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    
+    .current-player {
+      color: #b0b8d4;
+      font-size: 1.2rem;
+    }
+    
+    .trivia-score, .battle-score {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #b0b8d4;
+      font-size: 1.2rem;
+    }
+    
+    .player-score {
+      display: inline-block;
+      margin: 0 1rem;
+      color: #e74c6f;
+      font-weight: bold;
+    }
+    
+    .trivia-options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    
+    .trivia-option {
+      width: 100%;
+      text-align: left;
+      padding: 1rem 1.5rem;
+    }
+    
+    .roulette-setup {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .roulette-setup input {
+      padding: 12px;
+      border-radius: 8px;
+      border: 2px solid rgba(231, 76, 111, 0.3);
+      background: rgba(255, 255, 255, 0.1);
+      color: #b0b8d4;
+      margin-right: 1rem;
+      font-family: 'Poppins', sans-serif;
+      width: 250px;
+    }
+    
+    .roulette-setup input:focus {
+      outline: none;
+      border-color: #e74c6f;
+    }
+    
+    .roulette-options {
+      margin: 2rem 0;
+    }
+    
+    .roulette-options ul {
+      list-style: none;
+      padding: 0;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    
+    .roulette-wheel {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    
+    .wheel-result {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 2rem;
+      color: #e74c6f;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .spin-btn {
+      font-size: 1.2rem !important;
+      padding: 15px 30px !important;
+      background: linear-gradient(135deg, #e74c6f, #c0392b) !important;
+      border: none !important;
+      color: white !important;
+    }
+    
+    .spin-btn:disabled {
+      background: rgba(255, 255, 255, 0.2) !important;
+      color: rgba(255, 255, 255, 0.5) !important;
+      cursor: not-allowed !important;
+    }
+    
+    .spin-btn:hover:not(:disabled) {
+      transform: scale(1.05) !important;
+    }
+    
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+      .game-interface {
+        padding: 1rem;
+      }
+      
+      .category-buttons, .game-actions, .story-controls, .trivia-controls, .battle-controls {
+        flex-direction: column;
+      }
+      
+      .wyr-options {
+        flex-direction: column;
+      }
+      
+      .timer-display {
+        font-size: 2rem;
+      }
+      
+      .roulette-setup input {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+    }
+    
     /* Adults Only Result Cards */
     .result-card {
       background: rgba(231, 76, 111, 0.1);
@@ -959,9 +1213,6 @@
  <button class="tab-button" data-tab="secrets">
  🎯 Game Secrets <span class="content-count">4 Tips</span>
  </button>
- <button class="tab-button" data-tab="game-arena">
-  🎮 Game Arena <span class="content-count">6 Games</span>
- </button>
  <button class="tab-button" data-tab="playbooks">
   &#x1F4DA; Playbooks <span class="content-count">150+ PDFs</span>
  </button>
@@ -982,6 +1233,9 @@
  </button>
  <button class="tab-button" data-tab="growth">
   &#x1F393; Growth <span class="content-count">118 Videos</span>
+ </button>
+ <button class="tab-button" data-tab="game-arena">
+  🎲 Game Arena <span class="content-count">6 Games</span>
  </button>
  <button class="tab-button" data-tab="adults-only">
   🔞 Adults Only <span class="content-count">6 Experiences</span>
@@ -4843,297 +5097,207 @@
     </div>
   </div>
 </div>
-
   <!-- Game Arena Tab Content -->
   <div class="tab-content" id="game-arena" style="display: none;">
-    <h2 class="tab-description">🎮 Interactive Games Arena — Play together, grow together</h2>
+    <h2 class="tab-description">🎲 Interactive Couples Game Arena — Play Together Online</h2>
     <div class="pro-tip">
-      <span class="pro-tip-label">🎯 Play Together</span>
-      All games are designed for pass-and-play on a single device. Take turns, compete, cooperate, and most importantly — have fun together!
+      <span class="pro-tip-label">🎮 Game Night</span>
+      Interactive games designed for couples. Play together on one device — no apps needed!
     </div>
-
-    <!-- Game Selection Screen -->
-    <div class="game-selection" id="gameSelection">
-      <div class="game-cards" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0;">
-        
-        <!-- Truth or Dare Deluxe -->
-        <div class="game-card" onclick="startGame('truth-or-dare')" style="background: rgba(255, 255, 255, 0.08); border: 2px solid rgba(231, 76, 111, 0.3); border-radius: 20px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden;">
-          <div class="game-icon" style="font-size: 3rem; margin-bottom: 1rem;">🎭</div>
-          <h3 style="color: #e74c6f; margin-bottom: 1rem; font-size: 1.6rem;">Truth or Dare Deluxe</h3>
-          <p style="color: #b0b8d4; line-height: 1.6; margin-bottom: 1.5rem;">Digital version with 500+ prompts across categories. Timer, skip button, difficulty selector.</p>
-          <div class="game-stats" style="display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
-            <span style="background: rgba(231, 76, 111, 0.2); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.8rem; color: #ff9aa2; border: 1px solid rgba(231, 76, 111, 0.4);">500+ Prompts</span>
-            <span style="background: rgba(231, 76, 111, 0.2); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.8rem; color: #ff9aa2; border: 1px solid rgba(231, 76, 111, 0.4);">4 Categories</span>
-            <span style="background: rgba(231, 76, 111, 0.2); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.8rem; color: #ff9aa2; border: 1px solid rgba(231, 76, 111, 0.4);">Timer</span>
-          </div>
-          <button style="background: linear-gradient(135deg, #e74c6f, #c0392b); color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">Play Now →</button>
-        </div>
-
-        <!-- Would You Rather -->
-        <div class="game-card" onclick="startGame('would-you-rather')" style="background: rgba(255, 255, 255, 0.08); border: 2px solid rgba(231, 76, 111, 0.3); border-radius: 20px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden;">
-          <div class="game-icon" style="font-size: 3rem; margin-bottom: 1rem;">🤔</div>
-          <h3 style="color: #e74c6f; margin-bottom: 1rem; font-size: 1.6rem;">Would You Rather: Couples Edition</h3>
-          <p style="color: #b0b8d4; line-height: 1.6; margin-bottom: 1.5rem;">300+ dilemmas. Both answer secretly, reveal together, see if you match.</p>
-          <div class="game-stats" style="display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
-            <span style="background: rgba(231, 76, 111, 0.2); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.8rem; color: #ff9aa2; border: 1px solid rgba(231, 76, 111, 0.4);">300+ Dilemmas</span>
-            <span style="background: rgba(231, 76, 111, 0.2); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.8rem; color: #ff9aa2; border: 1px solid rgba(231, 76, 111, 0.4);">Secret Reveal</span>
-            <span style="background: rgba(231, 76, 111, 0.2); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.8rem; color: #ff9aa2; border: 1px solid rgba(231, 76, 111, 0.4);">Match Score</span>
-          </div>
-          <button style="background: linear-gradient(135deg, #e74c6f, #c0392b); color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">Play Now →</button>
-        </div>
-
-        <!-- 2-Minute Story -->
-        <div class="game-card" onclick="startGame('two-minute-story')" style="background: rgba(255, 255, 255, 0.08); border: 2px solid rgba(231, 76, 111, 0.3); border-radius: 20px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden;">
-          <div class="game-icon" style="font-size: 3rem; margin-bottom: 1rem;">📚</div>
-          <h3 style="color: #e74c6f; margin-bottom: 1rem; font-size: 1.6rem;">2-Minute Story</h3>
-          <p style="color: #b0b8d4; line-height: 1.6; margin-bottom: 1.5rem;">One partner starts a story, timer switches to the other. Create ridiculous stories together.</p>
-          <div class="game-stats" style="display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
-            <span style="background: rgba(231, 76, 111, 0.2); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.8rem; color: #ff9aa2; border: 1px solid rgba(231, 76, 111, 0.4);">Storytelling</span>
-            <span style="background: rgba(231, 76, 111, 0.2); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.8rem; color: #ff9aa2; border: 1px solid rgba(231, 76, 111, 0.4);">2-Min Timer</span>
-            <span style="background: rgba(231, 76, 111, 0.2); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.8rem; color: #ff9aa2; border: 1px solid rgba(231, 76, 111, 0.4);">Turn Based</span>
-          </div>
-          <button style="background: linear-gradient(135deg, #e74c6f, #c0392b); color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">Play Now →</button>
-        </div>
-
-        <!-- Couple Trivia -->
-        <div class="game-card" onclick="startGame('couple-trivia')" style="background: rgba(255, 255, 255, 0.08); border: 2px solid rgba(231, 76, 111, 0.3); border-radius: 20px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden;">
-          <div class="game-icon" style="font-size: 3rem; margin-bottom: 1rem;">🧠</div>
-          <h3 style="color: #e74c6f; margin-bottom: 1rem; font-size: 1.6rem;">Couple Trivia</h3>
-          <p style="color: #b0b8d4; line-height: 1.6; margin-bottom: 1.5rem;">Each partner pre-fills answers about themselves, then quiz each other. Track scores over time.</p>
-          <div class="game-stats" style="display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
-            <span style="background: rgba(231, 76, 111, 0.2); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.8rem; color: #ff9aa2; border: 1px solid rgba(231, 76, 111, 0.4);">Custom Q&A</span>
-            <span style="background: rgba(231, 76, 111, 0.2); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.8rem; color: #ff9aa2; border: 1px solid rgba(231, 76, 111, 0.4);">Score Tracking</span>
-            <span style="background: rgba(231, 76, 111, 0.2); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.8rem; color: #ff9aa2; border: 1px solid rgba(231, 76, 111, 0.4);">Quiz Battle</span>
-          </div>
-          <button style="background: linear-gradient(135deg, #e74c6f, #c0392b); color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">Play Now →</button>
-        </div>
-
-        <!-- Decision Roulette -->
-        <div class="game-card" onclick="startGame('decision-roulette')" style="background: rgba(255, 255, 255, 0.08); border: 2px solid rgba(231, 76, 111, 0.3); border-radius: 20px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden;">
-          <div class="game-icon" style="font-size: 3rem; margin-bottom: 1rem;">🎰</div>
-          <h3 style="color: #e74c6f; margin-bottom: 1rem; font-size: 1.6rem;">Decision Roulette</h3>
-          <p style="color: #b0b8d4; line-height: 1.6; margin-bottom: 1.5rem;">Can't decide where to eat or what to do? Spin the wheel with custom options.</p>
-          <div class="game-stats" style="display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
-            <span style="background: rgba(231, 76, 111, 0.2); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.8rem; color: #ff9aa2; border: 1px solid rgba(231, 76, 111, 0.4);">Custom Wheel</span>
-            <span style="background: rgba(231, 76, 111, 0.2); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.8rem; color: #ff9aa2; border: 1px solid rgba(231, 76, 111, 0.4);">Decision Help</span>
-            <span style="background: rgba(231, 76, 111, 0.2); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.8rem; color: #ff9aa2; border: 1px solid rgba(231, 76, 111, 0.4);">Random Fun</span>
-          </div>
-          <button style="background: linear-gradient(135deg, #e74c6f, #c0392b); color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">Play Now →</button>
-        </div>
-
-        <!-- Compliment Battle -->
-        <div class="game-card" onclick="startGame('compliment-battle')" style="background: rgba(255, 255, 255, 0.08); border: 2px solid rgba(231, 76, 111, 0.3); border-radius: 20px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden;">
-          <div class="game-icon" style="font-size: 3rem; margin-bottom: 1rem;">💕</div>
-          <h3 style="color: #e74c6f; margin-bottom: 1rem; font-size: 1.6rem;">Compliment Battle</h3>
-          <p style="color: #b0b8d4; line-height: 1.6; margin-bottom: 1.5rem;">30-second timer, take turns giving genuine compliments. Can't repeat!</p>
-          <div class="game-stats" style="display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
-            <span style="background: rgba(231, 76, 111, 0.2); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.8rem; color: #ff9aa2; border: 1px solid rgba(231, 76, 111, 0.4);">30-Sec Timer</span>
-            <span style="background: rgba(231, 76, 111, 0.2); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.8rem; color: #ff9aa2; border: 1px solid rgba(231, 76, 111, 0.4);">No Repeats</span>
-            <span style="background: rgba(231, 76, 111, 0.2); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.8rem; color: #ff9aa2; border: 1px solid rgba(231, 76, 111, 0.4);">Love Battle</span>
-          </div>
-          <button style="background: linear-gradient(135deg, #e74c6f, #c0392b); color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">Play Now →</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Game Interfaces (Initially Hidden) -->
-
-    <!-- Truth or Dare Interface -->
-    <div class="game-interface" id="truthOrDareInterface" style="display: none; background: rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 2rem; margin: 2rem 0;">
-      <div class="game-header" style="text-align: center; margin-bottom: 2rem;">
-        <h2 style="color: #e74c6f; margin-bottom: 1rem;">Truth or Dare Deluxe 🎭</h2>
-        <div class="category-selector" style="margin-bottom: 1.5rem;">
-          <button class="category-btn active" onclick="setTruthDareCategory('funny')" style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 25px; padding: 0.7rem 1.5rem; margin: 0.3rem; cursor: pointer; color: #b0b8d4; font-family: 'Poppins', sans-serif;">😄 Funny</button>
-          <button class="category-btn" onclick="setTruthDareCategory('romantic')" style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 25px; padding: 0.7rem 1.5rem; margin: 0.3rem; cursor: pointer; color: #b0b8d4; font-family: 'Poppins', sans-serif;">💕 Romantic</button>
-          <button class="category-btn" onclick="setTruthDareCategory('spicy')" style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 25px; padding: 0.7rem 1.5rem; margin: 0.3rem; cursor: pointer; color: #b0b8d4; font-family: 'Poppins', sans-serif;">🌶️ Spicy</button>
-          <button class="category-btn" onclick="setTruthDareCategory('deep')" style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 25px; padding: 0.7rem 1.5rem; margin: 0.3rem; cursor: pointer; color: #b0b8d4; font-family: 'Poppins', sans-serif;">🤔 Deep</button>
-        </div>
-        <div class="timer-display" id="truthDareTimer" style="font-size: 2rem; font-weight: bold; color: #e74c6f; margin-bottom: 1rem;">⏰ 60</div>
+    
+    <!-- 6 Game Cards -->
+    <div class="intimate-grid">
+      <!-- Truth or Dare Deluxe -->
+      <div class="intimate-card" onclick="openGame('truth-or-dare')">
+        <div class="intimate-icon">🎯</div>
+        <h3>Truth or Dare Deluxe</h3>
+        <p>Choose your intensity level: Funny, Romantic, Spicy, or Deep conversations.</p>
+        <div class="intimate-stats">Categories: 4 • Questions: 80+</div>
       </div>
       
-      <div class="prompt-container" style="text-align: center; margin: 2rem 0;">
-        <div class="prompt-type" id="promptType" style="font-size: 1.2rem; color: #ff9aa2; margin-bottom: 1rem; font-weight: 600;">TRUTH</div>
-        <div class="prompt-text" id="promptText" style="font-size: 1.3rem; color: white; margin-bottom: 2rem; line-height: 1.5; min-height: 100px; display: flex; align-items: center; justify-content: center;">Ready to start? Choose your first dare or truth!</div>
+      <!-- Would You Rather -->
+      <div class="intimate-card" onclick="openGame('would-you-rather')">
+        <div class="intimate-icon">🤔</div>
+        <h3>Would You Rather</h3>
+        <p>Discover each other's preferences with fun and revealing dilemmas.</p>
+        <div class="intimate-stats">Scenarios: 30+ • Decision Time</div>
       </div>
-
-      <div class="game-controls" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-        <button onclick="getTruthPrompt()" style="background: linear-gradient(135deg, #e74c6f, #c0392b); color: white; border: none; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">Truth</button>
-        <button onclick="getDarePrompt()" style="background: linear-gradient(135deg, #c0392b, #e74c6f); color: white; border: none; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">Dare</button>
-        <button onclick="skipPrompt()" style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.3); color: #b0b8d4; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">Skip</button>
-        <button onclick="backToGameSelection()" style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.3); color: #b0b8d4; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">← Back</button>
+      
+      <!-- 2-Minute Story -->
+      <div class="intimate-card" onclick="openGame('story-time')">
+        <div class="intimate-icon">📚</div>
+        <h3>2-Minute Story</h3>
+        <p>Creative storytelling with your partner. Take turns, build stories together.</p>
+        <div class="intimate-stats">Timer: 60s each • Creative fun</div>
+      </div>
+      
+      <!-- Couple Trivia -->
+      <div class="intimate-card" onclick="openGame('couple-trivia')">
+        <div class="intimate-icon">🧠</div>
+        <h3>Couple Trivia</h3>
+        <p>Test how well you know each other with relationship-focused questions.</p>
+        <div class="intimate-stats">Questions: 15+ • Score tracking</div>
+      </div>
+      
+      <!-- Decision Roulette -->
+      <div class="intimate-card" onclick="openGame('decision-roulette')">
+        <div class="intimate-icon">🎡</div>
+        <h3>Decision Roulette</h3>
+        <p>Can't decide? Create a custom wheel and let fate choose for you!</p>
+        <div class="intimate-stats">Customizable • Spin to decide</div>
+      </div>
+      
+      <!-- Compliment Battle -->
+      <div class="intimate-card" onclick="openGame('compliment-battle')">
+        <div class="intimate-icon">💝</div>
+        <h3>Compliment Battle</h3>
+        <p>30-second rounds of giving each other genuine compliments. Ready to win?</p>
+        <div class="intimate-stats">Timer: 30s • Love competition</div>
       </div>
     </div>
-
+    
+    <!-- Game Interfaces (Hidden by default) -->
+    
+    <!-- Truth or Dare Deluxe Interface -->
+    <div id="truth-or-dare-interface" class="game-interface" style="display: none;">
+      <div class="game-header">
+        <h2>🎯 Truth or Dare Deluxe</h2>
+        <button class="close-game" onclick="closeGame()">✕</button>
+      </div>
+      <div class="game-content">
+        <div class="category-selector">
+          <h3>Choose Your Adventure Level:</h3>
+          <div class="category-buttons">
+            <button class="category-btn" onclick="selectTruthDareCategory('funny')">😄 Funny</button>
+            <button class="category-btn" onclick="selectTruthDareCategory('romantic')">💕 Romantic</button>
+            <button class="category-btn" onclick="selectTruthDareCategory('spicy')">🌶️ Spicy</button>
+            <button class="category-btn" onclick="selectTruthDareCategory('deep')">🧠 Deep</button>
+          </div>
+        </div>
+        <div id="truth-dare-game" style="display: none;">
+          <div class="current-prompt">
+            <h3 id="truth-dare-prompt">Select a category to start playing!</h3>
+          </div>
+          <div class="game-actions">
+            <button class="game-btn truth-btn" onclick="nextTruthDare('truth')">Truth</button>
+            <button class="game-btn dare-btn" onclick="nextTruthDare('dare')">Dare</button>
+            <button class="game-btn skip-btn" onclick="nextTruthDare('skip')">Skip</button>
+            <button class="game-btn next-btn" onclick="nextTruthDare('next')">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <!-- Would You Rather Interface -->
-    <div class="game-interface" id="wouldYouRatherInterface" style="display: none; background: rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 2rem; margin: 2rem 0;">
-      <div class="game-header" style="text-align: center; margin-bottom: 2rem;">
-        <h2 style="color: #e74c6f; margin-bottom: 1rem;">Would You Rather: Couples Edition 🤔</h2>
-        <div class="score-display" style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem;">
-          <div style="background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 10px;">
-            <div style="color: #e74c6f; font-weight: 600;">Matches</div>
-            <div id="matchScore" style="font-size: 2rem; color: white;">0</div>
-          </div>
-          <div style="background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 10px;">
-            <div style="color: #e74c6f; font-weight: 600;">Questions</div>
-            <div id="questionCount" style="font-size: 2rem; color: white;">0</div>
-          </div>
-        </div>
+    <div id="would-you-rather-interface" class="game-interface" style="display: none;">
+      <div class="game-header">
+        <h2>🤔 Would You Rather</h2>
+        <button class="close-game" onclick="closeGame()">✕</button>
       </div>
-      
-      <div class="question-container" style="text-align: center; margin: 2rem 0;">
-        <div class="question-text" id="wowQuestionText" style="font-size: 1.3rem; color: white; margin-bottom: 2rem; line-height: 1.5; min-height: 100px; display: flex; align-items: center; justify-content: center;">Ready to see how well you know each other?</div>
-        
-        <div class="choice-buttons" id="choiceButtons" style="display: none;">
-          <button id="choiceA" onclick="makeChoice('A')" style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.3); color: #b0b8d4; padding: 1rem 2rem; border-radius: 12px; margin: 0.5rem; cursor: pointer; font-family: 'Poppins', sans-serif; width: 80%; max-width: 400px; transition: all 0.3s ease;">Option A</button>
-          <button id="choiceB" onclick="makeChoice('B')" style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.3); color: #b0b8d4; padding: 1rem 2rem; border-radius: 12px; margin: 0.5rem; cursor: pointer; font-family: 'Poppins', sans-serif; width: 80%; max-width: 400px; transition: all 0.3s ease;">Option B</button>
+      <div class="game-content">
+        <div class="scenario-display">
+          <h3 id="wyr-question">Loading scenario...</h3>
+          <div class="wyr-options">
+            <button class="wyr-option" id="wyr-option-a" onclick="selectWYROption('a')">Option A</button>
+            <button class="wyr-option" id="wyr-option-b" onclick="selectWYROption('b')">Option B</button>
+          </div>
+          <div id="wyr-result" style="display: none;">
+            <p>Reveal your choices!</p>
+            <button class="game-btn" onclick="revealWYRChoices()">Show Results</button>
+            <button class="game-btn" onclick="nextWYRScenario()">Next Scenario</button>
+          </div>
         </div>
-
-        <div class="reveal-section" id="revealSection" style="display: none; margin: 2rem 0;">
-          <div id="revealText" style="font-size: 1.2rem; color: #ff9aa2; margin-bottom: 1.5rem;"></div>
-          <button onclick="nextWowQuestion()" style="background: linear-gradient(135deg, #e74c6f, #c0392b); color: white; border: none; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">Next Question →</button>
-        </div>
-      </div>
-
-      <div class="game-controls" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-        <button id="startWowBtn" onclick="startWouldYouRather()" style="background: linear-gradient(135deg, #e74c6f, #c0392b); color: white; border: none; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">Start Game</button>
-        <button onclick="backToGameSelection()" style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.3); color: #b0b8d4; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">← Back</button>
       </div>
     </div>
-
+    
     <!-- 2-Minute Story Interface -->
-    <div class="game-interface" id="twoMinuteStoryInterface" style="display: none; background: rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 2rem; margin: 2rem 0;">
-      <div class="game-header" style="text-align: center; margin-bottom: 2rem;">
-        <h2 style="color: #e74c6f; margin-bottom: 1rem;">2-Minute Story 📚</h2>
-        <div class="current-turn" id="currentTurn" style="font-size: 1.2rem; color: #ff9aa2; margin-bottom: 1rem; font-weight: 600;">Partner A's Turn</div>
-        <div class="timer-display" id="storyTimer" style="font-size: 3rem; font-weight: bold; color: #e74c6f; margin-bottom: 1rem;">2:00</div>
+    <div id="story-time-interface" class="game-interface" style="display: none;">
+      <div class="game-header">
+        <h2>📚 2-Minute Story</h2>
+        <button class="close-game" onclick="closeGame()">✕</button>
       </div>
-      
-      <div class="story-container" style="margin: 2rem 0;">
-        <div class="story-prompt" id="storyPrompt" style="background: rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 1.5rem; margin-bottom: 2rem; text-align: center;">
-          <div style="font-size: 1.1rem; color: #ff9aa2; margin-bottom: 1rem; font-weight: 600;">Story Starter:</div>
-          <div id="storyPromptText" style="font-size: 1.2rem; color: white; line-height: 1.5;">Ready to create an amazing story together?</div>
+      <div class="game-content">
+        <div class="story-prompt">
+          <h3 id="story-prompt">Your story prompt will appear here!</h3>
         </div>
-
-        <div class="story-display" style="background: rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 1.5rem; min-height: 200px;">
-          <div style="color: #e74c6f; font-weight: 600; margin-bottom: 1rem;">Your Story So Far:</div>
-          <div id="storyText" style="color: white; line-height: 1.6; font-size: 1.1rem; min-height: 100px;">Click 'Start Story' to begin your collaborative masterpiece!</div>
+        <div class="story-timer">
+          <div class="timer-display" id="story-timer">60</div>
+          <div class="current-player">Player 1's Turn</div>
         </div>
-      </div>
-
-      <div class="game-controls" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-        <button id="startStoryBtn" onclick="startStory()" style="background: linear-gradient(135deg, #e74c6f, #c0392b); color: white; border: none; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">Start Story</button>
-        <button id="switchTurnBtn" onclick="switchStoryTurn()" style="display: none; background: linear-gradient(135deg, #c0392b, #e74c6f); color: white; border: none; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">Switch Turn</button>
-        <button id="endStoryBtn" onclick="endStory()" style="display: none; background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.3); color: #b0b8d4; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">End Story</button>
-        <button onclick="backToGameSelection()" style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.3); color: #b0b8d4; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">← Back</button>
+        <div class="story-controls">
+          <button class="game-btn" onclick="startStoryRound()">Start Round</button>
+          <button class="game-btn" onclick="switchStoryPlayer()">Switch Player</button>
+          <button class="game-btn" onclick="newStoryPrompt()">New Prompt</button>
+        </div>
       </div>
     </div>
-
+    
     <!-- Couple Trivia Interface -->
-    <div class="game-interface" id="coupleTriviaInterface" style="display: none; background: rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 2rem; margin: 2rem 0;">
-      <div class="game-header" style="text-align: center; margin-bottom: 2rem;">
-        <h2 style="color: #e74c6f; margin-bottom: 1rem;">Couple Trivia 🧠</h2>
-        <div class="trivia-mode" id="triviaMode" style="font-size: 1.2rem; color: #ff9aa2; margin-bottom: 1rem; font-weight: 600;">Setup Mode</div>
-        <div class="score-display" style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem;">
-          <div style="background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 10px;">
-            <div style="color: #e74c6f; font-weight: 600;">Partner A Score</div>
-            <div id="partnerAScore" style="font-size: 2rem; color: white;">0</div>
-          </div>
-          <div style="background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 10px;">
-            <div style="color: #e74c6f; font-weight: 600;">Partner B Score</div>
-            <div id="partnerBScore" style="font-size: 2rem; color: white;">0</div>
-          </div>
-        </div>
+    <div id="couple-trivia-interface" class="game-interface" style="display: none;">
+      <div class="game-header">
+        <h2>🧠 Couple Trivia</h2>
+        <button class="close-game" onclick="closeGame()">✕</button>
       </div>
-      
-      <div class="trivia-content" id="triviaContent">
-        <div class="setup-phase" id="setupPhase" style="text-align: center;">
-          <div style="font-size: 1.1rem; color: white; margin-bottom: 2rem; line-height: 1.5;">First, each partner needs to answer some questions about themselves. Then you'll quiz each other!</div>
-          <button onclick="startTriviaSetup()" style="background: linear-gradient(135deg, #e74c6f, #c0392b); color: white; border: none; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">Start Setup</button>
+      <div class="game-content">
+        <div class="trivia-score">
+          <span>Score: <span id="trivia-score">0</span>/15</span>
         </div>
-
-        <div class="quiz-phase" id="quizPhase" style="display: none;">
-          <div class="question-container" style="text-align: center; margin: 2rem 0;">
-            <div id="triviaQuestionText" style="font-size: 1.3rem; color: white; margin-bottom: 2rem; line-height: 1.5; min-height: 60px;"></div>
-            <div id="triviaChoices" style="display: flex; flex-direction: column; align-items: center; gap: 1rem;"></div>
+        <div class="trivia-question">
+          <h3 id="trivia-q">Loading question...</h3>
+          <div class="trivia-options">
+            <button class="trivia-option" onclick="selectTriviaAnswer(0)">A</button>
+            <button class="trivia-option" onclick="selectTriviaAnswer(1)">B</button>
+            <button class="trivia-option" onclick="selectTriviaAnswer(2)">C</button>
           </div>
         </div>
-      </div>
-
-      <div class="game-controls" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
-        <button onclick="backToGameSelection()" style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.3); color: #b0b8d4; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">← Back</button>
+        <div class="trivia-controls">
+          <button class="game-btn" onclick="nextTriviaQuestion()">Next Question</button>
+        </div>
       </div>
     </div>
-
+    
     <!-- Decision Roulette Interface -->
-    <div class="game-interface" id="decisionRouletteInterface" style="display: none; background: rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 2rem; margin: 2rem 0;">
-      <div class="game-header" style="text-align: center; margin-bottom: 2rem;">
-        <h2 style="color: #e74c6f; margin-bottom: 1rem;">Decision Roulette 🎰</h2>
-        <div style="font-size: 1.1rem; color: #ff9aa2; margin-bottom: 2rem;">Can't decide? Let the wheel choose for you!</div>
+    <div id="decision-roulette-interface" class="game-interface" style="display: none;">
+      <div class="game-header">
+        <h2>🎡 Decision Roulette</h2>
+        <button class="close-game" onclick="closeGame()">✕</button>
       </div>
-      
-      <div class="roulette-container" style="display: flex; flex-direction: column; align-items: center; margin: 2rem 0;">
-        <div class="roulette-wheel" id="rouletteWheel" style="width: 300px; height: 300px; border-radius: 50%; background: conic-gradient(#e74c6f 0deg 60deg, #c0392b 60deg 120deg, #ff9aa2 120deg 180deg, #e74c6f 180deg 240deg, #c0392b 240deg 300deg, #ff9aa2 300deg 360deg); margin: 2rem auto; position: relative; transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99); box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 4px solid rgba(231, 76, 111, 0.8);">
-          <div class="wheel-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; background: #1a1a2e; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 3px solid #e74c6f;">
-            <div style="color: #e74c6f; font-size: 1.2rem; font-weight: 600;">SPIN</div>
-          </div>
-          <div class="wheel-pointer" style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-top: 25px solid #e74c6f; z-index: 10;"></div>
+      <div class="game-content">
+        <div class="roulette-setup">
+          <h3>Add Your Options:</h3>
+          <input type="text" id="roulette-input" placeholder="Enter an option...">
+          <button class="game-btn" onclick="addRouletteOption()">Add Option</button>
         </div>
-
-        <div class="wheel-result" id="wheelResult" style="margin: 2rem 0; text-align: center; min-height: 60px;">
-          <div id="resultText" style="font-size: 1.5rem; color: white; font-weight: 600;"></div>
+        <div class="roulette-options">
+          <ul id="roulette-list"></ul>
         </div>
-
-        <div class="options-input" style="width: 100%; max-width: 500px; margin-bottom: 2rem;">
-          <div style="color: #e74c6f; font-weight: 600; margin-bottom: 1rem;">Add Your Options:</div>
-          <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
-            <input type="text" id="optionInput" placeholder="Enter an option..." style="flex: 1; padding: 12px; border-radius: 8px; border: 2px solid rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.1); color: white; font-family: 'Poppins', sans-serif;" onkeydown="if(event.key==='Enter')addOption()">
-            <button onclick="addOption()" style="background: linear-gradient(135deg, #e74c6f, #c0392b); color: white; border: none; padding: 12px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">Add</button>
-          </div>
-          <div id="optionsList" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;"></div>
+        <div class="roulette-wheel">
+          <div class="wheel-result" id="wheel-result">Add options and spin!</div>
+          <button class="game-btn spin-btn" onclick="spinRoulette()" disabled>🎡 Spin!</button>
         </div>
-      </div>
-
-      <div class="game-controls" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-        <button onclick="spinWheel()" style="background: linear-gradient(135deg, #e74c6f, #c0392b); color: white; border: none; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">🎰 Spin the Wheel!</button>
-        <button onclick="clearOptions()" style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.3); color: #b0b8d4; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">Clear All</button>
-        <button onclick="backToGameSelection()" style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.3); color: #b0b8d4; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">← Back</button>
       </div>
     </div>
-
+    
     <!-- Compliment Battle Interface -->
-    <div class="game-interface" id="complimentBattleInterface" style="display: none; background: rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 2rem; margin: 2rem 0;">
-      <div class="game-header" style="text-align: center; margin-bottom: 2rem;">
-        <h2 style="color: #e74c6f; margin-bottom: 1rem;">Compliment Battle 💕</h2>
-        <div class="current-turn" id="complimentTurn" style="font-size: 1.2rem; color: #ff9aa2; margin-bottom: 1rem; font-weight: 600;">Partner A's Turn</div>
-        <div class="timer-display" id="complimentTimer" style="font-size: 3rem; font-weight: bold; color: #e74c6f; margin-bottom: 1rem;">30</div>
-        <div class="round-info" style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem;">
-          <div style="background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 10px;">
-            <div style="color: #e74c6f; font-weight: 600;">Round</div>
-            <div id="complimentRound" style="font-size: 1.5rem; color: white;">1</div>
-          </div>
-          <div style="background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 10px;">
-            <div style="color: #e74c6f; font-weight: 600;">Total Given</div>
-            <div id="totalCompliments" style="font-size: 1.5rem; color: white;">0</div>
-          </div>
-        </div>
+    <div id="compliment-battle-interface" class="game-interface" style="display: none;">
+      <div class="game-header">
+        <h2>💝 Compliment Battle</h2>
+        <button class="close-game" onclick="closeGame()">✕</button>
       </div>
-      
-      <div class="compliment-container" style="margin: 2rem 0;">
-        <div class="instruction" id="complimentInstruction" style="background: rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 1.5rem; margin-bottom: 2rem; text-align: center;">
-          <div style="font-size: 1.2rem; color: white; line-height: 1.5;">Take turns giving genuine compliments to each other. You have 30 seconds per turn. Can't repeat any compliments!</div>
+      <div class="game-content">
+        <div class="battle-score">
+          <div class="player-score">Player 1: <span id="p1-compliments">0</span></div>
+          <div class="player-score">Player 2: <span id="p2-compliments">0</span></div>
         </div>
-
-        <div class="compliments-given" style="background: rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 1.5rem; min-height: 200px;">
-          <div style="color: #e74c6f; font-weight: 600; margin-bottom: 1rem;">Compliments Given This Battle:</div>
-          <div id="complimentsList" style="color: #b0b8d4; line-height: 1.6;">Ready to spread the love? Click 'Start Battle' to begin!</div>
+        <div class="battle-timer">
+          <div class="timer-display" id="compliment-timer">30</div>
+          <div class="current-player" id="compliment-current">Player 1's Turn</div>
         </div>
-      </div>
-
-      <div class="game-controls" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-        <button id="startComplimentBtn" onclick="startComplimentBattle()" style="background: linear-gradient(135deg, #e74c6f, #c0392b); color: white; border: none; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">Start Battle</button>
-        <button id="nextTurnBtn" onclick="nextComplimentTurn()" style="display: none; background: linear-gradient(135deg, #c0392b, #e74c6f); color: white; border: none; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">Next Turn</button>
-        <button id="endBattleBtn" onclick="endComplimentBattle()" style="display: none; background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.3); color: #b0b8d4; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">End Battle</button>
-        <button onclick="backToGameSelection()" style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.3); color: #b0b8d4; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;">← Back</button>
+        <div class="battle-controls">
+          <button class="game-btn" onclick="startComplimentRound()">Start Round</button>
+          <button class="game-btn" onclick="addCompliment()">Give Compliment</button>
+          <button class="game-btn" onclick="switchComplimentPlayer()">Switch Player</button>
+        </div>
       </div>
     </div>
   </div>
@@ -7023,915 +7187,608 @@
       document.getElementById('massageGuideContent').style.display = 'block';
     }
 
-    // === GAME ARENA JAVASCRIPT ===
-
-    // Global game variables
-    let currentGame = null;
+    // Game Arena JavaScript Functions
+    let currentGame = '';
     let gameState = {};
-
-    // Game Arena Navigation
-    function startGame(gameId) {
-      currentGame = gameId;
-      document.getElementById('gameSelection').style.display = 'none';
-      
-      // Hide all game interfaces
-      const interfaces = ['truthOrDareInterface', 'wouldYouRatherInterface', 'twoMinuteStoryInterface', 'coupleTriviaInterface', 'decisionRouletteInterface', 'complimentBattleInterface'];
-      interfaces.forEach(id => {
-        document.getElementById(id).style.display = 'none';
-      });
-      
-      // Show specific game interface
-      switch(gameId) {
+    
+    function openGame(gameType) {
+      currentGame = gameType;
+      document.getElementById(gameType + '-interface').style.display = 'block';
+      initializeGame(gameType);
+    }
+    
+    function closeGame() {
+      if (currentGame) {
+        document.getElementById(currentGame + '-interface').style.display = 'none';
+        currentGame = '';
+        gameState = {};
+      }
+    }
+    
+    function initializeGame(gameType) {
+      switch(gameType) {
         case 'truth-or-dare':
-          document.getElementById('truthOrDareInterface').style.display = 'block';
-          initializeTruthOrDare();
+          initTruthOrDare();
           break;
         case 'would-you-rather':
-          document.getElementById('wouldYouRatherInterface').style.display = 'block';
-          initializeWouldYouRather();
+          initWouldYouRather();
           break;
-        case 'two-minute-story':
-          document.getElementById('twoMinuteStoryInterface').style.display = 'block';
-          initializeTwoMinuteStory();
+        case 'story-time':
+          initStoryTime();
           break;
         case 'couple-trivia':
-          document.getElementById('coupleTriviaInterface').style.display = 'block';
-          initializeCoupleTrivia();
+          initCoupleTrivia();
           break;
         case 'decision-roulette':
-          document.getElementById('decisionRouletteInterface').style.display = 'block';
-          initializeDecisionRoulette();
+          initDecisionRoulette();
           break;
         case 'compliment-battle':
-          document.getElementById('complimentBattleInterface').style.display = 'block';
-          initializeComplimentBattle();
+          initComplimentBattle();
           break;
       }
     }
-
-    function backToGameSelection() {
-      document.getElementById('gameSelection').style.display = 'block';
-      const interfaces = ['truthOrDareInterface', 'wouldYouRatherInterface', 'twoMinuteStoryInterface', 'coupleTriviaInterface', 'decisionRouletteInterface', 'complimentBattleInterface'];
-      interfaces.forEach(id => {
-        document.getElementById(id).style.display = 'none';
-      });
-      currentGame = null;
-      gameState = {};
-    }
-
-    // === TRUTH OR DARE DELUXE ===
-    let truthDareData = {
+    
+    // Truth or Dare Game
+    const truthDareData = {
       funny: {
-        truths: [
-          "What's the most embarrassing thing you've done on a date?",
-          "What's your weirdest habit that you think no one notices?",
-          "If you could only eat one food for the rest of your life, what would it be?",
-          "What's the most childish thing you still do?",
-          "What's your most irrational fear?",
-          "What's the worst pickup line you've ever used or heard?",
-          "If you had to wear a t-shirt with one word on it for the rest of your life, what would it say?",
-          "What's the most useless talent you have?",
-          "What's your go-to dance move?",
-          "What's the weirdest thing you've ever eaten?"
+        truth: [
+          "What's the weirdest thing you've done when you thought nobody was watching?",
+          "If you had to wear one outfit for the rest of your life, what would it be?",
+          "What's your most embarrassing childhood memory?",
+          "What's the strangest food combination you actually enjoy?",
+          "If you could be any animal for a day, what would you choose and why?",
+          "What's the most ridiculous fear you have?",
+          "What's your weirdest habit that you think nobody knows about?",
+          "If you had to choose a theme song that plays every time you enter a room, what would it be?",
+          "What's the most embarrassing thing in your search history?",
+          "What's your secret talent that you never show anyone?",
+          "If you were a superhero, what would your super embarrassing weakness be?",
+          "What's the weirdest dream you've ever had?",
+          "If you could only communicate using movie quotes for a day, which movie would you choose?",
+          "What's your most irrational pet peeve?",
+          "If you had to eat one food for every meal for a month, what would it be?",
+          "What's the most ridiculous thing you believed as a child?",
+          "If you could switch lives with any cartoon character, who would it be?",
+          "What's your weirdest 'comfort' activity when you're stressed?",
+          "If aliens visited Earth, what human behavior would confuse them most?",
+          "What's the most embarrassing thing you've done to get someone's attention?"
         ],
-        dares: [
-          "Do your best impression of your partner",
-          "Speak in an accent for the next 10 minutes",
-          "Do 10 jumping jacks",
-          "Sing 'Happy Birthday' in the style of a opera singer",
-          "Dance with no music for 30 seconds",
-          "Call a family member and tell them a funny joke",
-          "Do your best animal impression",
-          "Speak only in questions for the next 5 minutes",
-          "Do a cartwheel (or attempt one)",
-          "Tell a story using only song lyrics"
+        dare: [
+          "Do your best impression of your partner for 30 seconds",
+          "Sing 'Happy Birthday' in the style of your favorite singer",
+          "Do 10 jumping jacks while reciting the alphabet backwards",
+          "Act out your morning routine in fast-forward mode",
+          "Do your best runway model walk across the room",
+          "Speak in a funny accent for the next 3 rounds",
+          "Do your best dance moves for 30 seconds",
+          "Try to juggle three random objects for 30 seconds",
+          "Do your best impersonation of a celebrity",
+          "Pretend to be a news reporter describing what you had for breakfast",
+          "Do 5 push-ups while humming your favorite song",
+          "Act like a robot for the next 60 seconds",
+          "Do your best animal impression (your partner gets to choose the animal)",
+          "Try to lick your elbow for 30 seconds",
+          "Dance like nobody's watching (even though your partner is)",
+          "Do your best superhero pose and make up a superhero name for yourself",
+          "Pretend you're a cooking show host and 'cook' an imaginary meal",
+          "Do your best mime impression for 60 seconds",
+          "Try to do a cartwheel (attempt counts even if you fail!)",
+          "Act out your favorite movie scene without using words"
         ]
       },
       romantic: {
-        truths: [
-          "What was your first impression of me?",
+        truth: [
+          "What was your first impression of me when we met?",
           "What's your favorite memory of us together?",
-          "What made you realize you loved me?",
-          "What's one thing about our relationship that makes you smile?",
-          "What's your favorite thing I do that makes you feel loved?",
-          "What's a dream date you'd love to go on with me?",
-          "What's one thing you want us to do together in the future?",
-          "What's your favorite thing about my personality?",
-          "What song reminds you of us?",
-          "What's one thing you've learned about love since being with me?"
+          "When did you first realize you loved me?",
+          "What's something I do that makes you feel most loved?",
+          "What's your favorite thing about our relationship?",
+          "What's a small gesture I do that means the world to you?",
+          "What's your favorite way I show affection?",
+          "What's something you love about me that I might not know?",
+          "What's our best date night memory?",
+          "What made you want to be in a relationship with me?",
+          "What's something about me that always makes you smile?",
+          "What's your favorite way we spend time together?",
+          "What's something I've done that made you feel incredibly proud?",
+          "What's your favorite thing I've said to you?",
+          "What's a moment when you felt most connected to me?",
+          "What's something about our future together that excites you most?",
+          "What's your favorite physical feature of mine?",
+          "What's something I do that makes you feel secure in our relationship?",
+          "What's a song that reminds you of us?",
+          "What's something you're grateful for about our relationship?"
         ],
-        dares: [
-          "Write me a short love poem right now",
-          "Give me a 2-minute shoulder massage",
-          "Slow dance with me to an imaginary song",
-          "Tell me 3 things you love about me",
-          "Plan our next date night out loud",
-          "Draw a picture of us together",
-          "Serenade me with our favorite song",
-          "Give me 5 genuine compliments",
-          "Tell me about your favorite dream involving us",
-          "Look into my eyes for 60 seconds without speaking"
+        dare: [
+          "Give your partner a 60-second hand massage",
+          "Write a short love note and read it aloud",
+          "Look into your partner's eyes for 30 seconds without talking",
+          "Give your partner three genuine compliments",
+          "Slow dance together for one full song",
+          "Feed your partner a small snack or treat",
+          "Give your partner a gentle scalp massage",
+          "Share three things you're grateful for about your partner",
+          "Take a selfie together making heart hands",
+          "Whisper something sweet in your partner's ear",
+          "Give your partner a foot rub for 2 minutes",
+          "Create a handshake that's unique to your relationship",
+          "Tell your partner your favorite thing about each of their physical features",
+          "Give your partner a 30-second back rub",
+          "Look at old photos together and share your favorite memory from each",
+          "Plan out your ideal date night together",
+          "Share three things you want to experience together in the future",
+          "Give your partner butterfly kisses for 30 seconds",
+          "Write your initials on your partner's hand and let them guess what you wrote",
+          "Share what you love most about your partner's personality"
         ]
       },
       spicy: {
-        truths: [
-          "What's your biggest turn-on?",
-          "What's one fantasy you've never shared?",
-          "Where's the most adventurous place you'd want to be intimate?",
-          "What's your favorite thing about our physical connection?",
-          "What's something you find irresistibly attractive about me?",
-          "What's one thing you've always wanted to try together?",
-          "What's your favorite memory of us being intimate?",
-          "What's something that instantly puts you in the mood?",
-          "What's your favorite feature of mine?",
-          "What's one thing that makes you feel desired?"
+        truth: [
+          "What's your favorite way to be kissed?",
+          "What's something you've always wanted to try together?",
+          "What's your biggest turn-on about your partner?",
+          "What's the most romantic thing your partner has ever done?",
+          "What's your favorite thing about your partner's body?",
+          "What's something that instantly makes you think of your partner?",
+          "What's your favorite memory of being intimate together?",
+          "What's something your partner wears that drives you wild?",
+          "What's your favorite way your partner touches you?",
+          "What's something you find irresistibly attractive about your partner?",
+          "What's your favorite time of day to be romantic with your partner?",
+          "What's something your partner does that makes you melt?",
+          "What's your ideal romantic evening together?",
+          "What's something you love about the way your partner looks at you?",
+          "What's your favorite way to show your partner you desire them?",
+          "What's something about your partner that makes you feel butterflies?",
+          "What's your favorite place to be romantic together?",
+          "What's something your partner does that makes you feel sexy?",
+          "What's your favorite way your partner makes you feel wanted?",
+          "What's something you love about being physically close to your partner?"
         ],
-        dares: [
-          "Give me a sensual kiss that lasts 30 seconds",
-          "Whisper something seductive in my ear",
-          "Give me a massage for 3 minutes",
-          "Feed me something delicious",
-          "Blindfold me and let me guess what you're touching me with",
-          "Tell me exactly what you want to do to me later",
-          "Show me your best seductive look",
-          "Take a selfie together that's just for us",
-          "Undress me using only your teeth (one item)",
-          "Create a romantic atmosphere in 60 seconds"
+        dare: [
+          "Give your partner a passionate kiss for 10 seconds",
+          "Give your partner a sensual neck massage",
+          "Whisper something seductive in your partner's ear",
+          "Give your partner a trail of gentle kisses along their neck",
+          "Tell your partner exactly what you find sexiest about them",
+          "Give your partner a sensual back massage for 2 minutes",
+          "Look deep into your partner's eyes and tell them you love them",
+          "Give your partner soft kisses on their hands and wrists",
+          "Describe your perfect romantic evening with your partner",
+          "Give your partner gentle kisses along their jawline",
+          "Tell your partner three things that make them irresistible to you",
+          "Give your partner a slow, romantic dance",
+          "Trace the outline of your partner's face with your fingertips",
+          "Give your partner butterfly kisses on their eyelids",
+          "Tell your partner how they make you feel when they touch you",
+          "Give your partner a gentle shoulder and neck massage",
+          "Share your favorite fantasy involving your partner",
+          "Give your partner soft kisses on their forehead and cheeks",
+          "Tell your partner what you love most about their kisses",
+          "Give your partner a romantic compliment about their body"
         ]
       },
       deep: {
-        truths: [
-          "What's your biggest dream in life?",
-          "What's something you're afraid to tell me?",
-          "What's a challenge that's shaped who you are?",
-          "What's one thing you want to improve about yourself?",
-          "What's your greatest fear about our future?",
-          "What's something you're grateful for today?",
-          "What's a childhood experience that still affects you?",
-          "What's one way you've grown since we've been together?",
-          "What's something you've always wanted to ask me?",
-          "What does love mean to you?"
+        truth: [
+          "What's something about yourself you've never told anyone?",
+          "What's your biggest fear in our relationship?",
+          "What's something you're still learning about yourself?",
+          "What's a childhood experience that shaped who you are today?",
+          "What's something you wish you could change about your past?",
+          "What's your biggest insecurity?",
+          "What's something you're most proud of about yourself?",
+          "What's a goal you have that scares you?",
+          "What's something you've always wanted to tell me but haven't?",
+          "What's your biggest regret in life?",
+          "What's something about the future that worries you?",
+          "What's a lesson you learned the hard way?",
+          "What's something you wish others understood about you?",
+          "What's your biggest hope for our relationship?",
+          "What's something that makes you feel most vulnerable?",
+          "What's a belief you hold that might surprise me?",
+          "What's something you're still trying to forgive yourself for?",
+          "What's your deepest wish for your life?",
+          "What's something you've never said out loud but always thought?",
+          "What's a moment in your life when you felt most authentic?"
         ],
-        dares: [
-          "Share a vulnerable moment from your past",
-          "Tell me about a time you felt truly proud of yourself",
-          "Describe your perfect life 10 years from now",
-          "Share a fear you've never told anyone",
-          "Tell me about a moment that changed your perspective",
-          "Describe what home means to you",
-          "Share your biggest hope for our relationship",
-          "Tell me about someone who's influenced you deeply",
-          "Describe a moment when you felt completely yourself",
-          "Share what you think your purpose in life is"
+        dare: [
+          "Share something you've never told anyone else",
+          "Describe a moment when you felt most proud of your partner",
+          "Share a goal you have that you've been afraid to pursue",
+          "Talk about a time when your partner helped you grow as a person",
+          "Describe what you think your partner's greatest strength is",
+          "Share something you're working on improving about yourself",
+          "Tell your partner about a moment when you felt most connected to them",
+          "Describe how your partner has changed your perspective on something",
+          "Share something you're grateful your partner taught you",
+          "Talk about a challenge you'd like to overcome together",
+          "Describe what you think makes your relationship special",
+          "Share something you admire about your partner's character",
+          "Talk about a dream you have for your future together",
+          "Describe a moment when your partner surprised you in a meaningful way",
+          "Share something you've learned about love from your relationship",
+          "Talk about how you've grown as a person since being together",
+          "Describe what you think your partner needs to hear right now",
+          "Share something you want to work on in your relationship",
+          "Talk about what you think your greatest accomplishment is as a couple",
+          "Describe how you want to support your partner's dreams"
         ]
       }
     };
-
-    let currentTruthDareCategory = 'funny';
-    let truthDareTimer;
-    let timeRemaining = 60;
-
-    function initializeTruthOrDare() {
-      gameState.truthDare = {
-        category: 'funny',
-        timeRemaining: 60,
-        currentPrompt: null
-      };
-      setTruthDareCategory('funny');
+    
+    function initTruthOrDare() {
+      gameState.truthDare = { currentCategory: null, usedPrompts: [] };
     }
-
-    function setTruthDareCategory(category) {
-      currentTruthDareCategory = category;
+    
+    function selectTruthDareCategory(category) {
+      gameState.truthDare.currentCategory = category;
+      gameState.truthDare.usedPrompts = [];
+      document.querySelector('.category-selector').style.display = 'none';
+      document.getElementById('truth-dare-game').style.display = 'block';
+      document.getElementById('truth-dare-prompt').textContent = `Category: ${category.charAt(0).toUpperCase() + category.slice(1)} - Choose Truth or Dare!`;
+    }
+    
+    function nextTruthDare(choice) {
+      const category = gameState.truthDare.currentCategory;
+      if (!category) return;
       
-      // Update active button
-      document.querySelectorAll('.category-btn').forEach(btn => {
-        btn.classList.remove('active');
-        btn.style.background = 'rgba(255, 255, 255, 0.1)';
-        btn.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-        btn.style.color = '#b0b8d4';
+      if (choice === 'skip' || choice === 'next') {
+        document.getElementById('truth-dare-prompt').textContent = 'Choose Truth or Dare for the next round!';
+        return;
+      }
+      
+      const prompts = truthDareData[category][choice] || [];
+      if (prompts.length === 0) return;
+      
+      let availablePrompts = prompts.filter((_, index) => !gameState.truthDare.usedPrompts.includes(index));
+      if (availablePrompts.length === 0) {
+        gameState.truthDare.usedPrompts = [];
+        availablePrompts = prompts;
+      }
+      
+      const randomIndex = Math.floor(Math.random() * availablePrompts.length);
+      const selectedPrompt = availablePrompts[randomIndex];
+      const originalIndex = prompts.indexOf(selectedPrompt);
+      gameState.truthDare.usedPrompts.push(originalIndex);
+      
+      document.getElementById('truth-dare-prompt').textContent = selectedPrompt;
+    }
+    
+    // Would You Rather Game
+    const wouldYouRatherData = [
+      { question: "Would you rather...", optionA: "Always know what your partner is thinking", optionB: "Never know what your partner is thinking" },
+      { question: "Would you rather...", optionA: "Have a romantic dinner at home", optionB: "Have an adventure date outdoors" },
+      { question: "Would you rather...", optionA: "Receive a handwritten love letter", optionB: "Receive a surprise visit from your partner" },
+      { question: "Would you rather...", optionA: "Travel the world together", optionB: "Build a perfect home together" },
+      { question: "Would you rather...", optionA: "Have the ability to read your partner's mind", optionB: "Have your partner always understand your feelings without words" },
+      { question: "Would you rather...", optionA: "Have date night once a week", optionB: "Have a weekend getaway once a month" },
+      { question: "Would you rather...", optionA: "Always have to tell the truth to each other", optionB: "Always have perfect communication" },
+      { question: "Would you rather...", optionA: "Cook dinner together every night", optionB: "Never have to cook and eat out every night" },
+      { question: "Would you rather...", optionA: "Dance in the rain together", optionB: "Watch the sunset together" },
+      { question: "Would you rather...", optionA: "Have your partner surprise you with gifts", optionB: "Have your partner surprise you with experiences" },
+      { question: "Would you rather...", optionA: "Spend a day at the beach together", optionB: "Spend a day in the mountains together" },
+      { question: "Would you rather...", optionA: "Have breakfast in bed every Sunday", optionB: "Have a massage every Sunday" },
+      { question: "Would you rather...", optionA: "Always laugh together", optionB: "Always cry together when needed" },
+      { question: "Would you rather...", optionA: "Have a library of inside jokes", optionB: "Have a collection of shared hobbies" },
+      { question: "Would you rather...", optionA: "Slow dance in the kitchen", optionB: "Sing karaoke together" },
+      { question: "Would you rather...", optionA: "Have your partner write you poetry", optionB: "Have your partner sing to you" },
+      { question: "Would you rather...", optionA: "Always have exciting adventures", optionB: "Always have peaceful moments" },
+      { question: "Would you rather...", optionA: "Share all the same interests", optionB: "Have completely different interests to share with each other" },
+      { question: "Would you rather...", optionA: "Have a partner who's always punctual", optionB: "Have a partner who's always spontaneous" },
+      { question: "Would you rather...", optionA: "Grow old together gracefully", optionB: "Stay young together forever" },
+      { question: "Would you rather...", optionA: "Have movie nights every week", optionB: "Have game nights every week" },
+      { question: "Would you rather...", optionA: "Always have perfect weather on dates", optionB: "Always have perfect food on dates" },
+      { question: "Would you rather...", optionA: "Receive flowers every month", optionB: "Receive chocolates every month" },
+      { question: "Would you rather...", optionA: "Have your partner always make you laugh", optionB: "Have your partner always make you feel beautiful" },
+      { question: "Would you rather...", optionA: "Share everything with each other", optionB: "Have some personal mysteries to keep things interesting" },
+      { question: "Would you rather...", optionA: "Have a partner who's great at giving advice", optionB: "Have a partner who's great at just listening" },
+      { question: "Would you rather...", optionA: "Always have comfortable silences", optionB: "Always have engaging conversations" },
+      { question: "Would you rather...", optionA: "Take photos of every moment together", optionB: "Live fully in each moment without documenting" },
+      { question: "Would you rather...", optionA: "Have matching tattoos", optionB: "Have matching jewelry" },
+      { question: "Would you rather...", optionA: "Always have your partner's undivided attention", optionB: "Always have your own personal space when needed" }
+    ];
+    
+    function initWouldYouRather() {
+      gameState.wyr = { currentIndex: 0, usedQuestions: [], playerAChoice: null, playerBChoice: null };
+      loadWYRQuestion();
+    }
+    
+    function loadWYRQuestion() {
+      let availableQuestions = wouldYouRatherData.filter((_, index) => !gameState.wyr.usedQuestions.includes(index));
+      if (availableQuestions.length === 0) {
+        gameState.wyr.usedQuestions = [];
+        availableQuestions = wouldYouRatherData;
+      }
+      
+      const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+      const question = availableQuestions[randomIndex];
+      gameState.wyr.currentIndex = wouldYouRatherData.indexOf(question);
+      gameState.wyr.usedQuestions.push(gameState.wyr.currentIndex);
+      
+      document.getElementById('wyr-question').textContent = question.question;
+      document.getElementById('wyr-option-a').textContent = question.optionA;
+      document.getElementById('wyr-option-b').textContent = question.optionB;
+      
+      document.getElementById('wyr-result').style.display = 'none';
+      document.querySelectorAll('.wyr-option').forEach(btn => {
+        btn.style.backgroundColor = '';
+        btn.disabled = false;
       });
-      
-      event.target.classList.add('active');
-      event.target.style.background = 'linear-gradient(135deg, #e74c6f, #c0392b)';
-      event.target.style.borderColor = '#e74c6f';
-      event.target.style.color = 'white';
+      gameState.wyr.playerAChoice = null;
+      gameState.wyr.playerBChoice = null;
     }
-
-    function startTruthDareTimer() {
-      timeRemaining = 60;
-      updateTimerDisplay();
+    
+    function selectWYROption(option) {
+      // This is simplified - in real implementation, you'd have separate selection for each player
+      if (!gameState.wyr.playerAChoice) {
+        gameState.wyr.playerAChoice = option;
+        document.getElementById('wyr-option-' + option).style.backgroundColor = '#e74c6f';
+      } else if (!gameState.wyr.playerBChoice && option !== gameState.wyr.playerAChoice) {
+        gameState.wyr.playerBChoice = option;
+        document.getElementById('wyr-option-' + option).style.backgroundColor = '#4CAF50';
+        document.getElementById('wyr-result').style.display = 'block';
+      }
+    }
+    
+    function revealWYRChoices() {
+      const resultText = `Player 1 chose: ${gameState.wyr.playerAChoice.toUpperCase()}\nPlayer 2 chose: ${gameState.wyr.playerBChoice.toUpperCase()}`;
+      alert(resultText);
+    }
+    
+    function nextWYRScenario() {
+      loadWYRQuestion();
+    }
+    
+    // Story Time Game
+    const storyPrompts = [
+      "You wake up and discover you can understand what animals are thinking...",
+      "A mysterious package arrives at your door with no return address...",
+      "You find a diary from 100 years ago that mentions your name...",
+      "During a walk in the forest, you discover a door in a tree trunk...",
+      "You receive a text message from yourself from the future...",
+      "A stranger hands you a key and says 'You'll know what to do with this'...",
+      "You find a map in an old book that shows your house with an X marked on it...",
+      "Every mirror in your house starts showing different reflections...",
+      "You discover you can pause time for exactly 60 seconds once per day...",
+      "A time capsule you buried as a child is found, but it contains things you never put in it...",
+      "You wake up with a superpower, but it only works when you're with your partner...",
+      "A restaurant meal comes with a note that says 'Your life is about to change'...",
+      "You find a room in your house that wasn't there yesterday...",
+      "Every song on the radio seems to contain a personal message for you...",
+      "You discover an old photo of yourself in a place you've never been...",
+      "A fortune teller approaches you and says they have an urgent message...",
+      "You find a notebook that writes back to you when you write in it...",
+      "Your pet starts leaving you mysterious objects every morning...",
+      "You receive a phone call from someone claiming to be your descendant from the future...",
+      "A shooting star lands in your backyard, and it's not what you expected..."
+    ];
+    
+    function initStoryTime() {
+      gameState.story = { currentPlayer: 1, timeLeft: 60, timer: null };
+      loadNewStoryPrompt();
+    }
+    
+    function loadNewStoryPrompt() {
+      const randomPrompt = storyPrompts[Math.floor(Math.random() * storyPrompts.length)];
+      document.getElementById('story-prompt').textContent = randomPrompt;
+    }
+    
+    function startStoryRound() {
+      if (gameState.story.timer) clearInterval(gameState.story.timer);
+      gameState.story.timeLeft = 60;
+      document.getElementById('story-timer').textContent = gameState.story.timeLeft;
       
-      truthDareTimer = setInterval(() => {
-        timeRemaining--;
-        updateTimerDisplay();
+      gameState.story.timer = setInterval(() => {
+        gameState.story.timeLeft--;
+        document.getElementById('story-timer').textContent = gameState.story.timeLeft;
         
-        if (timeRemaining <= 0) {
-          clearInterval(truthDareTimer);
-          // Timer finished - could add celebration or next prompt
+        if (gameState.story.timeLeft <= 0) {
+          clearInterval(gameState.story.timer);
+          alert(`Time's up for Player ${gameState.story.currentPlayer}!`);
         }
       }, 1000);
     }
-
-    function updateTimerDisplay() {
-      document.getElementById('truthDareTimer').textContent = `⏰ ${timeRemaining}`;
-      
-      // Change color as time runs out
-      const timerEl = document.getElementById('truthDareTimer');
-      if (timeRemaining <= 10) {
-        timerEl.style.color = '#ff6b6b';
-      } else if (timeRemaining <= 30) {
-        timerEl.style.color = '#ffa500';
-      } else {
-        timerEl.style.color = '#e74c6f';
-      }
+    
+    function switchStoryPlayer() {
+      if (gameState.story.timer) clearInterval(gameState.story.timer);
+      gameState.story.currentPlayer = gameState.story.currentPlayer === 1 ? 2 : 1;
+      gameState.story.timeLeft = 60;
+      document.querySelector('.current-player').textContent = `Player ${gameState.story.currentPlayer}'s Turn`;
+      document.getElementById('story-timer').textContent = gameState.story.timeLeft;
     }
-
-    function getTruthPrompt() {
-      const truths = truthDareData[currentTruthDareCategory].truths;
-      const prompt = truths[Math.floor(Math.random() * truths.length)];
-      displayPrompt('TRUTH', prompt);
+    
+    function newStoryPrompt() {
+      if (gameState.story.timer) clearInterval(gameState.story.timer);
+      loadNewStoryPrompt();
+      gameState.story.currentPlayer = 1;
+      gameState.story.timeLeft = 60;
+      document.querySelector('.current-player').textContent = `Player ${gameState.story.currentPlayer}'s Turn`;
+      document.getElementById('story-timer').textContent = gameState.story.timeLeft;
     }
-
-    function getDarePrompt() {
-      const dares = truthDareData[currentTruthDareCategory].dares;
-      const prompt = dares[Math.floor(Math.random() * dares.length)];
-      displayPrompt('DARE', prompt);
-    }
-
-    function displayPrompt(type, text) {
-      document.getElementById('promptType').textContent = type;
-      document.getElementById('promptText').textContent = text;
-      
-      if (truthDareTimer) clearInterval(truthDareTimer);
-      startTruthDareTimer();
-    }
-
-    function skipPrompt() {
-      if (Math.random() > 0.5) {
-        getTruthPrompt();
-      } else {
-        getDarePrompt();
-      }
-    }
-
-    // === WOULD YOU RATHER: COUPLES EDITION ===
-    let wouldYouRatherData = [
-      {
-        question: "Would you rather have the ability to read my mind or have me be able to read yours?",
-        choiceA: "Read your partner's mind",
-        choiceB: "Let your partner read your mind"
-      },
-      {
-        question: "Would you rather go on a luxurious vacation to a resort or an adventurous backpacking trip?",
-        choiceA: "Luxurious resort vacation",
-        choiceB: "Adventurous backpacking trip"
-      },
-      {
-        question: "Would you rather have dinner with my family every week or yours?",
-        choiceA: "Your partner's family every week",
-        choiceB: "Your family every week"
-      },
-      {
-        question: "Would you rather be able to relive our first date or fast-forward to see us in 10 years?",
-        choiceA: "Relive your first date",
-        choiceB: "See yourselves in 10 years"
-      },
-      {
-        question: "Would you rather always know when I'm lying or always get away with your own lies?",
-        choiceA: "Always know when they're lying",
-        choiceB: "Always get away with your lies"
-      },
-      {
-        question: "Would you rather have a perfect memory of all our moments or the ability to forget all our arguments?",
-        choiceA: "Perfect memory of all moments",
-        choiceB: "Forget all arguments"
-      },
-      {
-        question: "Would you rather spend a day without technology together or a day without speaking to each other?",
-        choiceA: "Day without technology together",
-        choiceB: "Day without speaking to each other"
-      },
-      {
-        question: "Would you rather be famous as a couple or be completely unknown but blissfully happy?",
-        choiceA: "Famous as a couple",
-        choiceB: "Unknown but blissfully happy"
-      }
+    
+    // Couple Trivia Game
+    const triviaQuestions = [
+      { question: "What's your partner's favorite movie?", answers: ["Action/Adventure", "Romantic Comedy", "Drama/Thriller"], correct: 0 },
+      { question: "What's your partner's biggest pet peeve?", answers: ["Loud chewing", "Being late", "Messy spaces"], correct: 1 },
+      { question: "What's your partner's dream vacation destination?", answers: ["Beach resort", "European cities", "Adventure/nature"], correct: 2 },
+      { question: "What's your partner's favorite way to relax?", answers: ["Reading a book", "Watching TV/movies", "Taking a bath"], correct: 0 },
+      { question: "What's your partner's ideal date night?", answers: ["Fancy dinner out", "Cozy night at home", "Fun activity together"], correct: 1 },
+      { question: "What's your partner's favorite season?", answers: ["Spring", "Summer", "Fall"], correct: 2 },
+      { question: "What's your partner's biggest fear?", answers: ["Heights", "Spiders/bugs", "Public speaking"], correct: 0 },
+      { question: "What's your partner's favorite way to exercise?", answers: ["Gym/weights", "Yoga/pilates", "Outdoor activities"], correct: 1 },
+      { question: "What's your partner's favorite type of music?", answers: ["Pop/mainstream", "Rock/alternative", "Classical/jazz"], correct: 2 },
+      { question: "What's your partner's ideal Sunday morning?", answers: ["Sleeping in", "Early workout", "Breakfast together"], correct: 0 },
+      { question: "What's your partner's favorite way to show love?", answers: ["Physical touch", "Words of affirmation", "Acts of service"], correct: 1 },
+      { question: "What's your partner's biggest goal this year?", answers: ["Career advancement", "Health/fitness", "Personal growth"], correct: 2 },
+      { question: "What's your partner's favorite comfort food?", answers: ["Pizza", "Ice cream", "Chocolate"], correct: 0 },
+      { question: "What's your partner's ideal Friday night?", answers: ["Going out with friends", "Date night together", "Relaxing at home"], correct: 1 },
+      { question: "What's your partner's favorite holiday?", answers: ["Christmas", "Birthday", "Valentine's Day"], correct: 2 }
     ];
-
-    let wowGameState = {
-      currentQuestion: 0,
-      matches: 0,
-      playerAChoice: null,
-      playerBChoice: null,
-      gamePhase: 'waiting' // waiting, playerA, playerB, reveal
-    };
-
-    function initializeWouldYouRather() {
-      wowGameState = {
-        currentQuestion: 0,
-        matches: 0,
-        playerAChoice: null,
-        playerBChoice: null,
-        gamePhase: 'waiting'
-      };
-      
-      document.getElementById('matchScore').textContent = '0';
-      document.getElementById('questionCount').textContent = '0';
-      document.getElementById('startWowBtn').style.display = 'block';
-      document.getElementById('choiceButtons').style.display = 'none';
-      document.getElementById('revealSection').style.display = 'none';
+    
+    function initCoupleTrivia() {
+      gameState.trivia = { currentQuestion: 0, score: 0, usedQuestions: [] };
+      loadTriviaQuestion();
     }
-
-    function startWouldYouRather() {
-      document.getElementById('startWowBtn').style.display = 'none';
-      nextWowQuestion();
-    }
-
-    function nextWowQuestion() {
-      if (wowGameState.currentQuestion >= wouldYouRatherData.length) {
-        // Game finished
-        document.getElementById('wowQuestionText').textContent = `🎉 Game Complete! You matched on ${wowGameState.matches} out of ${wowGameState.currentQuestion} questions! Great job getting to know each other better!`;
-        document.getElementById('choiceButtons').style.display = 'none';
-        document.getElementById('revealSection').style.display = 'none';
+    
+    function loadTriviaQuestion() {
+      if (gameState.trivia.currentQuestion >= 15) {
+        alert(`Game Over! Final Score: ${gameState.trivia.score}/15`);
         return;
       }
       
-      const question = wouldYouRatherData[wowGameState.currentQuestion];
-      document.getElementById('wowQuestionText').textContent = question.question;
-      document.getElementById('choiceA').textContent = question.choiceA;
-      document.getElementById('choiceB').textContent = question.choiceB;
+      let availableQuestions = triviaQuestions.filter((_, index) => !gameState.trivia.usedQuestions.includes(index));
+      if (availableQuestions.length === 0) {
+        gameState.trivia.usedQuestions = [];
+        availableQuestions = triviaQuestions;
+      }
       
-      // Reset choices
-      wowGameState.playerAChoice = null;
-      wowGameState.playerBChoice = null;
-      wowGameState.gamePhase = 'playerA';
+      const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+      const question = availableQuestions[randomIndex];
+      gameState.trivia.currentQuestionData = question;
+      gameState.trivia.usedQuestions.push(triviaQuestions.indexOf(question));
       
-      document.getElementById('choiceButtons').style.display = 'block';
-      document.getElementById('revealSection').style.display = 'none';
-      
-      // Reset button styles
-      document.getElementById('choiceA').style.background = 'rgba(255, 255, 255, 0.1)';
-      document.getElementById('choiceB').style.background = 'rgba(255, 255, 255, 0.1)';
-      
-      document.getElementById('wowQuestionText').innerHTML = `<div style="color: #ff9aa2; margin-bottom: 1rem;">Partner A - Make your choice:</div>${question.question}`;
-    }
-
-    function makeChoice(choice) {
-      if (wowGameState.gamePhase === 'playerA') {
-        wowGameState.playerAChoice = choice;
-        wowGameState.gamePhase = 'playerB';
-        
-        // Hide previous selection and show for Player B
-        document.getElementById('choiceA').style.background = 'rgba(255, 255, 255, 0.1)';
-        document.getElementById('choiceB').style.background = 'rgba(255, 255, 255, 0.1)';
-        
-        const question = wouldYouRatherData[wowGameState.currentQuestion];
-        document.getElementById('wowQuestionText').innerHTML = `<div style="color: #ff9aa2; margin-bottom: 1rem;">Partner B - Make your choice:</div>${question.question}`;
-        
-      } else if (wowGameState.gamePhase === 'playerB') {
-        wowGameState.playerBChoice = choice;
-        wowGameState.gamePhase = 'reveal';
-        
-        // Show reveal
-        let resultText = '';
-        if (wowGameState.playerAChoice === wowGameState.playerBChoice) {
-          wowGameState.matches++;
-          resultText = `🎉 Perfect Match! You both chose the same option!`;
-          document.getElementById('matchScore').textContent = wowGameState.matches;
-        } else {
-          resultText = `🤔 Different choices! Partner A chose ${wowGameState.playerAChoice}, Partner B chose ${wowGameState.playerBChoice}. That's okay - variety makes it interesting!`;
+      document.getElementById('trivia-q').textContent = question.question;
+      const options = document.querySelectorAll('.trivia-option');
+      question.answers.forEach((answer, index) => {
+        if (options[index]) {
+          options[index].textContent = answer;
+          options[index].style.backgroundColor = '';
+          options[index].disabled = false;
         }
-        
-        wowGameState.currentQuestion++;
-        document.getElementById('questionCount').textContent = wowGameState.currentQuestion;
-        
-        document.getElementById('revealText').textContent = resultText;
-        document.getElementById('choiceButtons').style.display = 'none';
-        document.getElementById('revealSection').style.display = 'block';
-      }
+      });
     }
-
-    // === 2-MINUTE STORY ===
-    let storyPrompts = [
-      "Once upon a time, there was a couple who discovered a mysterious door in their basement...",
-      "The day we decided to become professional treasure hunters started like this...",
-      "It was the worst cooking disaster in history, and it all began when we tried to make...",
-      "The pet alien we adopted was supposed to be house-trained, but instead it...",
-      "Our time machine vacation went perfectly until we accidentally landed in...",
-      "The dating app matched us with each other's pets, and chaos ensued when...",
-      "We opened a restaurant that only served foods that rhymed, starting with...",
-      "The day we became superheroes, our first mission was to save the city from..."
-    ];
-
-    let storyState = {
-      currentPlayer: 'A',
-      storyText: '',
-      timer: null,
-      timeRemaining: 120, // 2 minutes in seconds
-      isActive: false,
-      prompt: ''
-    };
-
-    function initializeTwoMinuteStory() {
-      storyState = {
-        currentPlayer: 'A',
-        storyText: '',
-        timer: null,
-        timeRemaining: 120,
-        isActive: false,
-        prompt: storyPrompts[Math.floor(Math.random() * storyPrompts.length)]
-      };
+    
+    function selectTriviaAnswer(answerIndex) {
+      const correct = gameState.trivia.currentQuestionData.correct;
+      const options = document.querySelectorAll('.trivia-option');
       
-      document.getElementById('storyPromptText').textContent = storyState.prompt;
-      document.getElementById('currentTurn').textContent = "Partner A's Turn";
-      document.getElementById('storyTimer').textContent = '2:00';
-      document.getElementById('storyText').textContent = "Click 'Start Story' to begin your collaborative masterpiece!";
-      
-      document.getElementById('startStoryBtn').style.display = 'block';
-      document.getElementById('switchTurnBtn').style.display = 'none';
-      document.getElementById('endStoryBtn').style.display = 'none';
-    }
-
-    function startStory() {
-      storyState.isActive = true;
-      storyState.storyText = storyState.prompt + ' ';
-      
-      document.getElementById('startStoryBtn').style.display = 'none';
-      document.getElementById('switchTurnBtn').style.display = 'block';
-      document.getElementById('endStoryBtn').style.display = 'block';
-      
-      document.getElementById('storyText').textContent = storyState.storyText;
-      
-      startStoryTimer();
-    }
-
-    function startStoryTimer() {
-      storyState.timeRemaining = 120; // Reset to 2 minutes for each turn
-      
-      storyState.timer = setInterval(() => {
-        storyState.timeRemaining--;
-        
-        const minutes = Math.floor(storyState.timeRemaining / 60);
-        const seconds = storyState.timeRemaining % 60;
-        document.getElementById('storyTimer').textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-        
-        // Change color as time runs out
-        const timerEl = document.getElementById('storyTimer');
-        if (storyState.timeRemaining <= 10) {
-          timerEl.style.color = '#ff6b6b';
-        } else if (storyState.timeRemaining <= 30) {
-          timerEl.style.color = '#ffa500';
-        } else {
-          timerEl.style.color = '#e74c6f';
-        }
-        
-        if (storyState.timeRemaining <= 0) {
-          switchStoryTurn();
-        }
-      }, 1000);
-    }
-
-    function switchStoryTurn() {
-      if (storyState.timer) {
-        clearInterval(storyState.timer);
+      if (answerIndex === correct) {
+        gameState.trivia.score++;
+        options[answerIndex].style.backgroundColor = '#4CAF50';
+        setTimeout(() => alert('Correct!'), 100);
+      } else {
+        options[answerIndex].style.backgroundColor = '#f44336';
+        options[correct].style.backgroundColor = '#4CAF50';
+        setTimeout(() => alert('Incorrect! The right answer was highlighted.'), 100);
       }
       
-      // Simulate adding to story (in real implementation, you'd have text input)
-      const storyAdditions = [
-        "and suddenly discovered that...",
-        "but then something unexpected happened...",
-        "which led to an even bigger adventure when...",
-        "however, they soon realized that...",
-        "and that's when everything changed because...",
-        "but the real surprise was that...",
-        "and just when they thought it was over...",
-        "suddenly, a mysterious stranger appeared and..."
-      ];
-      
-      const addition = storyAdditions[Math.floor(Math.random() * storyAdditions.length)];
-      storyState.storyText += addition + ' ';
-      document.getElementById('storyText').textContent = storyState.storyText;
-      
-      // Switch players
-      storyState.currentPlayer = storyState.currentPlayer === 'A' ? 'B' : 'A';
-      document.getElementById('currentTurn').textContent = `Partner ${storyState.currentPlayer}'s Turn`;
-      
-      startStoryTimer();
+      options.forEach(option => option.disabled = true);
+      document.getElementById('trivia-score').textContent = gameState.trivia.score;
     }
-
-    function endStory() {
-      if (storyState.timer) {
-        clearInterval(storyState.timer);
-      }
-      
-      const endings = [
-        "And they lived happily ever after, with a story to tell for generations!",
-        "The end... or was it just the beginning of their greatest adventure yet?",
-        "And that's how they learned that the best stories are the ones you create together.",
-        "They laughed, they cried, and they realized that love makes every story worth telling."
-      ];
-      
-      const ending = endings[Math.floor(Math.random() * endings.length)];
-      storyState.storyText += ending;
-      
-      document.getElementById('storyText').textContent = storyState.storyText;
-      document.getElementById('currentTurn').textContent = "Story Complete! 🎉";
-      document.getElementById('storyTimer').textContent = "THE END";
-      document.getElementById('storyTimer').style.color = '#e74c6f';
-      
-      document.getElementById('switchTurnBtn').style.display = 'none';
-      document.getElementById('endStoryBtn').style.display = 'none';
+    
+    function nextTriviaQuestion() {
+      gameState.trivia.currentQuestion++;
+      setTimeout(() => loadTriviaQuestion(), 500);
     }
-
-    // === COUPLE TRIVIA ===
-    let triviaQuestions = [
-      {
-        category: "favorites",
-        question: "What is your partner's favorite color?",
-        setup: "What is your favorite color?"
-      },
-      {
-        category: "favorites", 
-        question: "What is your partner's favorite food?",
-        setup: "What is your favorite food?"
-      },
-      {
-        category: "childhood",
-        question: "Where did your partner grow up?",
-        setup: "Where did you grow up?"
-      },
-      {
-        category: "dreams",
-        question: "What is your partner's biggest dream?",
-        setup: "What is your biggest dream?"
-      },
-      {
-        category: "fears",
-        question: "What is your partner most afraid of?",
-        setup: "What are you most afraid of?"
-      }
-    ];
-
-    let triviaState = {
-      mode: 'setup', // setup, playing
-      currentPlayer: 'A',
-      currentQuestion: 0,
-      playerAAnswers: {},
-      playerBAnswers: {},
-      scores: { A: 0, B: 0 }
-    };
-
-    function initializeCoupleTrivia() {
-      triviaState = {
-        mode: 'setup',
-        currentPlayer: 'A', 
-        currentQuestion: 0,
-        playerAAnswers: {},
-        playerBAnswers: {},
-        scores: { A: 0, B: 0 }
-      };
-      
-      document.getElementById('partnerAScore').textContent = '0';
-      document.getElementById('partnerBScore').textContent = '0';
-      document.getElementById('setupPhase').style.display = 'block';
-      document.getElementById('quizPhase').style.display = 'none';
+    
+    // Decision Roulette Game
+    function initDecisionRoulette() {
+      gameState.roulette = { options: [] };
+      document.getElementById('roulette-list').innerHTML = '';
+      document.querySelector('.spin-btn').disabled = true;
+      document.getElementById('wheel-result').textContent = 'Add options and spin!';
     }
-
-    function startTriviaSetup() {
-      // Simplified setup for demo - in real version you'd collect answers
-      document.getElementById('setupPhase').style.display = 'none';
-      document.getElementById('quizPhase').style.display = 'block';
-      
-      // Simulate pre-filled answers for demo
-      triviaState.playerAAnswers = {
-        "What is your favorite color?": "Blue",
-        "What is your favorite food?": "Pizza", 
-        "Where did you grow up?": "California",
-        "What is your biggest dream?": "Travel the world",
-        "What are you most afraid of?": "Heights"
-      };
-      
-      triviaState.playerBAnswers = {
-        "What is your favorite color?": "Red",
-        "What is your favorite food?": "Pasta",
-        "Where did you grow up?": "New York", 
-        "What is your biggest dream?": "Write a novel",
-        "What are you most afraid of?": "Spiders"
-      };
-      
-      triviaState.mode = 'playing';
-      document.getElementById('triviaMode').textContent = 'Quiz Time!';
-      showTriviaQuestion();
-    }
-
-    function showTriviaQuestion() {
-      if (triviaState.currentQuestion >= triviaQuestions.length) {
-        // Game finished
-        const winner = triviaState.scores.A > triviaState.scores.B ? 'A' : 
-                      triviaState.scores.B > triviaState.scores.A ? 'B' : 'Tie';
-        document.getElementById('triviaQuestionText').textContent = 
-          winner === 'Tie' ? `🎉 It's a tie! You both know each other well!` :
-          `🎉 Partner ${winner} wins! Great job knowing your partner!`;
-        document.getElementById('triviaChoices').innerHTML = '';
-        return;
-      }
-      
-      const question = triviaQuestions[triviaState.currentQuestion];
-      const currentPlayer = triviaState.currentPlayer;
-      const otherPlayer = currentPlayer === 'A' ? 'B' : 'A';
-      
-      document.getElementById('triviaQuestionText').textContent = 
-        `Partner ${currentPlayer}: ${question.question}`;
-      
-      // Get the correct answer from the other player
-      const correctAnswer = currentPlayer === 'A' ? 
-        triviaState.playerBAnswers[question.setup] :
-        triviaState.playerAAnswers[question.setup];
-      
-      // Create multiple choice options (simplified for demo)
-      const allAnswers = Object.values(triviaState.playerAAnswers).concat(Object.values(triviaState.playerBAnswers));
-      const wrongAnswers = allAnswers.filter(a => a !== correctAnswer).slice(0, 2);
-      const options = [correctAnswer, ...wrongAnswers].sort(() => Math.random() - 0.5);
-      
-      document.getElementById('triviaChoices').innerHTML = options.map(option => 
-        `<button onclick="selectTriviaAnswer('${option}', '${correctAnswer}')" style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.3); color: #b0b8d4; padding: 1rem 2rem; border-radius: 12px; margin: 0.5rem; cursor: pointer; font-family: 'Poppins', sans-serif; width: 80%; max-width: 400px;">${option}</button>`
-      ).join('');
-    }
-
-    function selectTriviaAnswer(selected, correct) {
-      const isCorrect = selected === correct;
-      
-      if (isCorrect) {
-        triviaState.scores[triviaState.currentPlayer]++;
-        document.getElementById(`partner${triviaState.currentPlayer}Score`).textContent = 
-          triviaState.scores[triviaState.currentPlayer];
-      }
-      
-      document.getElementById('triviaQuestionText').textContent = 
-        isCorrect ? '✅ Correct! You know your partner well!' : 
-        `❌ Not quite! The correct answer was: ${correct}`;
-      
-      // Switch player and move to next question
-      setTimeout(() => {
-        triviaState.currentPlayer = triviaState.currentPlayer === 'A' ? 'B' : 'A';
-        if (triviaState.currentPlayer === 'A') {
-          triviaState.currentQuestion++;
-        }
-        showTriviaQuestion();
-      }, 2000);
-    }
-
-    // === DECISION ROULETTE ===
-    let rouletteOptions = [];
-    let isSpinning = false;
-
-    function initializeDecisionRoulette() {
-      rouletteOptions = ['Restaurant A', 'Restaurant B', 'Movie Night', 'Game Night', 'Take a Walk', 'Order Takeout'];
-      updateOptionsDisplay();
-    }
-
-    function addOption() {
-      const input = document.getElementById('optionInput');
+    
+    function addRouletteOption() {
+      const input = document.getElementById('roulette-input');
       const option = input.value.trim();
       
-      if (option && !rouletteOptions.includes(option)) {
-        rouletteOptions.push(option);
+      if (option && !gameState.roulette.options.includes(option)) {
+        gameState.roulette.options.push(option);
+        
+        const li = document.createElement('li');
+        li.textContent = option;
+        li.style.cssText = 'color: #b0b8d4; margin: 5px 0; padding: 5px; background: rgba(255,255,255,0.1); border-radius: 5px;';
+        document.getElementById('roulette-list').appendChild(li);
+        
         input.value = '';
-        updateOptionsDisplay();
-        updateWheelColors();
+        
+        if (gameState.roulette.options.length >= 2) {
+          document.querySelector('.spin-btn').disabled = false;
+        }
       }
     }
-
-    function removeOption(option) {
-      rouletteOptions = rouletteOptions.filter(o => o !== option);
-      updateOptionsDisplay();
-      updateWheelColors();
-    }
-
-    function clearOptions() {
-      rouletteOptions = [];
-      updateOptionsDisplay();
-      document.getElementById('resultText').textContent = '';
-    }
-
-    function updateOptionsDisplay() {
-      const container = document.getElementById('optionsList');
-      container.innerHTML = rouletteOptions.map(option => 
-        `<span style="background: rgba(231, 76, 111, 0.2); padding: 0.5rem 1rem; border-radius: 20px; color: #ff9aa2; display: flex; align-items: center; gap: 0.5rem;">
-          ${option} 
-          <button onclick="removeOption('${option}')" style="background: none; border: none; color: #ff6b6b; cursor: pointer; font-weight: bold;">×</button>
-        </span>`
-      ).join('');
-    }
-
-    function updateWheelColors() {
-      if (rouletteOptions.length === 0) return;
+    
+    // Add keyboard support for roulette input
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add enter key support for roulette input
+      document.addEventListener('keypress', function(e) {
+        if (e.target && e.target.id === 'roulette-input' && e.key === 'Enter') {
+          e.preventDefault();
+          addRouletteOption();
+        }
+      });
+    });
+    
+    function spinRoulette() {
+      if (gameState.roulette.options.length < 2) return;
       
-      const wheel = document.getElementById('rouletteWheel');
-      const colors = ['#e74c6f', '#c0392b', '#ff9aa2', '#e74c6f', '#c0392b', '#ff9aa2'];
-      const segmentSize = 360 / rouletteOptions.length;
-      
-      let gradientStops = '';
-      for (let i = 0; i < rouletteOptions.length; i++) {
-        const startAngle = i * segmentSize;
-        const endAngle = (i + 1) * segmentSize;
-        const color = colors[i % colors.length];
-        gradientStops += `${color} ${startAngle}deg ${endAngle}deg${i < rouletteOptions.length - 1 ? ', ' : ''}`;
-      }
-      
-      wheel.style.background = `conic-gradient(${gradientStops})`;
-    }
-
-    function spinWheel() {
-      if (isSpinning || rouletteOptions.length === 0) return;
-      
-      isSpinning = true;
-      const wheel = document.getElementById('rouletteWheel');
-      
-      // Random spin amount (multiple full rotations plus random position)
-      const spins = Math.floor(Math.random() * 4) + 3; // 3-6 full spins
-      const finalAngle = Math.random() * 360;
-      const totalRotation = (spins * 360) + finalAngle;
-      
-      wheel.style.transform = `rotate(${totalRotation}deg)`;
+      document.getElementById('wheel-result').textContent = 'Spinning...';
       
       setTimeout(() => {
-        // Determine which option was selected
-        const segmentSize = 360 / rouletteOptions.length;
-        const adjustedAngle = (360 - (finalAngle % 360)) % 360; // Adjust for pointer at top
-        const selectedIndex = Math.floor(adjustedAngle / segmentSize);
-        const selectedOption = rouletteOptions[selectedIndex];
-        
-        document.getElementById('resultText').textContent = `🎉 Decision made: ${selectedOption}!`;
-        isSpinning = false;
-      }, 4000);
+        const randomIndex = Math.floor(Math.random() * gameState.roulette.options.length);
+        const winner = gameState.roulette.options[randomIndex];
+        document.getElementById('wheel-result').textContent = `🎉 ${winner} 🎉`;
+      }, 2000);
     }
-
-    // === COMPLIMENT BATTLE ===
-    let complimentState = {
-      currentPlayer: 'A',
-      round: 1,
-      timeRemaining: 30,
-      timer: null,
-      isActive: false,
-      complimentsGiven: [],
-      totalCompliments: 0
-    };
-
-    function initializeComplimentBattle() {
-      complimentState = {
-        currentPlayer: 'A',
-        round: 1,
-        timeRemaining: 30,
+    
+    // Compliment Battle Game
+    function initComplimentBattle() {
+      gameState.compliments = { 
+        currentPlayer: 1, 
+        timeLeft: 30, 
         timer: null,
-        isActive: false,
-        complimentsGiven: [],
-        totalCompliments: 0
+        p1Score: 0,
+        p2Score: 0,
+        roundActive: false
       };
-      
-      document.getElementById('complimentTurn').textContent = "Partner A's Turn";
-      document.getElementById('complimentTimer').textContent = '30';
-      document.getElementById('complimentRound').textContent = '1';
-      document.getElementById('totalCompliments').textContent = '0';
-      document.getElementById('complimentsList').textContent = "Ready to spread the love? Click 'Start Battle' to begin!";
-      
-      document.getElementById('startComplimentBtn').style.display = 'block';
-      document.getElementById('nextTurnBtn').style.display = 'none';
-      document.getElementById('endBattleBtn').style.display = 'none';
+      document.getElementById('p1-compliments').textContent = '0';
+      document.getElementById('p2-compliments').textContent = '0';
+      document.getElementById('compliment-timer').textContent = '30';
+      document.getElementById('compliment-current').textContent = "Player 1's Turn";
     }
-
-    function startComplimentBattle() {
-      complimentState.isActive = true;
-      document.getElementById('startComplimentBtn').style.display = 'none';
-      document.getElementById('nextTurnBtn').style.display = 'block';
-      document.getElementById('endBattleBtn').style.display = 'block';
+    
+    function startComplimentRound() {
+      if (gameState.compliments.timer) clearInterval(gameState.compliments.timer);
       
-      document.getElementById('complimentInstruction').innerHTML = 
-        `<div style="font-size: 1.2rem; color: #e74c6f; font-weight: bold; margin-bottom: 1rem;">Partner ${complimentState.currentPlayer}'s Turn!</div>
-         <div style="color: white;">Give genuine compliments to your partner. You have 30 seconds! Remember - no repeating compliments from previous rounds.</div>`;
+      gameState.compliments.timeLeft = 30;
+      gameState.compliments.roundActive = true;
+      document.getElementById('compliment-timer').textContent = gameState.compliments.timeLeft;
       
-      startComplimentTimer();
-    }
-
-    function startComplimentTimer() {
-      complimentState.timeRemaining = 30;
-      
-      complimentState.timer = setInterval(() => {
-        complimentState.timeRemaining--;
-        document.getElementById('complimentTimer').textContent = complimentState.timeRemaining;
+      gameState.compliments.timer = setInterval(() => {
+        gameState.compliments.timeLeft--;
+        document.getElementById('compliment-timer').textContent = gameState.compliments.timeLeft;
         
-        // Change color as time runs out
-        const timerEl = document.getElementById('complimentTimer');
-        if (complimentState.timeRemaining <= 10) {
-          timerEl.style.color = '#ff6b6b';
-        } else if (complimentState.timeRemaining <= 20) {
-          timerEl.style.color = '#ffa500';
-        } else {
-          timerEl.style.color = '#e74c6f';
-        }
-        
-        if (complimentState.timeRemaining <= 0) {
-          clearInterval(complimentState.timer);
-          // Auto switch turn when timer runs out
-          nextComplimentTurn();
+        if (gameState.compliments.timeLeft <= 0) {
+          clearInterval(gameState.compliments.timer);
+          gameState.compliments.roundActive = false;
+          alert(`Time's up for Player ${gameState.compliments.currentPlayer}!`);
         }
       }, 1000);
     }
-
-    function nextComplimentTurn() {
-      if (complimentState.timer) {
-        clearInterval(complimentState.timer);
-      }
+    
+    function addCompliment() {
+      if (!gameState.compliments.roundActive) return;
       
-      // Simulate compliments given (in real version, you'd track actual compliments)
-      const sampleCompliments = [
-        "You have the most beautiful smile",
-        "You're incredibly thoughtful and caring", 
-        "I love how you make me laugh every day",
-        "You're my best friend and my love",
-        "Your kindness inspires me to be better",
-        "You have such a generous heart",
-        "I love how passionate you are about your dreams",
-        "You make even ordinary moments special"
-      ];
-      
-      // Add 2-4 random compliments for this turn
-      const complimentsThisTurn = Math.floor(Math.random() * 3) + 2;
-      for (let i = 0; i < complimentsThisTurn; i++) {
-        const compliment = sampleCompliments[Math.floor(Math.random() * sampleCompliments.length)];
-        if (!complimentState.complimentsGiven.includes(compliment)) {
-          complimentState.complimentsGiven.push(`Partner ${complimentState.currentPlayer}: "${compliment}"`);
-          complimentState.totalCompliments++;
-        }
-      }
-      
-      document.getElementById('totalCompliments').textContent = complimentState.totalCompliments;
-      updateComplimentsList();
-      
-      // Switch players
-      complimentState.currentPlayer = complimentState.currentPlayer === 'A' ? 'B' : 'A';
-      
-      if (complimentState.currentPlayer === 'A') {
-        complimentState.round++;
-        document.getElementById('complimentRound').textContent = complimentState.round;
-      }
-      
-      document.getElementById('complimentTurn').textContent = `Partner ${complimentState.currentPlayer}'s Turn`;
-      document.getElementById('complimentInstruction').innerHTML = 
-        `<div style="font-size: 1.2rem; color: #e74c6f; font-weight: bold; margin-bottom: 1rem;">Partner ${complimentState.currentPlayer}'s Turn!</div>
-         <div style="color: white;">Give genuine compliments to your partner. You have 30 seconds! Remember - no repeating compliments from previous rounds.</div>`;
-      
-      startComplimentTimer();
-    }
-
-    function updateComplimentsList() {
-      const listEl = document.getElementById('complimentsList');
-      if (complimentState.complimentsGiven.length === 0) {
-        listEl.textContent = "No compliments given yet - let the battle begin!";
+      if (gameState.compliments.currentPlayer === 1) {
+        gameState.compliments.p1Score++;
+        document.getElementById('p1-compliments').textContent = gameState.compliments.p1Score;
       } else {
-        listEl.innerHTML = complimentState.complimentsGiven.map(compliment => 
-          `<div style="margin: 0.5rem 0; padding: 0.8rem; background: rgba(231, 76, 111, 0.1); border-radius: 8px; border-left: 3px solid #e74c6f;">${compliment}</div>`
-        ).join('');
+        gameState.compliments.p2Score++;
+        document.getElementById('p2-compliments').textContent = gameState.compliments.p2Score;
       }
     }
-
-    function endComplimentBattle() {
-      if (complimentState.timer) {
-        clearInterval(complimentState.timer);
-      }
+    
+    function switchComplimentPlayer() {
+      if (gameState.compliments.timer) clearInterval(gameState.compliments.timer);
       
-      document.getElementById('complimentTurn').textContent = "Battle Complete! 💕";
-      document.getElementById('complimentTimer').textContent = "♾️";
-      document.getElementById('complimentTimer').style.color = '#e74c6f';
+      gameState.compliments.currentPlayer = gameState.compliments.currentPlayer === 1 ? 2 : 1;
+      gameState.compliments.timeLeft = 30;
+      gameState.compliments.roundActive = false;
       
-      document.getElementById('complimentInstruction').innerHTML = 
-        `<div style="font-size: 1.3rem; color: #e74c6f; font-weight: bold; margin-bottom: 1rem;">🎉 Compliment Battle Complete!</div>
-         <div style="color: white; line-height: 1.6;">You both did amazing! You shared ${complimentState.totalCompliments} beautiful compliments across ${complimentState.round} rounds. Love wins every battle! 💕</div>`;
-      
-      document.getElementById('nextTurnBtn').style.display = 'none';
-      document.getElementById('endBattleBtn').style.display = 'none';
-      
-      updateComplimentsList();
+      document.getElementById('compliment-current').textContent = `Player ${gameState.compliments.currentPlayer}'s Turn`;
+      document.getElementById('compliment-timer').textContent = gameState.compliments.timeLeft;
     }
-
-    // Add hover effects to game cards
-    document.addEventListener('DOMContentLoaded', function() {
-      const gameCards = document.querySelectorAll('.game-card');
-      gameCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-          this.style.transform = 'translateY(-8px)';
-          this.style.borderColor = '#e74c6f';
-          this.style.boxShadow = '0 25px 50px rgba(231, 76, 111, 0.25)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-          this.style.transform = 'translateY(0)';
-          this.style.borderColor = 'rgba(231, 76, 111, 0.3)';
-          this.style.boxShadow = 'none';
-        });
-      });
-    });
-
   </script>
 </body>
 </html>
