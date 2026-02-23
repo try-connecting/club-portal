@@ -5910,6 +5910,8 @@
     function openSection(sectionType) {
       // Age verification already handled at tab level - no need to check again
       const sectionContent = document.getElementById('section-content');
+      const grid = document.querySelector('.adults-content-grid');
+      if (grid) grid.style.display = 'none';
       sectionContent.style.display = 'block';
       sectionContent.innerHTML = getSectionContent(sectionType);
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -5919,6 +5921,8 @@
 
     function closeSectionContent() {
       document.getElementById('section-content').style.display = 'none';
+      const grid = document.querySelector('.adults-content-grid');
+      if (grid) grid.style.display = 'grid';
     }
 
     function getSectionContent(type) {
