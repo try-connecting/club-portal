@@ -37,6 +37,7 @@
     .access-gate .error { color: #ff6b6b; margin-top: 10px; display: none; }
     .portal-wrap { display: block; }
     .access-gate { display: none !important; }
+    .age-verification-gate { display: none !important; }
     
     /* Adults Only Age Verification Gate */
     .age-verification-gate {
@@ -5417,7 +5418,7 @@
           <p id="roulette-result-text">Spin the wheel!</p>
         </div>
         <div class="roulette-controls">
-          <button onclick="spinWheel()" id="spin-btn" class="spin-btn">🎡 Spin!</button>
+          <button onclick="spinRoulette()" id="spin-btn" class="spin-btn">🎡 Spin!</button>
           <button onclick="newRoulette()" class="new-btn">New Category</button>
         </div>
       </div>
@@ -6543,17 +6544,20 @@
 
     // Adults Only Section Content  
     function openSection(sectionType) {
-      // Age verification already handled at tab level - no need to check again
+      var grid = document.querySelector('.adults-content-grid');
+      if (grid) grid.style.display = 'none';
       const sectionContent = document.getElementById('section-content');
       sectionContent.style.display = 'block';
       sectionContent.innerHTML = getSectionContent(sectionType);
-      sectionContent.scrollIntoView({ behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       if (sectionType === 'desire-discovery') initDesireQuiz();
       if (sectionType === 'couple-chemistry') initChemistryQuiz();
     }
 
     function closeSectionContent() {
       document.getElementById('section-content').style.display = 'none';
+      var grid = document.querySelector('.adults-content-grid');
+      if (grid) grid.style.display = 'grid';
     }
 
     function getSectionContent(type) {
@@ -7814,7 +7818,7 @@
       ).join('');
     }
     
-    function spinWheel() {
+    function spinRoulette() {
       if (gameState.roulette.spinning) return;
       
       gameState.roulette.spinning = true;
