@@ -7536,7 +7536,8 @@
     
     function selectDifficulty(level) {
       gameState.truthDare.difficulty = level;
-      document.querySelector('.difficulty-selector').style.display = 'none';
+      var iface = document.getElementById('truth-or-dare-interface');
+      iface.querySelector('.difficulty-selector').style.display = 'none';
       document.getElementById('truth-dare-game').style.display = 'block';
       updateTurnDisplay();
     }
@@ -7602,7 +7603,8 @@
     
     function selectWYRCategory(category) {
       gameState.wyr.category = category;
-      document.querySelector('.difficulty-selector').style.display = 'none';
+      var iface = document.getElementById('would-you-rather-interface');
+      iface.querySelector('.difficulty-selector').style.display = 'none';
       document.getElementById('wyr-game').style.display = 'block';
       newWYRQuestion();
     }
@@ -7679,7 +7681,8 @@
     function selectStoryTheme(theme) {
       gameState.story.theme = theme;
       gameState.story.currentStory = '';
-      document.querySelector('.difficulty-selector').style.display = 'none';
+      var iface = document.getElementById('story-time-interface');
+      iface.querySelector('.difficulty-selector').style.display = 'none';
       document.getElementById('story-game').style.display = 'block';
       newStoryPrompt();
     }
