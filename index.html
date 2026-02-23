@@ -7376,6 +7376,8 @@
       document.body.appendChild(iface);
       iface.style.display = 'block';
       iface.scrollTop = 0;
+      document.body.style.overflow = 'hidden';
+      window.scrollTo(0, 0);
       initializeGame(gameType);
     }
     
@@ -7385,6 +7387,7 @@
         currentGame = '';
         gameState = {};
       }
+      document.body.style.overflow = '';
       var grid = document.querySelector('.intimate-grid');
       if (grid) grid.style.display = 'grid';
     }
