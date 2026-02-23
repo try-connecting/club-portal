@@ -11,40 +11,50 @@
     }
     if (document.getElementById('gac-dropdown')) return;
 
-    // Auto-detect country from user location
+    // Auto-detect country from user location (try multiple APIs)
     var countrySelect = document.querySelector('select[data-type="country"]');
-    if (countrySelect && !countrySelect.value) {
-      fetch('https://ipapi.co/json/')
-        .then(function(r) { return r.json(); })
-        .then(function(data) {
-          if (data.country_code && countrySelect && !countrySelect.value) {
-            // Find matching option
-            for (var i = 0; i < countrySelect.options.length; i++) {
-              if (countrySelect.options[i].value === data.country_code) {
-                countrySelect.selectedIndex = i;
-                break;
-              }
-            }
-            countrySelect.dispatchEvent(new Event('input', { bubbles: true }));
-            countrySelect.dispatchEvent(new Event('change', { bubbles: true }));
-            // Force visual update for custom select renderers
-            var evt = document.createEvent('HTMLEvents');
-            evt.initEvent('change', true, true);
-            countrySelect.dispatchEvent(evt);
-          }
-        }).catch(function() {});
+    function setCountry(code) {
+      if (!countrySelect || countrySelect.value === code) return;
+      for (var i = 0; i < countrySelect.options.length; i++) {
+        if (countrySelect.options[i].value === code) {
+          countrySelect.selectedIndex = i;
+          countrySelect.dispatchEvent(new Event('input', { bubbles: true }));
+          countrySelect.dispatchEvent(new Event('change', { bubbles: true }));
+          return;
+        }
+      }
+    }
+    if (countrySelect && (!countrySelect.value || countrySelect.selectedIndex === 0)) {
+      fetch('https://ipapi.co/country_code/')
+        .then(function(r) { return r.text(); })
+        .then(function(code) {
+          code = code.trim();
+          if (code && code.length === 2) setCountry(code);
+        })
+        .catch(function() {
+          // Fallback API
+          fetch('https://ip2c.org/s')
+            .then(function(r) { return r.text(); })
+            .then(function(t) {
+              var parts = t.split(';');
+              if (parts[0] === '1' && parts[1]) setCountry(parts[1]);
+            }).catch(function() {});
+        });
     }
 
-    // Create dropdown - inserted right after the input in DOM flow
+    // Find the form wrapper for the address input
+    var formWrapper = addressInput.closest('.form-element') || addressInput.parentElement;
+
+    // Create dropdown right after the form wrapper in DOM
     var dd = document.createElement('div');
     dd.id = 'gac-dropdown';
-    dd.style.cssText = 'background:#fff;border:1px solid #ddd;border-top:none;z-index:99999;display:none;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,0.15);border-radius:0 0 8px 8px;font-family:Arial,sans-serif;-webkit-overflow-scrolling:touch;margin-top:-1px;';
-    // Insert right after the input element
-    addressInput.parentNode.insertBefore(dd, addressInput.nextSibling);
+    dd.style.cssText = 'background:#fff;border:1px solid #ddd;border-top:none;z-index:99999;display:none;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,0.15);border-radius:0 0 8px 8px;font-family:Arial,sans-serif;-webkit-overflow-scrolling:touch;margin-top:-2px;width:100%;';
+    // Insert AFTER the form wrapper element (not inside it)
+    formWrapper.parentNode.insertBefore(dd, formWrapper.nextSibling);
 
     // Styles
     var style = document.createElement('style');
-    style.textContent = '#gac-dropdown div.gac-item{padding:12px 14px;cursor:pointer;border-bottom:1px solid #f0f0f0;-webkit-tap-highlight-color:transparent;background:#fff;}#gac-dropdown div.gac-item:active{background:#e8e8e8 !important;}#gac-dropdown div.gac-item:last-child{border-bottom:none;}@media(max-width:600px){#gac-dropdown{max-height:150px;}#gac-dropdown div.gac-item{padding:14px;font-size:15px;}#gac-dropdown div.gac-item span{font-size:13px !important;}}';
+    style.textContent = '#gac-dropdown .gac-item{padding:12px 14px;cursor:pointer;border-bottom:1px solid #f0f0f0;-webkit-tap-highlight-color:transparent;background:#fff;}#gac-dropdown .gac-item:active{background:#e8e8e8 !important;}#gac-dropdown .gac-item:hover{background:#f5f5f5;}#gac-dropdown .gac-item:last-child{border-bottom:none;}@media(max-width:600px){#gac-dropdown{max-height:150px;}#gac-dropdown .gac-item{padding:14px;font-size:15px;}#gac-dropdown .gac-item span{font-size:13px !important;}}';
     document.head.appendChild(style);
 
     var service = new google.maps.places.AutocompleteService();
@@ -63,8 +73,6 @@
             var item = document.createElement('div');
             item.className = 'gac-item';
             item.innerHTML = '<strong>' + p.structured_formatting.main_text + '</strong><br><span style="color:#888;font-size:12px">' + (p.structured_formatting.secondary_text || '') + '</span>';
-            item.onmouseenter = function() { this.style.backgroundColor = '#f5f5f5'; };
-            item.onmouseleave = function() { this.style.backgroundColor = '#fff'; };
             item.onclick = function() {
               addressInput.value = p.structured_formatting.main_text;
               dd.style.display = 'none';
@@ -78,21 +86,8 @@
                   if (c.types.includes('country')) countryCode = c.short_name;
                 });
 
-                // Set country first
-                var cs = document.querySelector('select[data-type="country"]');
-                if (cs && countryCode) {
-                  for (var k = 0; k < cs.options.length; k++) {
-                    if (cs.options[k].value === countryCode) {
-                      cs.selectedIndex = k;
-                      break;
-                    }
-                  }
-                  cs.dispatchEvent(new Event('input', { bubbles: true }));
-                  cs.dispatchEvent(new Event('change', { bubbles: true }));
-                  var evt = document.createEvent('HTMLEvents');
-                  evt.initEvent('change', true, true);
-                  cs.dispatchEvent(evt);
-                }
+                // Set country
+                if (countryCode) setCountry(countryCode);
 
                 // Fill city
                 var cityIn = document.querySelector('.el-940269 input[data-type="city"]');
@@ -129,19 +124,17 @@
             dd.appendChild(item);
           });
           dd.style.display = 'block';
-          // Scroll input into view so dropdown is visible
-          setTimeout(function() { addressInput.scrollIntoView({ block: 'start', behavior: 'smooth' }); }, 100);
         });
       }, 300);
     });
 
-    // Close on click outside
+    // Close on click/touch outside
     document.addEventListener('click', function(e) {
       if (!addressInput.contains(e.target) && !dd.contains(e.target)) dd.style.display = 'none';
     });
   }
 
-  // Start polling - works regardless of load timing
+  // Start polling
   setTimeout(init, 500);
   document.addEventListener('DOMContentLoaded', function() { setTimeout(init, 500); });
   window.addEventListener('load', function() { setTimeout(init, 500); });
