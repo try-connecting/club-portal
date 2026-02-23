@@ -18,9 +18,19 @@
         .then(function(r) { return r.json(); })
         .then(function(data) {
           if (data.country_code && countrySelect && !countrySelect.value) {
-            countrySelect.value = data.country_code;
+            // Find matching option
+            for (var i = 0; i < countrySelect.options.length; i++) {
+              if (countrySelect.options[i].value === data.country_code) {
+                countrySelect.selectedIndex = i;
+                break;
+              }
+            }
             countrySelect.dispatchEvent(new Event('input', { bubbles: true }));
             countrySelect.dispatchEvent(new Event('change', { bubbles: true }));
+            // Force visual update for custom select renderers
+            var evt = document.createEvent('HTMLEvents');
+            evt.initEvent('change', true, true);
+            countrySelect.dispatchEvent(evt);
           }
         }).catch(function() {});
     }
@@ -71,9 +81,17 @@
                 // Set country first
                 var cs = document.querySelector('select[data-type="country"]');
                 if (cs && countryCode) {
-                  cs.value = countryCode;
+                  for (var k = 0; k < cs.options.length; k++) {
+                    if (cs.options[k].value === countryCode) {
+                      cs.selectedIndex = k;
+                      break;
+                    }
+                  }
                   cs.dispatchEvent(new Event('input', { bubbles: true }));
                   cs.dispatchEvent(new Event('change', { bubbles: true }));
+                  var evt = document.createEvent('HTMLEvents');
+                  evt.initEvent('change', true, true);
+                  cs.dispatchEvent(evt);
                 }
 
                 // Fill city
