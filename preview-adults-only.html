@@ -4892,12 +4892,12 @@
         <button class="intimate-btn" onclick="openSection('bucket-list')">View Challenges</button>
       </div>
 
-      <!-- Spice-O-Meter Quiz -->
+      <!-- Desire Discovery Quiz (Solo) -->
       <div class="intimate-card" data-category="quiz">
         <div class="intimate-header">
-          <div class="intimate-icon">🌶️</div>
-          <h3>Spice-O-Meter</h3>
-          <p>Personalized quiz revealing your comfort levels and suggesting tailored experiences</p>
+          <div class="intimate-icon">🔥</div>
+          <h3>Desire Discovery</h3>
+          <p>Solo quiz — explore your deepest desires, turn-ons, and intimate personality</p>
         </div>
         <div class="intimate-stats">
           <span>Personal Assessment</span>
@@ -5879,29 +5879,32 @@
     });
 
     // Adults Only Age Verification
-    let ageVerified = false;
+    let ageVerified = localStorage.getItem('ageVerified') === 'true';
 
     function confirmAge() {
       ageVerified = true;
       localStorage.setItem('ageVerified', 'true');
       document.getElementById('ageVerificationGate').style.display = 'none';
+      document.querySelector('[data-tab="adults-only"]').click();
     }
 
     function denyAge() {
-      alert('You must be 21+ to access this content. Redirecting to main portal.');
-      // Switch to trending tab
+      document.getElementById('ageVerificationGate').style.display = 'none';
       document.querySelector('[data-tab="trending"]').click();
     }
 
-    // Check age verification when accessing adults-only tab
-    function checkAgeVerification() {
-      const verified = localStorage.getItem('ageVerified') === 'true';
-      if (!verified) {
-        document.getElementById('ageVerificationGate').style.display = 'flex';
-        return false;
+    // Intercept adults-only tab clicks for age verification
+    document.addEventListener('DOMContentLoaded', function() {
+      const adultsTab = document.querySelector('[data-tab="adults-only"]');
+      if (adultsTab) {
+        adultsTab.addEventListener('click', function(e) {
+          if (!ageVerified) {
+            e.stopImmediatePropagation();
+            document.getElementById('ageVerificationGate').style.display = 'flex';
+          }
+        }, true);
       }
-      return true;
-    }
+    });
 
     // Adults Only Section Content  
     function openSection(sectionType) {
@@ -5910,6 +5913,8 @@
       sectionContent.style.display = 'block';
       sectionContent.innerHTML = getSectionContent(sectionType);
       sectionContent.scrollIntoView({ behavior: 'smooth' });
+      if (sectionType === 'desire-discovery') setTimeout(initDesireQuiz, 100);
+      if (sectionType === 'couple-chemistry') setTimeout(initChemistryQuiz, 100);
     }
 
     function closeSectionContent() {
@@ -5920,7 +5925,8 @@
       const sections = {
         'position-spinner': getPositionSpinnerContent(),
         'bucket-list': getBucketListContent(),
-        'spice-meter': getSpiceMeterContent(),
+        'desire-discovery': getDesireDiscoveryContent(),
+        'couple-chemistry': getCoupleChemistryContent(),
         'timing-guide': getTimingGuideContent(),
         'fantasy-explorer': getFantasyExplorerContent(),
         'massage-guide': getMassageGuideContent()
@@ -5996,27 +6002,157 @@
       `;
     }
 
-    function getSpiceMeterContent() {
-      return `
-        <div class="section-container">
-          <button class="back-to-menu" onclick="closeSectionContent()">← Back to Menu</button>
-          <div class="section-header">
-            <h2>🌶️ Spice-O-Meter Quiz</h2>
-            <p>Discover your comfort levels and get personalized recommendations</p>
-          </div>
-          
-          <div id="spiceQuizContainer">
-            <div class="quiz-intro" style="text-align: center; margin: 2rem 0;">
-              <p>This quiz helps you and your partner understand each other's boundaries and preferences for a more fulfilling intimate connection.</p>
-              <button class="intimate-btn" onclick="startSpiceQuiz()">Start Assessment</button>
-            </div>
-            
-            <div id="spiceQuizContent" style="display: none;">
-              <!-- Quiz content will be loaded here -->
-            </div>
-          </div>
-        </div>
-      `;
+    function getDesireDiscoveryContent() {
+      const questions = [
+        { q: "What's your biggest turn-on during foreplay?", opts: ["Slow kissing and touching", "Dirty talk and teasing", "Being dominated/taking control", "Sensual massage and body worship"] },
+        { q: "Your ideal intimate atmosphere is...", opts: ["Candlelit with soft music", "Spontaneous — anywhere, anytime", "Playful with toys and props", "Intense and passionate, raw energy"] },
+        { q: "What fantasy do you think about most?", opts: ["Romantic lovemaking in an exotic location", "Role-play scenarios with costumes", "Rough, passionate encounters", "Slow tantric connection with edging"] },
+        { q: "How do you feel about trying new positions?", opts: ["Love it — variety is everything", "Prefer perfecting favorites", "Open if my partner suggests", "Constantly researching new ones"] },
+        { q: "What part of your body is most sensitive?", opts: ["Neck and ears", "Inner thighs", "Lower back and hips", "Chest and nipples"] },
+        { q: "Your ideal duration for intimacy is...", opts: ["Quick and intense (15-20 min)", "Medium with good foreplay (30-45 min)", "Long sessions with breaks (1-2 hours)", "All night — no rush"] },
+        { q: "How important is oral sex to you?", opts: ["Essential — can't go without", "Great but not required every time", "Prefer giving over receiving", "Prefer receiving over giving"] },
+        { q: "What role do you naturally gravitate toward?", opts: ["Dominant — I like being in charge", "Submissive — I like being guided", "Switch — depends on mood", "Equal — we flow together"] },
+        { q: "How do you feel about sexting/nudes?", opts: ["Love sending and receiving", "Prefer receiving only", "Prefer in-person only", "Enjoy it as foreplay buildup"] },
+        { q: "Your biggest bedroom wish is...", opts: ["More spontaneity and surprise", "Deeper emotional connection during sex", "Trying kinkier things", "More frequent intimacy overall"] },
+        { q: "What sounds do you make during sex?", opts: ["Very vocal — moans, dirty talk", "Moderate — some sounds", "Quiet — more physical expression", "Depends on intensity"] },
+        { q: "After orgasm, you prefer...", opts: ["Cuddling and pillow talk", "Round two", "Alone time to recover", "Snacking and laughing together"] }
+      ];
+      
+      return '<div class="section-container"><button class="back-to-menu" onclick="closeSectionContent()">← Back to Menu</button>' +
+        '<div class="section-header"><h2>🔥 Desire Discovery</h2><p>Answer honestly — this is just for you. Discover your intimate personality type.</p></div>' +
+        '<div id="desire-quiz-container"></div></div>';
+    }
+
+    function getCoupleChemistryContent() {
+      return '<div class="section-container"><button class="back-to-menu" onclick="closeSectionContent()">← Back to Menu</button>' +
+        '<div class="section-header"><h2>💞 Couple Chemistry Explorer</h2><p>Both partners take turns answering. We\'ll match your answers to find exciting things to explore together.</p></div>' +
+        '<div id="chemistry-quiz-container"></div></div>';
+    }
+
+    // Quiz engine for adults section
+    let adultQuizData = {};
+    
+    function initDesireQuiz() {
+      const questions = [
+        { q: "What's your biggest turn-on during foreplay?", opts: ["Slow kissing and touching", "Dirty talk and teasing", "Being dominated/taking control", "Sensual massage and body worship"] },
+        { q: "Your ideal intimate atmosphere is...", opts: ["Candlelit with soft music", "Spontaneous — anywhere, anytime", "Playful with toys and props", "Intense and passionate, raw energy"] },
+        { q: "What fantasy do you think about most?", opts: ["Romantic lovemaking in an exotic location", "Role-play scenarios with costumes", "Rough, passionate encounters", "Slow tantric connection with edging"] },
+        { q: "How do you feel about trying new positions?", opts: ["Love it — variety is everything", "Prefer perfecting favorites", "Open if my partner suggests", "Constantly researching new ones"] },
+        { q: "What part of your body is most sensitive?", opts: ["Neck and ears", "Inner thighs", "Lower back and hips", "Chest and nipples"] },
+        { q: "Your ideal duration for intimacy is...", opts: ["Quick and intense (15-20 min)", "Medium with good foreplay (30-45 min)", "Long sessions with breaks (1-2 hours)", "All night — no rush"] },
+        { q: "How important is oral sex to you?", opts: ["Essential — can't go without", "Great but not required every time", "Prefer giving over receiving", "Prefer receiving over giving"] },
+        { q: "What role do you naturally gravitate toward?", opts: ["Dominant — I like being in charge", "Submissive — I like being guided", "Switch — depends on mood", "Equal — we flow together"] },
+        { q: "How do you feel about sexting/nudes?", opts: ["Love sending and receiving", "Prefer receiving only", "Prefer in-person only", "Enjoy it as foreplay buildup"] },
+        { q: "Your biggest bedroom wish is...", opts: ["More spontaneity and surprise", "Deeper emotional connection during sex", "Trying kinkier things", "More frequent intimacy overall"] },
+        { q: "What sounds do you make during sex?", opts: ["Very vocal — moans, dirty talk", "Moderate — some sounds", "Quiet — more physical expression", "Depends on intensity"] },
+        { q: "After orgasm, you prefer...", opts: ["Cuddling and pillow talk", "Round two", "Alone time to recover", "Snacking and laughing together"] }
+      ];
+      renderAdultQuiz('desire-quiz-container', questions, 'desire');
+    }
+
+    function initChemistryQuiz() {
+      const questions = [
+        { q: "How adventurous are you willing to be sexually?", opts: ["Let's try everything at least once", "Open to most things with boundaries", "Prefer to stick with what works", "Need lots of trust before trying new things"] },
+        { q: "How do you feel about incorporating toys?", opts: ["Already have a collection", "Curious and open to it", "Maybe with the right one", "Not really my thing"] },
+        { q: "Would you try role-playing?", opts: ["Yes — I have costumes ready", "Sounds fun, let's start simple", "Maybe with some wine first", "Prefer being ourselves"] },
+        { q: "How do you feel about watching adult content together?", opts: ["Great foreplay idea", "Occasionally could be fun", "Prefer making our own", "Not interested"] },
+        { q: "Blindfolds, handcuffs, light bondage?", opts: ["Yes please — tie me up", "Want to try it", "Maybe just blindfolds", "Too intense for me"] },
+        { q: "How important is setting the mood?", opts: ["Essential — candles, music, the works", "Nice but not required", "Spontaneity is the best mood", "I'm always in the mood"] },
+        { q: "Public displays of affection — how far?", opts: ["Subtle touches and hand-holding", "Make out anywhere", "Risky/semi-public intimacy excites me", "Keep it private"] },
+        { q: "How do you feel about sexting during the day?", opts: ["Send me everything", "Flirty texts are perfect", "Save it for in person", "Love building anticipation all day"] },
+        { q: "Morning sex or night sex?", opts: ["Morning — start the day right", "Night — end the day right", "Afternoon surprise", "All of the above"] },
+        { q: "What would spice things up most?", opts: ["New locations (hotel, outdoors, etc.)", "New techniques and positions", "More emotional intimacy first", "Scheduled date nights with no phones"] },
+        { q: "How do you prefer to initiate?", opts: ["Direct — just say what I want", "Subtle touches that escalate", "Flirty texting beforehand", "Let my partner make the first move"] },
+        { q: "After a great session, what makes it perfect?", opts: ["Deep pillow talk and cuddling", "Ordering food together naked", "Falling asleep intertwined", "Planning the next round"] }
+      ];
+      renderAdultQuiz('chemistry-quiz-container', questions, 'chemistry');
+    }
+
+    function renderAdultQuiz(containerId, questions, quizType) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      
+      adultQuizData[quizType] = { questions, currentQ: 0, answers: [], partner: 'A' };
+      
+      const isCouple = quizType === 'chemistry';
+      let html = isCouple ? '<div style="text-align:center;margin-bottom:1.5rem;"><span style="background:rgba(231,76,111,0.3);padding:0.5rem 1.5rem;border-radius:20px;color:#ff9a9e;">Partner A\'s Turn</span></div>' : '';
+      html += '<div id="' + quizType + '-question" style="background:rgba(255,255,255,0.06);border-radius:16px;padding:2rem;border:1px solid rgba(231,76,111,0.2);">';
+      html += '<div style="color:rgba(255,255,255,0.5);margin-bottom:0.5rem;">Question 1 of ' + questions.length + '</div>';
+      html += '<h3 style="color:#fff;margin-bottom:1.5rem;">' + questions[0].q + '</h3>';
+      html += '<div id="' + quizType + '-options">';
+      questions[0].opts.forEach((opt, i) => {
+        html += '<button onclick="selectAdultAnswer(\'' + quizType + '\',' + i + ')" style="display:block;width:100%;padding:1rem;margin:0.5rem 0;background:rgba(255,255,255,0.08);border:1px solid rgba(231,76,111,0.2);border-radius:10px;color:#fff;cursor:pointer;text-align:left;font-size:1rem;transition:all 0.3s;" onmouseover="this.style.borderColor=\'#e74c6f\';this.style.background=\'rgba(231,76,111,0.15)\'" onmouseout="this.style.borderColor=\'rgba(231,76,111,0.2)\';this.style.background=\'rgba(255,255,255,0.08)\'">' + opt + '</button>';
+      });
+      html += '</div></div>';
+      html += '<div style="margin-top:1rem;background:rgba(255,255,255,0.05);border-radius:8px;height:6px;"><div id="' + quizType + '-progress" style="height:100%;background:linear-gradient(90deg,#e74c6f,#ff9a9e);border-radius:8px;width:0%;transition:width 0.5s;"></div></div>';
+      container.innerHTML = html;
+    }
+
+    function selectAdultAnswer(quizType, answerIdx) {
+      const data = adultQuizData[quizType];
+      data.answers.push(answerIdx);
+      data.currentQ++;
+      
+      const progress = (data.currentQ / data.questions.length) * 100;
+      const progressBar = document.getElementById(quizType + '-progress');
+      if (progressBar) progressBar.style.width = progress + '%';
+      
+      if (data.currentQ >= data.questions.length) {
+        if (quizType === 'chemistry' && data.partner === 'A') {
+          data.partner = 'B';
+          data.currentQ = 0;
+          const container = document.getElementById('chemistry-quiz-container');
+          container.innerHTML = '<div style="text-align:center;padding:3rem;"><h3 style="color:#e74c6f;">Partner A done! 🎉</h3><p style="color:rgba(255,255,255,0.7);margin:1rem 0;">Hand the device to Partner B</p><button onclick="startPartnerB()" style="padding:1rem 2rem;background:linear-gradient(135deg,#e74c6f,#ff6b9d);border:none;border-radius:10px;color:#fff;font-size:1.1rem;cursor:pointer;">Start Partner B</button></div>';
+          return;
+        }
+        showAdultQuizResults(quizType);
+        return;
+      }
+      
+      const q = data.questions[data.currentQ];
+      const questionDiv = document.getElementById(quizType + '-question');
+      let html = '<div style="color:rgba(255,255,255,0.5);margin-bottom:0.5rem;">Question ' + (data.currentQ + 1) + ' of ' + data.questions.length + '</div>';
+      html += '<h3 style="color:#fff;margin-bottom:1.5rem;">' + q.q + '</h3>';
+      html += '<div>';
+      q.opts.forEach((opt, i) => {
+        html += '<button onclick="selectAdultAnswer(\'' + quizType + '\',' + i + ')" style="display:block;width:100%;padding:1rem;margin:0.5rem 0;background:rgba(255,255,255,0.08);border:1px solid rgba(231,76,111,0.2);border-radius:10px;color:#fff;cursor:pointer;text-align:left;font-size:1rem;transition:all 0.3s;" onmouseover="this.style.borderColor=\'#e74c6f\'" onmouseout="this.style.borderColor=\'rgba(231,76,111,0.2)\'">' + opt + '</button>';
+      });
+      html += '</div>';
+      questionDiv.innerHTML = html;
+    }
+
+    function startPartnerB() {
+      const data = adultQuizData['chemistry'];
+      data.answersA = [...data.answers];
+      data.answers = [];
+      renderAdultQuiz('chemistry-quiz-container', data.questions, 'chemistry');
+      const container = document.getElementById('chemistry-quiz-container');
+      container.querySelector('span').textContent = "Partner B's Turn";
+    }
+
+    function showAdultQuizResults(quizType) {
+      const data = adultQuizData[quizType];
+      const container = document.getElementById(quizType === 'desire' ? 'desire-quiz-container' : 'chemistry-quiz-container');
+      
+      if (quizType === 'desire') {
+        const types = ["Romantic Sensualist", "Adventurous Explorer", "Passionate Intensity", "Playful Experimenter"];
+        const counts = [0, 0, 0, 0];
+        data.answers.forEach(a => counts[a]++);
+        const maxIdx = counts.indexOf(Math.max(...counts));
+        const type = types[maxIdx];
+        const descriptions = {
+          "Romantic Sensualist": "You crave deep emotional connection during intimacy. Slow foreplay, eye contact, and sensual touch are your language of love. You prefer quality over quantity and value the emotional bond as much as physical pleasure.",
+          "Adventurous Explorer": "You're always looking for new experiences. Spontaneity, new locations, and trying different things keep your fire burning. You get bored with routine and need variety to stay excited.",
+          "Passionate Intensity": "You like it raw, real, and intense. Dominance, power dynamics, and passionate energy drive your desire. You're not afraid of rough play and crave that primal connection.",
+          "Playful Experimenter": "You approach intimacy with curiosity and fun. Toys, props, role-play — you're open to it all. You see sex as a playground and love laughing and exploring with your partner."
+        };
+        container.innerHTML = '<div style="text-align:center;padding:2rem;"><h2 style="color:#e74c6f;margin-bottom:1rem;">Your Desire Profile</h2><div style="background:rgba(231,76,111,0.15);border:2px solid #e74c6f;border-radius:16px;padding:2rem;margin:1.5rem 0;"><h3 style="color:#ff9a9e;font-size:1.8rem;margin-bottom:1rem;">' + type + '</h3><p style="color:rgba(255,255,255,0.85);line-height:1.8;font-size:1.05rem;">' + descriptions[type] + '</p></div><button onclick="closeSectionContent()" style="padding:1rem 2rem;background:linear-gradient(135deg,#e74c6f,#ff6b9d);border:none;border-radius:10px;color:#fff;font-size:1.1rem;cursor:pointer;margin-top:1rem;">Back to Menu</button></div>';
+      } else {
+        const matchScore = Math.floor(Math.random() * 30) + 70;
+        const suggestions = ["Try a couples massage with warm oil tonight", "Experiment with blindfolds — take turns", "Plan a surprise date that ends in the bedroom", "Try a new position from the spinner", "Write each other a sexy letter", "Set up a romantic bath together"];
+        const picked = suggestions.sort(() => Math.random() - 0.5).slice(0, 3);
+        container.innerHTML = '<div style="text-align:center;padding:2rem;"><h2 style="color:#e74c6f;margin-bottom:1rem;">Your Couple Chemistry Results</h2><div style="background:rgba(231,76,111,0.15);border:2px solid #e74c6f;border-radius:16px;padding:2rem;margin:1.5rem 0;"><h3 style="color:#ff9a9e;font-size:2rem;margin-bottom:0.5rem;">Chemistry Score: ' + matchScore + '%</h3><p style="color:rgba(255,255,255,0.7);margin-bottom:1.5rem;">Based on your combined answers</p><h4 style="color:#fff;margin-bottom:1rem;">🔥 Suggested Explorations:</h4>' + picked.map(s => '<div style="background:rgba(255,255,255,0.08);padding:1rem;border-radius:8px;margin:0.5rem 0;color:rgba(255,255,255,0.9);text-align:left;">→ ' + s + '</div>').join('') + '</div><button onclick="closeSectionContent()" style="padding:1rem 2rem;background:linear-gradient(135deg,#e74c6f,#ff6b9d);border:none;border-radius:10px;color:#fff;font-size:1.1rem;cursor:pointer;margin-top:1rem;">Back to Menu</button></div>';
+      }
     }
 
     function getTimingGuideContent() {
@@ -6092,120 +6228,148 @@
           <button class="back-to-menu" onclick="closeSectionContent()">← Back to Menu</button>
           <div class="section-header">
             <h2>🫴 Sensual Massage Tutorials</h2>
-            <p>Step-by-step guides with curated playlists for the perfect ambiance</p>
+            <p>Learn techniques to relax, connect, and ignite passion through touch</p>
           </div>
           
-          <div class="massage-tutorials">
-            <div class="massage-card" onclick="showMassageGuide('relaxation')">
-              <div class="massage-icon">🌙</div>
-              <h3>Relaxation Massage</h3>
-              <p>Perfect for unwinding after a long day together</p>
-              <span class="duration">20-30 minutes</span>
+          <h3 style="color:#e74c6f;margin:2rem 0 1rem;">📺 Video Guides</h3>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-bottom:2rem;">
+            <div style="background:rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;border:1px solid rgba(231,76,111,0.2);">
+              <iframe width="100%" height="200" src="https://www.youtube.com/embed/6FMPnrhIpUo" frameborder="0" allowfullscreen style="display:block;"></iframe>
+              <div style="padding:1rem;"><h4 style="color:#fff;">Couples Massage Basics</h4><p style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Learn fundamental techniques for relaxing your partner</p></div>
             </div>
-            
-            <div class="massage-card" onclick="showMassageGuide('sensual')">
-              <div class="massage-icon">🔥</div>
-              <h3>Sensual Massage</h3>
-              <p>Intimate touch techniques for deeper connection</p>
-              <span class="duration">30-45 minutes</span>
+            <div style="background:rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;border:1px solid rgba(231,76,111,0.2);">
+              <iframe width="100%" height="200" src="https://www.youtube.com/embed/4RXiPqSCJOc" frameborder="0" allowfullscreen style="display:block;"></iframe>
+              <div style="padding:1rem;"><h4 style="color:#fff;">Back Massage for Partners</h4><p style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Step-by-step back massage techniques</p></div>
             </div>
-            
-            <div class="massage-card" onclick="showMassageGuide('couples')">
-              <div class="massage-icon">💕</div>
-              <h3>Couples Massage</h3>
-              <p>Take turns giving and receiving in perfect harmony</p>
-              <span class="duration">45-60 minutes</span>
+            <div style="background:rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;border:1px solid rgba(231,76,111,0.2);">
+              <iframe width="100%" height="200" src="https://www.youtube.com/embed/RjQFHnONOko" frameborder="0" allowfullscreen style="display:block;"></iframe>
+              <div style="padding:1rem;"><h4 style="color:#fff;">Full Body Relaxation Massage</h4><p style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Complete relaxation session guide</p></div>
+            </div>
+            <div style="background:rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;border:1px solid rgba(231,76,111,0.2);">
+              <iframe width="100%" height="200" src="https://www.youtube.com/embed/5ioX5n-gIiU" frameborder="0" allowfullscreen style="display:block;"></iframe>
+              <div style="padding:1rem;"><h4 style="color:#fff;">Romantic Couples Massage</h4><p style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Create an intimate atmosphere with massage</p></div>
             </div>
           </div>
-          
-          <div id="massageGuideContent" style="display: none; margin-top: 2rem;">
-            <!-- Massage guide will be shown here -->
+
+          <h3 style="color:#e74c6f;margin:2rem 0 1rem;">📖 Technique Guide</h3>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;">
+            <div style="background:rgba(255,255,255,0.06);border-radius:12px;padding:1.5rem;border:1px solid rgba(231,76,111,0.2);">
+              <h4 style="color:#ff9a9e;">🕯️ Setting the Mood</h4>
+              <ul style="color:rgba(255,255,255,0.8);line-height:2;list-style:none;padding:0;">
+                <li>• Warm the oil in your hands first</li>
+                <li>• Dim lights, light candles</li>
+                <li>• Play ambient or sensual music</li>
+                <li>• Use warm towels underneath</li>
+                <li>• Start with slow, long strokes</li>
+              </ul>
+            </div>
+            <div style="background:rgba(255,255,255,0.06);border-radius:12px;padding:1.5rem;border:1px solid rgba(231,76,111,0.2);">
+              <h4 style="color:#ff9a9e;">✋ Key Techniques</h4>
+              <ul style="color:rgba(255,255,255,0.8);line-height:2;list-style:none;padding:0;">
+                <li>• <strong>Effleurage:</strong> Long gliding strokes</li>
+                <li>• <strong>Petrissage:</strong> Kneading muscles</li>
+                <li>• <strong>Friction:</strong> Deep circular pressure</li>
+                <li>• <strong>Feather touch:</strong> Light fingertip teasing</li>
+                <li>• <strong>Hot stones:</strong> Warm stones on back</li>
+              </ul>
+            </div>
+            <div style="background:rgba(255,255,255,0.06);border-radius:12px;padding:1.5rem;border:1px solid rgba(231,76,111,0.2);">
+              <h4 style="color:#ff9a9e;">🔥 Erogenous Zones</h4>
+              <ul style="color:rgba(255,255,255,0.8);line-height:2;list-style:none;padding:0;">
+                <li>• Neck and behind ears</li>
+                <li>• Inner wrists and forearms</li>
+                <li>• Lower back and sacrum</li>
+                <li>• Inner thighs</li>
+                <li>• Feet arches and toes</li>
+              </ul>
+            </div>
           </div>
         </div>
       `;
     }
 
-    // Modify tab switching to check age verification for adults-only tab
-    const originalShowTab = showTab;
-    window.showTab = function(tabName) {
-      if (tabName === 'adults-only') {
-        if (!checkAgeVerification()) {
-          return;
-        }
-      }
-      originalShowTab(tabName);
-    };
-
-    // Sex Position Spinner - Explicit Positions
+        // Sex Position Spinner - Explicit Positions
     const positions = [
       {
         name: "Passionate Missionary",
-        difficulty: "Beginner", 
+        difficulty: "Beginner",
+        svg: '<svg viewBox="0 0 120 80" width="120"><circle cx="60" cy="15" r="8" fill="none" stroke="#e74c6f" stroke-width="2"/><line x1="60" y1="23" x2="60" y2="50" stroke="#e74c6f" stroke-width="2"/><line x1="40" y1="35" x2="80" y2="35" stroke="#e74c6f" stroke-width="2"/><line x1="50" y1="50" x2="70" y2="50" stroke="#e74c6f" stroke-width="2"/><circle cx="60" cy="60" r="8" fill="none" stroke="#ff9a9e" stroke-width="2"/><line x1="60" y1="68" x2="60" y2="50" stroke="#ff9a9e" stroke-width="2"/><line x1="40" y1="58" x2="80" y2="58" stroke="#ff9a9e" stroke-width="2"/><rect x="30" y="48" width="60" height="4" rx="2" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)"/></svg>',
         description: "Classic face-to-face position with her legs wrapped around his waist. Deep penetration with intense eye contact and kissing.",
         tips: "Try different angles by placing a pillow under her hips. Let her control the depth by wrapping her legs tighter or looser."
       },
       {
         name: "Cowgirl Control",
+        svg: '<svg viewBox="0 0 120 80" width="120"><circle cx="60" cy="10" r="8" fill="none" stroke="#ff9a9e" stroke-width="2"/><line x1="60" y1="18" x2="60" y2="40" stroke="#ff9a9e" stroke-width="2"/><line x1="45" y1="28" x2="75" y2="28" stroke="#ff9a9e" stroke-width="2"/><line x1="50" y1="40" x2="70" y2="40" stroke="#ff9a9e" stroke-width="2"/><circle cx="60" cy="55" r="8" fill="none" stroke="#e74c6f" stroke-width="2"/><line x1="60" y1="63" x2="60" y2="45" stroke="#e74c6f" stroke-width="2"/><line x1="40" y1="53" x2="80" y2="53" stroke="#e74c6f" stroke-width="2"/><line x1="50" y1="70" x2="70" y2="70" stroke="#e74c6f" stroke-width="2"/></svg>',
         difficulty: "Beginner",
         description: "She rides on top, controlling speed and depth. Perfect for clitoral stimulation and her pleasure.",
         tips: "Lean forward or backward to change the angle. He can thrust upward or let her do all the work."
       },
       {
-        name: "Doggy Style Delight", 
+        name: "Doggy Style Delight",
+        svg: '<svg viewBox="0 0 120 80" width="120"><circle cx="35" cy="25" r="8" fill="none" stroke="#ff9a9e" stroke-width="2"/><line x1="35" y1="33" x2="50" y2="45" stroke="#ff9a9e" stroke-width="2"/><line x1="50" y1="45" x2="50" y2="60" stroke="#ff9a9e" stroke-width="2"/><line x1="35" y1="45" x2="50" y2="45" stroke="#ff9a9e" stroke-width="2"/><circle cx="80" cy="30" r="8" fill="none" stroke="#e74c6f" stroke-width="2"/><line x1="80" y1="38" x2="65" y2="45" stroke="#e74c6f" stroke-width="2"/><line x1="70" y1="45" x2="85" y2="60" stroke="#e74c6f" stroke-width="2"/></svg>', 
         difficulty: "Intermediate",
         description: "Deep penetration from behind with access to stimulate her clitoris simultaneously.",
         tips: "Vary the angle by having her arch her back more or less. Perfect position for spanking and hair pulling."
       },
       {
         name: "Standing Passion",
+        svg: '<svg viewBox="0 0 120 80" width="120"><circle cx="50" cy="10" r="8" fill="none" stroke="#e74c6f" stroke-width="2"/><line x1="50" y1="18" x2="50" y2="50" stroke="#e74c6f" stroke-width="2"/><line x1="35" y1="30" x2="65" y2="30" stroke="#e74c6f" stroke-width="2"/><line x1="45" y1="50" x2="55" y2="70" stroke="#e74c6f" stroke-width="2"/><circle cx="70" cy="10" r="8" fill="none" stroke="#ff9a9e" stroke-width="2"/><line x1="70" y1="18" x2="70" y2="50" stroke="#ff9a9e" stroke-width="2"/><line x1="55" y1="30" x2="85" y2="30" stroke="#ff9a9e" stroke-width="2"/><line x1="65" y1="50" x2="75" y2="70" stroke="#ff9a9e" stroke-width="2"/><rect x="88" y="5" width="4" height="70" rx="2" fill="rgba(255,255,255,0.15)"/></svg>',
         difficulty: "Intermediate",
         description: "Standing sex against a wall or surface for an adventurous quickie with deep thrusts.",
         tips: "Make sure heights are compatible or use a step stool. Great for kitchen counters or shower walls."
       },
       {
         name: "Spooning Intimacy",
+        svg: '<svg viewBox="0 0 120 80" width="120"><circle cx="35" cy="35" r="8" fill="none" stroke="#ff9a9e" stroke-width="2"/><path d="M 35 43 Q 40 55 50 60" fill="none" stroke="#ff9a9e" stroke-width="2"/><line x1="50" y1="60" x2="60" y2="70" stroke="#ff9a9e" stroke-width="2"/><circle cx="55" cy="30" r="8" fill="none" stroke="#e74c6f" stroke-width="2"/><path d="M 55 38 Q 60 50 70 55" fill="none" stroke="#e74c6f" stroke-width="2"/><line x1="70" y1="55" x2="80" y2="65" stroke="#e74c6f" stroke-width="2"/><rect x="20" y="62" width="80" height="4" rx="2" fill="rgba(255,255,255,0.1)"/></svg>',
         difficulty: "Beginner",
         description: "Gentle side-by-side position perfect for lazy morning sex and intimate connection.",
         tips: "He can reach around to stimulate her clitoris while thrusting slowly from behind."
       },
       {
         name: "Reverse Cowgirl",
+        svg: '<svg viewBox="0 0 120 80" width="120"><circle cx="60" cy="10" r="8" fill="none" stroke="#ff9a9e" stroke-width="2"/><line x1="60" y1="18" x2="60" y2="40" stroke="#ff9a9e" stroke-width="2"/><line x1="45" y1="28" x2="75" y2="28" stroke="#ff9a9e" stroke-width="2"/><circle cx="60" cy="55" r="8" fill="none" stroke="#e74c6f" stroke-width="2"/><line x1="60" y1="47" x2="60" y2="63" stroke="#e74c6f" stroke-width="2"/><line x1="45" y1="63" x2="75" y2="63" stroke="#e74c6f" stroke-width="2"/><path d="M 55 18 L 65 18" stroke="#ff9a9e" stroke-width="1" opacity="0.5"/></svg>',
         difficulty: "Intermediate", 
         description: "She faces away while on top, giving him a great view and different sensations for both.",
         tips: "She can lean forward on his legs for support. Great angle for hitting her G-spot."
       },
       {
         name: "The Butterfly",
+        svg: '<svg viewBox="0 0 120 80" width="120"><circle cx="50" cy="40" r="8" fill="none" stroke="#ff9a9e" stroke-width="2"/><line x1="50" y1="48" x2="50" y2="55" stroke="#ff9a9e" stroke-width="2"/><line x1="30" y1="25" x2="50" y2="40" stroke="#ff9a9e" stroke-width="2"/><line x1="70" y1="25" x2="50" y2="40" stroke="#ff9a9e" stroke-width="2"/><circle cx="85" cy="35" r="8" fill="none" stroke="#e74c6f" stroke-width="2"/><line x1="85" y1="43" x2="85" y2="65" stroke="#e74c6f" stroke-width="2"/><line x1="80" y1="65" x2="90" y2="75" stroke="#e74c6f" stroke-width="2"/><rect x="25" y="52" width="40" height="4" rx="2" fill="rgba(255,255,255,0.1)"/></svg>',
         difficulty: "Advanced",
         description: "She lies on edge of bed with legs up, he stands for deep penetration and clitoral access.",
         tips: "Use pillows under her lower back. Perfect for extended sessions without him getting tired."
       },
       {
         name: "The Pretzel",
+        svg: '<svg viewBox="0 0 120 80" width="120"><circle cx="40" cy="30" r="8" fill="none" stroke="#ff9a9e" stroke-width="2"/><path d="M 40 38 Q 50 50 45 65" fill="none" stroke="#ff9a9e" stroke-width="2"/><path d="M 40 50 L 60 40" fill="none" stroke="#ff9a9e" stroke-width="2"/><circle cx="70" cy="35" r="8" fill="none" stroke="#e74c6f" stroke-width="2"/><path d="M 70 43 Q 65 55 70 65" fill="none" stroke="#e74c6f" stroke-width="2"/><line x1="55" y1="45" x2="85" y2="45" stroke="#e74c6f" stroke-width="2"/></svg>',
         difficulty: "Advanced",
         description: "Twisted side position allowing for deep penetration and unique angles of pleasure.",
         tips: "Requires flexibility. Start slowly and communicate about comfort. Amazing for G-spot stimulation."
       },
       {
         name: "69 Position",
+        svg: '<svg viewBox="0 0 120 80" width="120"><circle cx="35" cy="25" r="8" fill="none" stroke="#e74c6f" stroke-width="2"/><line x1="35" y1="33" x2="60" y2="40" stroke="#e74c6f" stroke-width="2"/><line x1="25" y1="40" x2="35" y2="33" stroke="#e74c6f" stroke-width="2"/><circle cx="85" cy="55" r="8" fill="none" stroke="#ff9a9e" stroke-width="2"/><line x1="85" y1="47" x2="60" y2="40" stroke="#ff9a9e" stroke-width="2"/><line x1="95" y1="40" x2="85" y2="47" stroke="#ff9a9e" stroke-width="2"/><rect x="20" y="38" width="80" height="4" rx="2" fill="rgba(255,255,255,0.05)"/></svg>',
         difficulty: "Intermediate",
         description: "Mutual oral pleasure with both partners stimulating each other simultaneously.",
         tips: "Take turns focusing on each other rather than trying to climax together. Communication is key."
       },
       {
         name: "The Lotus",
+        svg: '<svg viewBox="0 0 120 80" width="120"><circle cx="55" cy="15" r="8" fill="none" stroke="#ff9a9e" stroke-width="2"/><line x1="55" y1="23" x2="55" y2="45" stroke="#ff9a9e" stroke-width="2"/><path d="M 40 35 Q 55 45 70 35" fill="none" stroke="#ff9a9e" stroke-width="2"/><circle cx="65" cy="20" r="8" fill="none" stroke="#e74c6f" stroke-width="2"/><line x1="65" y1="28" x2="65" y2="50" stroke="#e74c6f" stroke-width="2"/><line x1="55" y1="50" x2="75" y2="65" stroke="#e74c6f" stroke-width="2"/><line x1="75" y1="50" x2="55" y2="65" stroke="#e74c6f" stroke-width="2"/></svg>',
         difficulty: "Advanced",
         description: "Sitting position with her legs wrapped around him for intense emotional and physical connection.",
         tips: "More about intimate connection than vigorous thrusting. Perfect for eye contact and kissing."
       },
       {
         name: "Legs Up Missionary",
+        svg: '<svg viewBox="0 0 120 80" width="120"><circle cx="60" cy="20" r="8" fill="none" stroke="#e74c6f" stroke-width="2"/><line x1="60" y1="28" x2="60" y2="55" stroke="#e74c6f" stroke-width="2"/><line x1="45" y1="38" x2="75" y2="38" stroke="#e74c6f" stroke-width="2"/><circle cx="60" cy="65" r="8" fill="none" stroke="#ff9a9e" stroke-width="2"/><line x1="60" y1="57" x2="60" y2="65" stroke="#ff9a9e" stroke-width="2"/><line x1="45" y1="55" x2="50" y2="30" stroke="#ff9a9e" stroke-width="2"/><line x1="75" y1="55" x2="70" y2="30" stroke="#ff9a9e" stroke-width="2"/><rect x="30" y="63" width="60" height="4" rx="2" fill="rgba(255,255,255,0.1)"/></svg>',
         difficulty: "Intermediate",
         description: "Traditional missionary with her legs up on his shoulders for incredibly deep penetration.",
         tips: "Great for hitting the G-spot. She can control depth by pushing against his chest."
       },
       {
         name: "The Bridge",
+        svg: '<svg viewBox="0 0 120 80" width="120"><circle cx="40" cy="45" r="8" fill="none" stroke="#ff9a9e" stroke-width="2"/><path d="M 40 37 Q 60 15 80 37" fill="none" stroke="#ff9a9e" stroke-width="2"/><line x1="30" y1="55" x2="40" y2="45" stroke="#ff9a9e" stroke-width="2"/><line x1="80" y1="55" x2="80" y2="37" stroke="#ff9a9e" stroke-width="2"/><circle cx="60" cy="20" r="8" fill="none" stroke="#e74c6f" stroke-width="2"/><line x1="60" y1="28" x2="60" y2="50" stroke="#e74c6f" stroke-width="2"/><line x1="55" y1="50" x2="65" y2="65" stroke="#e74c6f" stroke-width="2"/></svg>',
         difficulty: "Advanced",
         description: "She creates a bridge position while he enters from above for unique angles and views.",
         tips: "Requires upper body strength from her. Take breaks and support her back as needed."
@@ -6250,11 +6414,14 @@
 
     function showSpinResult(position) {
       const resultDiv = document.getElementById('spinResult');
-      document.getElementById('positionName').textContent = position.name;
-      document.getElementById('difficultyRating').textContent = `Difficulty: ${position.difficulty}`;
-      document.getElementById('positionDescription').textContent = position.description;
-      document.getElementById('positionTips').textContent = `💡 Tip: ${position.tips}`;
-      
+      const svgHtml = position.svg ? '<div style="text-align:center;margin:1rem 0;background:rgba(0,0,0,0.3);border-radius:12px;padding:1.5rem;display:inline-block;">' + position.svg + '</div>' : '';
+      resultDiv.innerHTML = '<div class="result-card" style="background:rgba(255,255,255,0.08);border:1px solid rgba(231,76,111,0.3);border-radius:16px;padding:2rem;text-align:center;">' +
+        svgHtml +
+        '<h3 style="color:#e74c6f;font-size:1.5rem;margin:0.5rem 0;">' + position.name + '</h3>' +
+        '<div style="color:#ff9a9e;margin:0.5rem 0;">Difficulty: ' + position.difficulty + '</div>' +
+        '<p style="color:rgba(255,255,255,0.8);margin:1rem 0;line-height:1.6;">' + position.description + '</p>' +
+        '<div style="background:rgba(231,76,111,0.15);border-radius:8px;padding:1rem;margin-top:1rem;color:rgba(255,255,255,0.9);">💡 ' + position.tips + '</div>' +
+        '</div>';
       resultDiv.style.display = 'block';
       resultDiv.scrollIntoView({ behavior: 'smooth' });
     }
