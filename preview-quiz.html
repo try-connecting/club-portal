@@ -942,6 +942,7 @@
       <!-- Navigation -->
       <div class="quiz-navigation">
         <button class="btn btn-secondary" id="backBtn" onclick="previousQuestion()">← Previous</button>
+        <button class="btn btn-secondary" onclick="exitQuiz()" style="background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.3);">✕ Exit Quiz</button>
         <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Next →</button>
       </div>
     </div>
@@ -954,8 +955,8 @@
       <div id="resultsContent"></div>
       
       <div class="quiz-navigation">
-        <button class="btn btn-secondary" onclick="showQuizSelection()">← Take Another Quiz</button>
-        <button class="btn btn-primary" onclick="showQuizSelection()">Back to Quizzes</button>
+        <button class="btn btn-primary" onclick="showQuizSelection()">← Back to Quizzes</button>
+        <button class="btn btn-secondary" onclick="showQuizSelection()">Take Another Quiz</button>
       </div>
     </div>
   </div>
@@ -4547,6 +4548,146 @@
               { text: "Your partner clearing their schedule to be with you", type: "time" },
               { text: "Your partner holding you close and offering physical comfort", type: "touch" }
             ]
+          },
+          {
+            question: "Which of these gestures would make you feel most appreciated?",
+            answers: [
+              { text: "Your partner publicly praising you or bragging about your accomplishments", type: "words" },
+              { text: "Your partner taking over a task you dislike without being asked", type: "service" },
+              { text: "Your partner surprising you with something you've wanted", type: "gifts" },
+              { text: "Your partner planning an entire day around your interests", type: "time" },
+              { text: "Your partner giving you a spontaneous back rub or holding your hand", type: "touch" }
+            ]
+          },
+          {
+            question: "When you're feeling disconnected from your partner, what would help most?",
+            answers: [
+              { text: "Having a heart-to-heart conversation about your feelings", type: "words" },
+              { text: "Working together on a project or shared task", type: "service" },
+              { text: "Receiving an unexpected small gift or token of love", type: "gifts" },
+              { text: "Spending uninterrupted, focused time together", type: "time" },
+              { text: "Increased physical closeness and affection", type: "touch" }
+            ]
+          },
+          {
+            question: "What type of anniversary celebration would mean the most to you?",
+            answers: [
+              { text: "Your partner writing you a beautiful letter about your journey together", type: "words" },
+              { text: "Your partner organizing everything so you can just enjoy the day", type: "service" },
+              { text: "Your partner giving you a meaningful, thoughtful gift", type: "gifts" },
+              { text: "Spending the whole day together doing things you both love", type: "time" },
+              { text: "A romantic, intimate evening with lots of physical closeness", type: "touch" }
+            ]
+          },
+          {
+            question: "When your partner wants to apologize after an argument, what works best?",
+            answers: [
+              { text: "A sincere verbal apology explaining what they'll do differently", type: "words" },
+              { text: "Actions that show they're trying to fix the problem", type: "service" },
+              { text: "A peace offering or gesture to show they care", type: "gifts" },
+              { text: "Sitting down together to really talk things through", type: "time" },
+              { text: "A hug and physical reconciliation", type: "touch" }
+            ]
+          },
+          {
+            question: "What makes you feel most secure in your relationship?",
+            answers: [
+              { text: "Regular verbal reassurance and expressions of love", type: "words" },
+              { text: "Your partner consistently following through on their promises", type: "service" },
+              { text: "Receiving thoughtful gestures that show you're in their thoughts", type: "gifts" },
+              { text: "Knowing you're a priority in your partner's schedule", type: "time" },
+              { text: "Frequent physical affection and intimacy", type: "touch" }
+            ]
+          },
+          {
+            question: "How do you prefer to receive encouragement when facing a challenge?",
+            answers: [
+              { text: "Verbal support and motivational words", type: "words" },
+              { text: "Practical help to reduce your stress and workload", type: "service" },
+              { text: "A thoughtful gift to boost your spirits", type: "gifts" },
+              { text: "Your partner's presence and undivided attention", type: "time" },
+              { text: "Physical comfort like hugs or hand-holding", type: "touch" }
+            ]
+          },
+          {
+            question: "Which surprise from your partner would make your day?",
+            answers: [
+              { text: "A surprise text message telling you why they love you", type: "words" },
+              { text: "Coming home to find your partner has done all your chores", type: "service" },
+              { text: "Finding a small gift on your pillow or desk", type: "gifts" },
+              { text: "Your partner canceling other plans to spend time with you", type: "time" },
+              { text: "Your partner greeting you with extra affection when you get home", type: "touch" }
+            ]
+          },
+          {
+            question: "What would make you feel most loved on a random Tuesday?",
+            answers: [
+              { text: "Your partner telling you something specific they appreciate about you", type: "words" },
+              { text: "Your partner handling something you've been dreading", type: "service" },
+              { text: "Your partner bringing you coffee or a small treat", type: "gifts" },
+              { text: "Your partner suggesting you do something fun together", type: "time" },
+              { text: "Extra hugs, kisses, or cuddles throughout the day", type: "touch" }
+            ]
+          },
+          {
+            question: "When you're proud of an achievement, how do you want your partner to respond?",
+            answers: [
+              { text: "With enthusiastic verbal praise and recognition", type: "words" },
+              { text: "By taking care of details so you can celebrate", type: "service" },
+              { text: "With a congratulatory gift or gesture", type: "gifts" },
+              { text: "By dedicating time to hear all about it and celebrate together", type: "time" },
+              { text: "With physical celebration - hugs, kisses, and affection", type: "touch" }
+            ]
+          },
+          {
+            question: "What type of daily gesture would mean the most to you?",
+            answers: [
+              { text: "Good morning and goodnight messages with loving words", type: "words" },
+              { text: "Your partner handling one small task to make your day easier", type: "service" },
+              { text: "Small, thoughtful surprises left for you to find", type: "gifts" },
+              { text: "A few minutes of undivided attention during your day", type: "time" },
+              { text: "Physical affection woven throughout your daily routine", type: "touch" }
+            ]
+          },
+          {
+            question: "When you're stressed, what would help you feel most supported?",
+            answers: [
+              { text: "Your partner verbally acknowledging your stress and offering encouragement", type: "words" },
+              { text: "Your partner taking tasks off your plate without being asked", type: "service" },
+              { text: "Your partner bringing you something to help you relax", type: "gifts" },
+              { text: "Your partner making time to just be present with you", type: "time" },
+              { text: "Your partner offering physical comfort and stress relief", type: "touch" }
+            ]
+          },
+          {
+            question: "How do you best connect with your partner after time apart?",
+            answers: [
+              { text: "Sharing what happened and expressing how much you missed each other", type: "words" },
+              { text: "Working together on something that needs to be done", type: "service" },
+              { text: "Exchanging small gifts or tokens from your time apart", type: "gifts" },
+              { text: "Dedicating focused time to catch up and reconnect", type: "time" },
+              { text: "Physical reunification with lots of hugs and affection", type: "touch" }
+            ]
+          },
+          {
+            question: "What would make you feel most cherished in your relationship?",
+            answers: [
+              { text: "Hearing regularly about your partner's love and appreciation for you", type: "words" },
+              { text: "Seeing your partner anticipate your needs and care for you", type: "service" },
+              { text: "Receiving meaningful gifts that show your partner thinks of you", type: "gifts" },
+              { text: "Knowing you're the priority when your partner makes their schedule", type: "time" },
+              { text: "Experiencing constant physical connection and affection", type: "touch" }
+            ]
+          },
+          {
+            question: "Which romantic gesture would touch your heart most deeply?",
+            answers: [
+              { text: "A handwritten love letter or poem", type: "words" },
+              { text: "Your partner planning and executing a perfect romantic evening", type: "service" },
+              { text: "A carefully chosen gift that shows deep understanding of you", type: "gifts" },
+              { text: "A romantic getaway focused entirely on being together", type: "time" },
+              { text: "An evening of intimate physical connection and closeness", type: "touch" }
+            ]
           }
         ]
       },
@@ -4926,6 +5067,12 @@
       currentPartner = 'A';
       answers = { A: {}, B: {} };
       selectedAnswer = null;
+    }
+
+    function exitQuiz() {
+      if (confirm('Are you sure you want to exit this quiz? Your progress will be lost.')) {
+        showQuizSelection();
+      }
     }
 
     // Partner tab switching
