@@ -5912,7 +5912,7 @@
       const sectionContent = document.getElementById('section-content');
       sectionContent.style.display = 'block';
       sectionContent.innerHTML = getSectionContent(sectionType);
-      sectionContent.scrollIntoView({ behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       if (sectionType === 'desire-discovery') initDesireQuiz();
       if (sectionType === 'couple-chemistry') initChemistryQuiz();
     }
