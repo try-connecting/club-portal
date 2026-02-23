@@ -35,7 +35,8 @@
     }
     .access-gate button:hover { transform: scale(1.05); }
     .access-gate .error { color: #ff6b6b; margin-top: 10px; display: none; }
-    .portal-wrap { display: none; }
+    .access-gate { display: none !important; } /* Hide access gate for preview */
+    .portal-wrap { display: block !important; } /* Show portal content immediately for preview */
     
     /* Adults Only Age Verification Gate */
     .age-verification-gate {
