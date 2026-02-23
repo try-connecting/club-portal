@@ -6373,15 +6373,19 @@
     function openSection(sectionType) {
       // Age verification already handled at tab level - no need to check again
       const sectionContent = document.getElementById('section-content');
+      const grid = document.querySelector('.adults-content-grid');
+      if (grid) grid.style.display = 'none';
       sectionContent.style.display = 'block';
       sectionContent.innerHTML = getSectionContent(sectionType);
-      sectionContent.scrollIntoView({ behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       if (sectionType === 'desire-discovery') initDesireQuiz();
       if (sectionType === 'couple-chemistry') initChemistryQuiz();
     }
 
     function closeSectionContent() {
       document.getElementById('section-content').style.display = 'none';
+      const grid = document.querySelector('.adults-content-grid');
+      if (grid) grid.style.display = 'grid';
     }
 
     function getSectionContent(type) {
@@ -7194,7 +7198,10 @@
     
     function openGame(gameType) {
       currentGame = gameType;
+      var grid = document.querySelector('.intimate-grid');
+      if (grid) grid.style.display = 'none';
       document.getElementById(gameType + '-interface').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       initializeGame(gameType);
     }
     
@@ -7204,6 +7211,8 @@
         currentGame = '';
         gameState = {};
       }
+      var grid = document.querySelector('.intimate-grid');
+      if (grid) grid.style.display = 'grid';
     }
     
     function initializeGame(gameType) {
