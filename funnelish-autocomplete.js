@@ -25,19 +25,16 @@
         }).catch(function() {});
     }
 
-    // Make the input wrapper relative so dropdown can be absolute inside it
-    var inputWrapper = addressInput.closest('.form-element') || addressInput.parentElement;
-    inputWrapper.style.position = 'relative';
-
-    // Create dropdown as a sibling, positioned absolute below input
+    // Create dropdown - inserted right after the input in DOM flow
     var dd = document.createElement('div');
     dd.id = 'gac-dropdown';
-    dd.style.cssText = 'position:absolute;top:100%;left:0;right:0;background:#fff;border:1px solid #ddd;border-top:none;z-index:99999;display:none;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,0.15);border-radius:0 0 8px 8px;font-family:Arial,sans-serif;-webkit-overflow-scrolling:touch;';
-    inputWrapper.appendChild(dd);
+    dd.style.cssText = 'background:#fff;border:1px solid #ddd;border-top:none;z-index:99999;display:none;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,0.15);border-radius:0 0 8px 8px;font-family:Arial,sans-serif;-webkit-overflow-scrolling:touch;margin-top:-1px;';
+    // Insert right after the input element
+    addressInput.parentNode.insertBefore(dd, addressInput.nextSibling);
 
-    // Mobile-friendly styles
+    // Styles
     var style = document.createElement('style');
-    style.textContent = '#gac-dropdown div{padding:12px 14px;cursor:pointer;border-bottom:1px solid #f0f0f0;-webkit-tap-highlight-color:transparent;}#gac-dropdown div:active{background:#e8e8e8 !important;}@media(max-width:600px){#gac-dropdown{max-height:150px;border-radius:0 0 6px 6px;}#gac-dropdown div{padding:14px;font-size:15px;}#gac-dropdown div span{font-size:13px !important;}}';
+    style.textContent = '#gac-dropdown div.gac-item{padding:12px 14px;cursor:pointer;border-bottom:1px solid #f0f0f0;-webkit-tap-highlight-color:transparent;background:#fff;}#gac-dropdown div.gac-item:active{background:#e8e8e8 !important;}#gac-dropdown div.gac-item:last-child{border-bottom:none;}@media(max-width:600px){#gac-dropdown{max-height:150px;}#gac-dropdown div.gac-item{padding:14px;font-size:15px;}#gac-dropdown div.gac-item span{font-size:13px !important;}}';
     document.head.appendChild(style);
 
     var service = new google.maps.places.AutocompleteService();
@@ -54,6 +51,7 @@
           if (status !== 'OK' || !predictions) { dd.style.display = 'none'; return; }
           predictions.forEach(function(p) {
             var item = document.createElement('div');
+            item.className = 'gac-item';
             item.innerHTML = '<strong>' + p.structured_formatting.main_text + '</strong><br><span style="color:#888;font-size:12px">' + (p.structured_formatting.secondary_text || '') + '</span>';
             item.onmouseenter = function() { this.style.backgroundColor = '#f5f5f5'; };
             item.onmouseleave = function() { this.style.backgroundColor = '#fff'; };
@@ -113,6 +111,8 @@
             dd.appendChild(item);
           });
           dd.style.display = 'block';
+          // Scroll input into view so dropdown is visible
+          setTimeout(function() { addressInput.scrollIntoView({ block: 'start', behavior: 'smooth' }); }, 100);
         });
       }, 300);
     });
