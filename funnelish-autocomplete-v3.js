@@ -1,53 +1,43 @@
 (function() {
+  // Helper function to find fields with fallback data-types
+  function findField(tag, types) {
+    for (var i = 0; i < types.length; i++) {
+      var el = document.querySelector('.el-940269 ' + tag + '[data-type="' + types[i] + '"]');
+      if (el) return el;
+    }
+    return document.querySelector(tag + '[data-type="' + types[0] + '"]');
+  }
+
   function init() {
-    if (!window.google || !google.maps || !google.maps.places) {
-      setTimeout(init, 300);
-      return;
-    }
+    if (!window.google || !google.maps || !google.maps.places) { setTimeout(init, 300); return; }
     var addressInput = document.querySelector('input[data-type="shipping_address"]');
-    if (!addressInput) {
-      setTimeout(init, 300);
-      return;
-    }
+    if (!addressInput) { setTimeout(init, 300); return; }
     if (document.getElementById('gac-dropdown')) return;
-
     var countrySelect = document.querySelector('select[data-type="country"]');
-
-    // Wrap the address input in a relative container so dropdown sits directly below it
     var wrap = document.createElement('div');
     wrap.style.cssText = 'position:relative;width:100%;flex:1 1 100%;';
     addressInput.parentNode.insertBefore(wrap, addressInput);
     wrap.appendChild(addressInput);
-
-    // Create dropdown INSIDE the wrapper, positioned absolute below the input
     var dd = document.createElement('div');
     dd.id = 'gac-dropdown';
     dd.style.cssText = 'position:absolute;top:100%;left:0;right:0;background:#fff;border:1px solid #ddd;border-top:none;z-index:99999;display:none;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,0.15);border-radius:0 0 8px 8px;font-family:Arial,sans-serif;-webkit-overflow-scrolling:touch;margin-top:0;width:100%;box-sizing:border-box;';
     wrap.appendChild(dd);
-
-    // Styles
     var style = document.createElement('style');
     style.textContent = '#gac-dropdown .gac-item{padding:12px 14px;cursor:pointer;border-bottom:1px solid #f0f0f0;-webkit-tap-highlight-color:transparent;background:#fff;}#gac-dropdown .gac-item:active{background:#e8e8e8 !important;}#gac-dropdown .gac-item:hover{background:#f5f5f5;}#gac-dropdown .gac-item:last-child{border-bottom:none;}@media(max-width:600px){#gac-dropdown{max-height:150px;}#gac-dropdown .gac-item{padding:14px;font-size:15px;}#gac-dropdown .gac-item span{font-size:13px !important;}}';
     document.head.appendChild(style);
-
     var service = new google.maps.places.AutocompleteService();
     var placesService = new google.maps.places.PlacesService(document.createElement('div'));
     var debounce;
-    var justSelected = false; // flag to suppress dropdown after selecting an address
-
-    // Get selected country code for biasing results
+    var justSelected = false;
     function getSelectedCountry() {
       if (!countrySelect || !countrySelect.value || countrySelect.selectedIndex === 0) return null;
       return countrySelect.value;
     }
-
     addressInput.addEventListener('input', function() {
       clearTimeout(debounce);
-      // If user just selected an address, don't reopen dropdown
       if (justSelected) { justSelected = false; return; }
       var val = this.value;
       if (val.length < 3) { dd.style.display = 'none'; return; }
-
       debounce = setTimeout(function() {
         var opts = { input: val, types: ['address'] };
         var country = getSelectedCountry();
@@ -72,21 +62,15 @@
                   if (c.types.includes('administrative_area_level_1')) { state = c.short_name; stateLong = c.long_name; }
                   if (c.types.includes('postal_code')) zip = c.long_name;
                 });
-
-                // Fill city
-                var cityIn = document.querySelector('.el-940269 input[data-type="city"]');
+                var cityIn = findField('input', ['shipping_city', 'city']);
                 if (cityIn) { cityIn.value = city; cityIn.dispatchEvent(new Event('input', { bubbles: true })); }
-
-                // Fill zip
-                var zipIn = document.querySelector('.el-940269 input[data-type="zip"]');
+                var zipIn = findField('input', ['shipping_zip', 'zip']);
                 if (zipIn) { zipIn.value = zip; zipIn.dispatchEvent(new Event('input', { bubbles: true })); }
-
-                // Wait for state dropdown to load then set it
                 setTimeout(function() {
                   var attempts = 0;
                   var si = setInterval(function() {
                     attempts++;
-                    var stateS = document.querySelector('.el-940269 select[data-type="state"]');
+                    var stateS = findField('select', ['shipping_state', 'state']);
                     if (stateS && stateS.options.length > 1 && state) {
                       for (var j = 0; j < stateS.options.length; j++) {
                         var opt = stateS.options[j];
@@ -111,13 +95,10 @@
         });
       }, 300);
     });
-
-    // Close on click/touch outside
     document.addEventListener('click', function(e) {
       if (!addressInput.contains(e.target) && !dd.contains(e.target)) dd.style.display = 'none';
     });
   }
-
   setTimeout(init, 500);
   document.addEventListener('DOMContentLoaded', function() { setTimeout(init, 500); });
   window.addEventListener('load', function() { setTimeout(init, 500); });
